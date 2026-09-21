@@ -1,0 +1,163 @@
+{
+  "gallery": {
+    "model": "google/diffusiongemma-26B-A4B-it",
+    "answers": {
+      "doodle": {
+        "type": "choice",
+        "choice": "cat",
+        "probabilities": {
+          "airplane": 2.705824067193341e-10,
+          "apple": 1.2085382316739026e-09,
+          "bicycle": 1.0272851558475895e-08,
+          "cat": 0.9999999654965716,
+          "clock": 2.0521851629773813e-08,
+          "fish": 7.255014707556354e-10,
+          "pizza": 1.0040619747837214e-09,
+          "umbrella": 5.000412052277446e-10
+        },
+        "confidence": 0.9999996805440345
+      }
+    },
+    "usage": {
+      "input_tokens": 421,
+      "output_tokens": 5
+    },
+    "meta": {
+      "latency_ms": 891.44,
+      "probability_source": "self_conditioned_denoiser_logits",
+      "temperature": 1.0,
+      "passes": 48,
+      "candidate_logits": {
+        "doodle": [
+          1.802513837814331,
+          3.2991039752960205,
+          5.439197063446045,
+          23.832958221435547,
+          6.131182670593262,
+          2.7888002395629883,
+          3.113746166229248,
+          2.4166276454925537
+        ]
+      },
+      "denoising_steps": {
+        "doodle": 2
+      },
+      "candidate_mass": {
+        "doodle": 0.9999999379027307
+      },
+      "unrestricted_first_token": {
+        "doodle": "D"
+      },
+      "answer_position": {
+        "doodle": 4
+      }
+    }
+  },
+  "drawing": {
+    "model": "google/diffusiongemma-26B-A4B-it",
+    "answers": {
+      "doodle": {
+        "type": "choice",
+        "choice": "clock",
+        "probabilities": {
+          "airplane": 9.937896916922224e-09,
+          "apple": 1.9563833494566776e-10,
+          "bicycle": 2.3225864869782805e-10,
+          "cat": 4.930658301351442e-09,
+          "clock": 0.9999999839525375,
+          "fish": 1.0683657912961115e-10,
+          "pizza": 5.68558630371089e-10,
+          "umbrella": 7.561492202524316e-11
+        },
+        "confidence": 0.9999998464351677
+      }
+    },
+    "usage": {
+      "input_tokens": 421,
+      "output_tokens": 5
+    },
+    "meta": {
+      "latency_ms": 594.28,
+      "probability_source": "self_conditioned_denoiser_logits",
+      "temperature": 1.0,
+      "passes": 48,
+      "candidate_logits": {
+        "doodle": [
+          5.075719833374023,
+          1.1478768587112427,
+          1.3194607496261597,
+          4.3748369216918945,
+          23.50263023376465,
+          0.5429095029830933,
+          2.2147135734558105,
+          0.19726277887821198
+        ]
+      },
+      "denoising_steps": {
+        "doodle": 4
+      },
+      "candidate_mass": {
+        "doodle": 0.9999999806039714
+      },
+      "unrestricted_first_token": {
+        "doodle": "E"
+      },
+      "answer_position": {
+        "doodle": 4
+      }
+    }
+  },
+  "flower": {
+    "model": "google/diffusiongemma-26B-A4B-it",
+    "answers": {
+      "flower": {
+        "type": "choice",
+        "choice": "tulip",
+        "probabilities": {
+          "daisy": 1.1538767848415027e-09,
+          "dandelion": 1.910626613957308e-11,
+          "rose": 1.7009477629965478e-10,
+          "sunflower": 5.518734161597019e-10,
+          "tulip": 0.9999999981050487
+        },
+        "confidence": 0.9999999740876271
+      }
+    },
+    "usage": {
+      "input_tokens": 400,
+      "output_tokens": 5
+    },
+    "meta": {
+      "latency_ms": 424.29,
+      "probability_source": "self_conditioned_denoiser_logits",
+      "temperature": 1.0,
+      "passes": 48,
+      "candidate_logits": {
+        "flower": [
+          2.7268283367156982,
+          -1.3740379810333252,
+          0.8123014569282532,
+          1.9892643690109253,
+          23.30696678161621
+        ]
+      },
+      "denoising_steps": {
+        "flower": 2
+      },
+      "candidate_mass": {
+        "flower": 0.9999999928837876
+      },
+      "unrestricted_first_token": {
+        "flower": "E"
+      },
+      "answer_position": {
+        "flower": 4
+      }
+    }
+  },
+  "javascript_errors": [],
+  "mobile_no_overflow": true,
+  "clear_disables_guess": true,
+  "gallery_paging_and_filtering": true,
+  "text_mode_preserved": true
+}

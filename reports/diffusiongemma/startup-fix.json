@@ -1,0 +1,22 @@
+{
+  "problem": "Pinned SGLang PR normal prefill admission advertised a full canvas for a short prompt",
+  "observed_attention": {
+    "actual_input_tokens": 90,
+    "qo_indptr": [
+      0,
+      256
+    ],
+    "layer": 0
+  },
+  "symptom": "CUDA illegal memory access in Triton extend attention",
+  "correction": "Use actual remaining context length bounded by KV capacity; require complete canvas only for denoising",
+  "upstream_revision": "ef90bf677e4e6b280bf796f1c5f4ef0f05dda27f",
+  "debug_logs": [
+    "/tmp/jev-gemma-live.log",
+    "/tmp/jev-gemma-live-2.log",
+    "/tmp/jev-gemma-debug-2.log",
+    "/tmp/jev-gemma-attn-debug.log"
+  ],
+  "gpu_kernel_checks": "Native sampling and QKV normalization: 2 tests and 4 subtests passed; independent zero-prefix attention shape probes passed",
+  "note": "No benchmark results were collected from the failing deployments."
+}

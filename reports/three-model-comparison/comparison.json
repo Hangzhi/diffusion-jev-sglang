@@ -1,0 +1,118 @@
+{
+  "created": "2026-09-21T19:26:53.959100+00:00",
+  "new_inference_performed": false,
+  "scope": "Same 231 public JevBench tasks; serial local runs, historical hosted Jev 1.13.0",
+  "upstream_commit": "c6004e008ffba24aec091261ca1a5c02f7324702",
+  "dataset_sha256": {
+    "easy": "231df3c2c8e88a1a8c137ebe85de96ba70fabd330849098ac7b3c52c70b7172b",
+    "original": "5c2414edb3006b8bfcb70fda433f0f9ca015759433849f8d3104328a1f7c4180",
+    "hard": "89e9e6becb33ed88c1de7d42dcc87531b2fb64cfaef4e1986faf7c37b3f80ebb"
+  },
+  "gemma": {
+    "model": "google/diffusiongemma-26B-A4B-it",
+    "overall": {
+      "count": 231,
+      "scorable": 231,
+      "valid_distributions": 231,
+      "strict_valid_distributions": 231,
+      "renormalized_distributions": 0,
+      "correct": 196,
+      "accuracy": 0.8484848484848485,
+      "schema_failures": 0,
+      "transport_failures": 0,
+      "nll": 0.8336467544150519,
+      "brier": 0.2587093524750152,
+      "ece": 0.12217404703856612,
+      "ordinal_mae": 0.123267201284312,
+      "gold_distribution_count": 10,
+      "gold_tvd": 0.36657125839033944,
+      "latency": {
+        "n": 231,
+        "p50_s": 0.18329722713679075,
+        "p95_s": 0.39200744894333184
+      }
+    },
+    "valid_decisions_per_second": 4.416812614471224
+  },
+  "llada": {
+    "model": "inclusionAI/LLaDA2.1-mini",
+    "overall": {
+      "count": 231,
+      "scorable": 231,
+      "valid_distributions": 231,
+      "strict_valid_distributions": 231,
+      "renormalized_distributions": 0,
+      "correct": 152,
+      "accuracy": 0.658008658008658,
+      "schema_failures": 0,
+      "transport_failures": 0,
+      "nll": 1.0204703654745326,
+      "brier": 0.4905080305819897,
+      "ece": 0.20387848143811452,
+      "ordinal_mae": 0.3170280018873611,
+      "gold_distribution_count": 10,
+      "gold_tvd": 0.346154007028606,
+      "latency": {
+        "n": 231,
+        "p50_s": 0.17166653089225292,
+        "p95_s": 2.3456233954057097
+      }
+    },
+    "serial_repeat_latency_range_s": {
+      "p50_s": [
+        0.17166653089225292,
+        0.18988517625257373
+      ],
+      "p95_s": [
+        2.3243329578544945,
+        2.3456233954057097
+      ]
+    },
+    "valid_decisions_per_second_range": [
+      1.6588711042029802,
+      1.6644998773133095
+    ]
+  },
+  "official_jev": {
+    "model": "TypeSafe Jev 1.13.0",
+    "historical": true,
+    "overall": {
+      "correct": 200,
+      "accuracy": 0.8658008658008658,
+      "latency": {
+        "n": 231,
+        "p50_s": 0.665,
+        "p95_s": 0.8025
+      }
+    },
+    "source": "https://github.com/fstandhartinger/jevbench/blob/c6004e008ffba24aec091261ca1a5c02f7324702/results/v1.2/jevbench-v1.2-per-task.json"
+  },
+  "source_artifacts": {
+    "gemma_comparison": {
+      "path": "reports/diffusiongemma/jevbench/published-comparison.json",
+      "sha256": "fdd1bf6aa20b1c2257b6f27f6db066a9678069f43d6e9993f6f8a8e45ff81d81"
+    },
+    "gemma_metrics": {
+      "path": "reports/diffusiongemma/jevbench/comparison.json",
+      "sha256": "775df8bcc4953d9acf1238e460c648c57bb9e0e759efc1ef3388058f08ee707f"
+    },
+    "gemma_run": {
+      "path": "reports/diffusiongemma/jevbench/local-run.json",
+      "sha256": "0268adfb6b05b233c83dfae0bc0a63ff5bdeac3175fe8dd738d4d001d6b5d092"
+    },
+    "llada_load": {
+      "path": "reports/jevbench-load-20260921/load-comparison.json",
+      "sha256": "248d07bcac385f4e3768b0235a5ea3a410039b1249a2f41499a5d1aaa059532f"
+    }
+  },
+  "gemma_versus_llada_paired": {
+    "gemma_only_correct": 53,
+    "llada_only_correct": 9,
+    "both_wrong": 26
+  },
+  "checks": {
+    "all_task_ids_match": true,
+    "all_dataset_hashes_match": true,
+    "llada_serial_repeat_probabilities_identical": true
+  }
+}

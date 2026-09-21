@@ -1,0 +1,81 @@
+{
+  "count": 100,
+  "valid": 100,
+  "correct": 98,
+  "accuracy_including_failures": 0.98,
+  "chance_accuracy": 0.2,
+  "by_class": {
+    "daisy": {
+      "count": 20,
+      "correct": 20
+    },
+    "dandelion": {
+      "count": 20,
+      "correct": 20
+    },
+    "rose": {
+      "count": 20,
+      "correct": 20
+    },
+    "sunflower": {
+      "count": 20,
+      "correct": 18
+    },
+    "tulip": {
+      "count": 20,
+      "correct": 20
+    }
+  },
+  "confusion_matrix": {
+    "daisy": {
+      "daisy": 20,
+      "dandelion": 0,
+      "rose": 0,
+      "sunflower": 0,
+      "tulip": 0,
+      "invalid": 0
+    },
+    "dandelion": {
+      "daisy": 0,
+      "dandelion": 20,
+      "rose": 0,
+      "sunflower": 0,
+      "tulip": 0,
+      "invalid": 0
+    },
+    "rose": {
+      "daisy": 0,
+      "dandelion": 0,
+      "rose": 20,
+      "sunflower": 0,
+      "tulip": 0,
+      "invalid": 0
+    },
+    "sunflower": {
+      "daisy": 2,
+      "dandelion": 0,
+      "rose": 0,
+      "sunflower": 18,
+      "tulip": 0,
+      "invalid": 0
+    },
+    "tulip": {
+      "daisy": 0,
+      "dandelion": 0,
+      "rose": 0,
+      "sunflower": 0,
+      "tulip": 20,
+      "invalid": 0
+    }
+  },
+  "latency_s": {
+    "p50": 0.3966540331020951,
+    "p95": 0.5093062393832951
+  },
+  "metrics_valid_only": {
+    "accuracy": 0.98,
+    "nll": 0.31827363277319093,
+    "brier": 0.040245019415603794,
+    "ece_10_bins": 0.021139768150210795
+  }
+}

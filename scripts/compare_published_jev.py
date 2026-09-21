@@ -8,20 +8,19 @@ import hashlib
 import json
 from pathlib import Path
 
-from compare_jevbench import ROOT, UPSTREAM_COMMIT, load_tasks
+from compare_jevbench import ROOT, UPSTREAM_COMMIT, load_run, load_tasks
 
 
 def main(args):
-    tasks, _ = load_tasks(args.upstream)
+    tasks, hashes = load_tasks(args.upstream)
     task_map = {t.id: (dataset, t) for dataset, t in tasks}
     from jevbench.metrics import latency_summary
 
     source = args.upstream / "results/v1.2/jevbench-v1.2-per-task.json"
     published = json.loads(source.read_text())["systems"]["jev-1.13.0"]["public_tasks"]
-    local = {
-        r["id"]: r for r in map(json.loads, (args.output / "local.jsonl").read_text().splitlines())
-    }
-    if set(local) != set(task_map) or not set(task_map) <= set(published):
+    rows, meta = load_run(args.output, "local", tasks, hashes)
+    local = {r["id"]: r for r in rows}
+    if not meta["completed"] or set(local) != set(task_map) or not set(task_map) <= set(published):
         raise ValueError("Need a complete local run and published outcomes for all matching IDs")
     matched = [
         {

@@ -1,0 +1,111 @@
+{
+  "count": 20,
+  "correct": 17,
+  "accuracy": 0.85,
+  "accuracy_wilson_95": [
+    0.6395811352592431,
+    0.9476312541037835
+  ],
+  "macro_f1": 0.8425396825396824,
+  "balanced_accuracy": 0.85,
+  "by_class": {
+    "❤️": {
+      "count": 4,
+      "correct": 3,
+      "precision": 1.0,
+      "recall": 0.75,
+      "f1": 0.8571428571428571
+    },
+    "⚾": {
+      "count": 4,
+      "correct": 2,
+      "precision": 1.0,
+      "recall": 0.5,
+      "f1": 0.6666666666666666
+    },
+    "😄": {
+      "count": 4,
+      "correct": 4,
+      "precision": 0.6666666666666666,
+      "recall": 1.0,
+      "f1": 0.8
+    },
+    "😞": {
+      "count": 4,
+      "correct": 4,
+      "precision": 0.8,
+      "recall": 1.0,
+      "f1": 0.8888888888888888
+    },
+    "🍴": {
+      "count": 4,
+      "correct": 4,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    }
+  },
+  "confusion_matrix": {
+    "❤️": {
+      "❤️": 3,
+      "⚾": 0,
+      "😄": 1,
+      "😞": 0,
+      "🍴": 0,
+      "invalid": 0
+    },
+    "⚾": {
+      "❤️": 0,
+      "⚾": 2,
+      "😄": 1,
+      "😞": 1,
+      "🍴": 0,
+      "invalid": 0
+    },
+    "😄": {
+      "❤️": 0,
+      "⚾": 0,
+      "😄": 4,
+      "😞": 0,
+      "🍴": 0,
+      "invalid": 0
+    },
+    "😞": {
+      "❤️": 0,
+      "⚾": 0,
+      "😄": 0,
+      "😞": 4,
+      "🍴": 0,
+      "invalid": 0
+    },
+    "🍴": {
+      "❤️": 0,
+      "⚾": 0,
+      "😄": 0,
+      "😞": 0,
+      "🍴": 4,
+      "invalid": 0
+    }
+  },
+  "valid": 20,
+  "failures": 0,
+  "top3_accuracy_including_failures": 1.0,
+  "probability_metrics_valid_only": {
+    "accuracy": 0.85,
+    "nll": 2.466981842424861,
+    "brier": 0.2999950387928242,
+    "ece_10_bins": 0.1499987460266986
+  },
+  "readout_temperature": 1.0,
+  "latency_ms": {
+    "p50": 188.03132604807615,
+    "p95": 307.9493983415888
+  },
+  "incorrect_with_top_probability_at_least_90_percent": 3,
+  "candidate_mass_below_half_count": 0,
+  "denoising_steps": {
+    "2": 18,
+    "7": 1,
+    "4": 1
+  }
+}

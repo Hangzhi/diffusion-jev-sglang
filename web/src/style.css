@@ -403,8 +403,7 @@ h2 {
 }
 .actions {
   display: flex;
-  gap: 10px;
-  margin-top: 23px;
+  margin-bottom: 23px;
 }
 .evaluate {
   display: flex;
@@ -428,17 +427,6 @@ h2 {
 }
 .evaluate:hover:not(:disabled) {
   background: #316647;
-}
-.curl-button {
-  background: #fff;
-  border: 1px solid #dfe7d7;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  color: #7b8d6e;
-  padding: 10px 15px;
-  border-radius: 6px;
-  font-size: 10px;
 }
 .privacy {
   font-size: 8px;
@@ -822,4 +810,46 @@ footer {
   * {
     transition: none !important;
   }
+}
+
+.mode-tabs { display: flex; gap: 8px; margin: 24px 0; }
+.mode-tabs button { display: flex; align-items: center; gap: 8px; border: 1px solid #d6dfcf; border-radius: 7px; padding: 11px 16px; background: #f8faf5; color: #52684e; font: inherit; cursor: pointer; }
+.mode-tabs button.selected { background: #285b40; color: white; border-color: #285b40; }
+.mode-tabs button:disabled { opacity: .5; cursor: default; }
+.vision-panel { margin-bottom: 30px; padding-bottom: 24px; border-bottom: 1px solid #dfe6d7; }
+.vision-panel h2 { display: flex; gap: 8px; align-items: center; }
+.upload-button { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; font-size: 12px; color: #285b40; }
+.upload-button input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.upload-button:focus-within { outline: 2px solid #285b40; outline-offset: 5px; }
+.upload-button.disabled { opacity: .5; }
+.selected-image, .image-placeholder { background: #eef3e9; border: 1px solid #d6dfcf; border-radius: 8px; overflow: hidden; margin: 16px 0 20px; }
+.selected-image img { display: block; width: 100%; height: 220px; object-fit: contain; }
+.selected-image span { display: block; padding: 11px 14px; color: #53654c; font-size: 11px; border-top: 1px solid #d6dfcf; }
+.image-placeholder { height: 165px; display: flex; flex-direction: column; gap: 13px; align-items: center; justify-content: center; color: #64785c; font-size: 12px; text-align: center; padding: 20px; }
+.gallery-heading { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 12px; }
+.gallery-heading strong { display: block; color: #294a33; font-size: 13px; }
+.gallery-heading small { display: block; margin-top: 5px; color: #74836b; font-size: 10px; }
+.gallery-heading select { max-width: 130px; padding: 8px; border: 1px solid #d6dfcf; border-radius: 5px; color: #355b3e; background: #fff; font-size: 11px; }
+.image-gallery { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.image-gallery button { background: #eef3e9; padding: 0; border: 2px solid transparent; border-radius: 7px; overflow: hidden; cursor: pointer; aspect-ratio: 1.2; }
+.image-gallery button.selected { border-color: #285b40; box-shadow: 0 0 0 2px #b9cfab; }
+.image-gallery img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.gallery-footer { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin: 12px 0; font-size: 10px; color: #64785c; }
+.gallery-footer button { border: 0; background: none; color: #285b40; font-size: 11px; cursor: pointer; padding: 4px 0; }
+.gallery-footer button:disabled { opacity: .35; cursor: default; }
+.dataset-source { display: inline-flex; align-items: center; gap: 4px; font-size: 10px; color: #64785c; }
+.doodle-intro, .gallery-message { font-size: 13px; line-height: 1.6; color: #64785c; }
+.doodle-categories > span { display: block; margin-bottom: 9px; color: #64785c; font-size: 11px; }
+.doodle-tabs { display: flex; gap: 8px; margin: 14px 0; }
+.doodle-tabs button { font: inherit; font-size: 12px; padding: 9px 13px; border: 1px solid #d6dfcf; border-radius: 6px; background: white; color: #52684e; cursor: pointer; }
+.doodle-tabs button.selected { background: #edf3e7; border-color: #285b40; color: #204c34; }
+.draw-heading { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; margin: 18px 0 12px; color: #64785c; font-size: 11px; }
+.draw-pad canvas { display: block; width: min(100%, 360px); height: auto; margin: auto; border: 1px solid #d6dfcf; border-radius: 10px; touch-action: none; cursor: crosshair; background: white; }
+.draw-pad p { font-size: 12px; line-height: 1.6; color: #64785c; }
+.image-gallery img { object-fit: contain; }
+@media (max-width: 600px) {
+  .mode-tabs button { padding: 10px; font-size: 12px; }
+  .gallery-heading { align-items: flex-start; }
+  .gallery-heading small { max-width: 165px; line-height: 1.5; }
+  .image-gallery { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }

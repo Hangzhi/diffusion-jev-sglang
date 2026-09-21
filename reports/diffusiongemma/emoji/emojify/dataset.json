@@ -1,0 +1,89 @@
+{
+  "dataset": "emojify",
+  "source": "https://www.kaggle.com/datasets/alvinrindra/emojify",
+  "source_version": 2,
+  "license": "Unknown in uploader metadata; source data retained locally, not bundled",
+  "source_sha256": {
+    "source-metadata.json": "8022c8ad721a5d0f2e5f3d0dbaac15d4a7bbb64e590c0e28160ed6baebfd1519",
+    "source.zip": "839a3bf40c0969c0eb16f6f55e406b5e77ce8eedd6bdce55dfc2e1e152fdc430"
+  },
+  "source_split_audit": {
+    "train": {
+      "original": 132,
+      "retained": 131,
+      "duplicate_or_earlier_split_overlap": 1
+    },
+    "test": {
+      "original": 56,
+      "retained": 50,
+      "duplicate_or_earlier_split_overlap": 6
+    }
+  },
+  "selection": "All retained original test rows; four development rows per class from train",
+  "combined_csv_used": false,
+  "numeric_class_mapping": {
+    "0": "❤️",
+    "1": "⚾",
+    "2": "😄",
+    "3": "😞",
+    "4": "🍴"
+  },
+  "question": {
+    "type": "choice",
+    "instructions": "Which emoji best matches the emotion or activity in this message?",
+    "criteria": {
+      "❤️": "Love and affection",
+      "⚾": "Sports and ball games",
+      "😄": "Happiness and joy",
+      "😞": "Sadness, disappointment, or distress",
+      "🍴": "Food, eating, or hunger"
+    }
+  },
+  "files": {
+    "train": {
+      "file": "train.jsonl",
+      "sha256": "f33ee8cb3e3e341f969b0acc195f2d46f109497fa1ae3cac5c831467eb36ae7d",
+      "count": 111,
+      "class_counts": {
+        "😞": 31,
+        "😄": 34,
+        "❤️": 18,
+        "🍴": 13,
+        "⚾": 15
+      }
+    },
+    "test": {
+      "file": "test.jsonl",
+      "sha256": "f3c485a8c750ac093a9060937b8054b34243339c647b2741dd2715bd2f1609e9",
+      "count": 50,
+      "class_counts": {
+        "😞": 15,
+        "😄": 15,
+        "🍴": 5,
+        "⚾": 8,
+        "❤️": 7
+      }
+    },
+    "dev": {
+      "file": "dev.jsonl",
+      "sha256": "cf455dedcd1e352bfc4a9997643cc538441f2112817c75eefeccab7855b07f75",
+      "count": 20,
+      "class_counts": {
+        "❤️": 4,
+        "⚾": 4,
+        "😄": 4,
+        "😞": 4,
+        "🍴": 4
+      }
+    }
+  },
+  "labels": [
+    "❤️",
+    "⚾",
+    "😄",
+    "😞",
+    "🍴"
+  ],
+  "preparation_sha256": "70135bf4e83212130c9474651a7bcfee554cb7fb49500c442e7b7b0436d7b31e",
+  "deduplication": "NFKC, casefold, collapsed whitespace for matching only; original stripped text for inference. Remove all conflicting-label groups and duplicates; earlier source split takes precedence. No near-duplicate or model-pretraining overlap detection."
+}

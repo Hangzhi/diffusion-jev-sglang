@@ -1,0 +1,27 @@
+{
+  "upstream_commit": "c6004e008ffba24aec091261ca1a5c02f7324702",
+  "dataset_sha256": {
+    "easy": "231df3c2c8e88a1a8c137ebe85de96ba70fabd330849098ac7b3c52c70b7172b",
+    "original": "5c2414edb3006b8bfcb70fda433f0f9ca015759433849f8d3104328a1f7c4180",
+    "hard": "89e9e6becb33ed88c1de7d42dcc87531b2fb64cfaef4e1986faf7c37b3f80ebb"
+  },
+  "public_items": 231,
+  "backend": "local",
+  "concurrency": 4,
+  "warmup_requests": 2,
+  "retries": 0,
+  "completed": true,
+  "started": "2026-09-21T03:56:56.799634+00:00",
+  "harness_sha256": "cf6fdd5df660067ba433b758c2d785b2d9b5cd4891c75030379126eb62cab2b6",
+  "expected_settings": {
+    "temperature": 1.0,
+    "passes": 1
+  },
+  "latency_scope": "client HTTP loopback",
+  "measured_seconds": 42.007767342031,
+  "measured_items": 231,
+  "valid_items": 231,
+  "attempts_per_second": 5.498983036141324,
+  "valid_decisions_per_second": 5.498983036141324,
+  "finished": "2026-09-21T03:57:39.325935+00:00"
+}

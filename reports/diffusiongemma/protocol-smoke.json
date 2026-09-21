@@ -1,0 +1,157 @@
+[
+  {
+    "suffix": "",
+    "response": {
+      "text": "thought\nB",
+      "output_ids": [
+        100,
+        45518,
+        107,
+        101,
+        236799,
+        106
+      ],
+      "meta_info": {
+        "id": "18e957f53848410fa2d557128f72f267",
+        "finish_reason": {
+          "type": "stop",
+          "matched": 106
+        },
+        "prompt_tokens": 90,
+        "weight_version": "default",
+        "num_retractions": 0,
+        "reasoning_tokens": 0,
+        "completion_tokens": 6,
+        "cached_tokens": 0,
+        "weight_versions": [
+          {
+            "version": "default",
+            "start": 0,
+            "end": 6
+          }
+        ],
+        "cached_tokens_details": null,
+        "jev_candidate_logits": [
+          [
+            3.4533743858337402,
+            -0.6561453938484192,
+            1.2492772340774536,
+            -2.8662312030792236,
+            2.819777011871338,
+            -3.7305901050567627,
+            -4.954212665557861,
+            -0.032226547598838806,
+            5.52981424331665,
+            2.245790719985962,
+            1.062056064605713,
+            -2.338993549346924,
+            0.3398292362689972,
+            2.4631924629211426,
+            2.432150363922119,
+            1.077661156654358,
+            -4.068528175354004,
+            0.0854489877820015,
+            1.4052209854125977,
+            5.620326042175293,
+            4.4054179191589355,
+            -0.82010817527771,
+            -1.397425651550293,
+            -1.3740379810333252,
+            -1.0542532205581665,
+            -1.2492772340774536
+          ]
+        ],
+        "jev_denoising_steps": [
+          2
+        ],
+        "jev_candidate_mass": [
+          2.523556918987424e-10
+        ],
+        "jev_unrestricted_token": [
+          100
+        ],
+        "jev_max_denoising_steps": [
+          48
+        ],
+        "dp_rank": null,
+        "e2e_latency": 0.1725400877185166,
+        "response_sent_to_client_ts": 1789967591.3441596
+      }
+    }
+  },
+  {
+    "suffix": "<|channel>thought\n<channel|>",
+    "response": {
+      "text": "",
+      "output_ids": [
+        1
+      ],
+      "meta_info": {
+        "id": "e5d9228a1c154df58b6e909d206308c8",
+        "finish_reason": {
+          "type": "stop",
+          "matched": 1
+        },
+        "prompt_tokens": 94,
+        "weight_version": "default",
+        "num_retractions": 0,
+        "reasoning_tokens": 0,
+        "completion_tokens": 1,
+        "cached_tokens": 0,
+        "weight_versions": [
+          {
+            "version": "default",
+            "start": 0,
+            "end": 1
+          }
+        ],
+        "cached_tokens_details": null,
+        "jev_candidate_logits": [
+          [
+            8.394965171813965,
+            11.076089859008789,
+            6.519366264343262,
+            4.984605312347412,
+            9.364253044128418,
+            4.4359893798828125,
+            7.053064823150635,
+            5.197055339813232,
+            1.2960678339004517,
+            6.0113019943237305,
+            2.540773868560791,
+            2.8042895793914795,
+            3.067368984222412,
+            4.037848949432373,
+            4.802094459533691,
+            5.831106662750244,
+            1.4675776958465576,
+            4.007160663604736,
+            7.46494197845459,
+            5.045358657836914,
+            3.669041156768799,
+            4.4359893798828125,
+            2.711331605911255,
+            1.9892643690109253,
+            4.619217872619629,
+            6.340479850769043
+          ]
+        ],
+        "jev_denoising_steps": [
+          2
+        ],
+        "jev_candidate_mass": [
+          2.6678614872821527e-08
+        ],
+        "jev_unrestricted_token": [
+          1
+        ],
+        "jev_max_denoising_steps": [
+          48
+        ],
+        "dp_rank": null,
+        "e2e_latency": 0.15107780089601874,
+        "response_sent_to_client_ts": 1789967591.498234
+      }
+    }
+  }
+]

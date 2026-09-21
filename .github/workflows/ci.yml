@@ -28,4 +28,4 @@ jobs:
       - uses: astral-sh/setup-uv@v6
         with:
           version: '0.9.0'
-      - run: uv run --with torch==2.11.0 --torch-backend cpu pytest tests/test_algorithm.py
+      - run: uv run --with torch==2.11.0 --torch-backend cpu pytest tests/test_algorithm.py tests/test_gemma_readout.py

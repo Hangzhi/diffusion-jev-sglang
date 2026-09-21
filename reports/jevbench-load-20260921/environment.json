@@ -1,0 +1,25 @@
+{
+  "gpu": "NVIDIA A100-SXM4-80GB, 580.159.04, 81920 MiB",
+  "engine": {
+    "model_path": "inclusionAI/LLaDA2.1-mini",
+    "revision": "20e64e2ad21644d0e5248586ed9c942cdd45de0f",
+    "dtype": "bfloat16",
+    "attention_backend": "flashinfer",
+    "mem_fraction_static": 0.8,
+    "max_running_requests": 8,
+    "context_length": 8192,
+    "disable_radix_cache": true,
+    "disable_cuda_graph": true,
+    "disable_overlap_schedule": true,
+    "dllm_algorithm": "JevScoring",
+    "random_seed": 820557876
+  },
+  "sglang_version": "0.5.12.post1",
+  "git_commit": "0e85960814ce110a6aa99d919afb2f7f4409d5c3",
+  "source_sha256": {
+    "scripts/compare_jevbench.py": "cf6fdd5df660067ba433b758c2d785b2d9b5cd4891c75030379126eb62cab2b6",
+    "src/diffusion_jev/backend.py": "f758594d2ced16afb9cd7c0854078ca450a3559d92c880362110f18c6984f7cc",
+    "src/diffusion_jev/scoring.py": "b8fc45634a09f2be2651ed9fece1bf554d25d26cd1042fc07d495b26f854b02c",
+    "src/diffusion_jev/sglang_extension/jev_scoring.py": "23e650e9c52bf8f7dc10d0c2a0656d476aeab781718d883040d180c5827e7e2d"
+  }
+}

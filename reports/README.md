@@ -1,5 +1,9 @@
 # Live A100 validation
 
+The current deployment is covered in [DiffusionGemma text and image benchmarks](diffusiongemma/README.md): 196/231 public JevBench decisions and 98/100 flower images correct. The measurements below describe the earlier LLaDA backend.
+
+For the full 231-item public benchmark, see the [local versus published Jev comparison](jevbench/README.md) and the [fresh local concurrency and reproducibility measurements](jevbench-load-20260921/README.md). The emoji measurements below cover a separate, much smaller workload.
+
 Measured on September 21, 2026 with the environment in `environment.json`. BF16, one denoising pass, prefix caching and CUDA graphs disabled. These are small functional smoke tests, not representative quality or production load benchmarks.
 
 The browser exercised the actual API and model, including choice, noul, score, returned logits, JSON view, preset switching and mobile layout. All three presets also ran concurrently with different prompt lengths. See `browser-smoke.json`, `presets-live.json`, and screenshots.

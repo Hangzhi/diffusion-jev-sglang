@@ -1,0 +1,46 @@
+{
+  "completed": true,
+  "started": "2026-09-21T05:24:46.271779+00:00",
+  "model": "google/diffusiongemma-26B-A4B-it",
+  "model_revision": "f7f5b7f5fa82ffc52addd066915886d497f5517b",
+  "sglang_revision": "ef90bf677e4e6b280bf796f1c5f4ef0f05dda27f",
+  "dataset_source": "https://www.kaggle.com/datasets/abdelrahmanatef01/flowers-dataset-for-image-classification",
+  "dataset_version": 1,
+  "archive_sha256": "6196b0c75bd74bc11526d1fec4ca766dc32f8f99d2cac487c78c5fdb512e048d",
+  "manifest_sha256": "2a8aacdfebaf745db9e2310fd71f52130849b181648722754f5ab74e669591c7",
+  "harness_sha256": "d5eb790f3302a45d47b478ec662994d53e195e3571968cb48576d03dd6318690",
+  "items": 100,
+  "labels": [
+    "daisy",
+    "dandelion",
+    "rose",
+    "sunflower",
+    "tulip"
+  ],
+  "warmup_requests": 2,
+  "concurrency": 1,
+  "retries": 0,
+  "temperature": 1.0,
+  "max_denoising_steps": 48,
+  "latency_scope": "client HTTP loopback, including image loading and vision encoding",
+  "question": {
+    "type": "choice",
+    "instructions": "Which type of flower is most prominent in the attached image?",
+    "criteria": {
+      "daisy": "A daisy flower",
+      "dandelion": "A dandelion flower or seed head",
+      "rose": "A rose flower",
+      "sunflower": "A sunflower",
+      "tulip": "A tulip flower"
+    }
+  },
+  "limitations": [
+    "Public dataset: pretraining overlap is unknown.",
+    "Only exact decoded-pixel duplicates were removed; near duplicates may remain.",
+    "Self-conditioned denoiser scores are not calibrated correctness probabilities.",
+    "No official hosted Jev image result was measured."
+  ],
+  "finished": "2026-09-21T05:25:28.218790+00:00",
+  "measured_items": 100,
+  "measured_elapsed_s": 40.88774286583066
+}

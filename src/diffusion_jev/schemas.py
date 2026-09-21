@@ -33,11 +33,16 @@ class EvaluationRequest(BaseModel):
     model: str
     state: Structured
     questions: dict[str, Question] = Field(min_length=1, max_length=32)
+    images: list[Annotated[str, Field(max_length=8_100_000)]] = Field(
+        default_factory=list, max_length=4
+    )
 
     @model_validator(mode="after")
     def bound_size(self):
-        if len(self.model_dump_json()) > 100_000:
+        if len(self.model_dump_json(exclude={"images"})) > 100_000:
             raise ValueError("Request content exceeds 100,000 characters")
+        if sum(len(image) for image in self.images) > 16_200_000:
+            raise ValueError("Combined image input exceeds 16 MB")
         return self
 
 
@@ -74,10 +79,14 @@ class Usage(BaseModel):
 
 class Metadata(BaseModel):
     latency_ms: float = Field(ge=0)
-    probability_source: Literal["masked_position_logits"]
+    probability_source: Literal["masked_position_logits", "self_conditioned_denoiser_logits"]
     temperature: float = Field(gt=0)
-    passes: Literal[1, 2, 4]
+    passes: int = Field(ge=1, le=256)
     candidate_logits: dict[str, list[float]]
+    denoising_steps: dict[str, int] | None = None
+    candidate_mass: dict[str, Probability] | None = None
+    unrestricted_first_token: dict[str, str] | None = None
+    answer_position: dict[str, int] | None = None
 
 
 class EvaluationResponse(BaseModel):

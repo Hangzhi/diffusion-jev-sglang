@@ -14,6 +14,7 @@ import subprocess
 import sys
 import time
 from collections import defaultdict
+from concurrent.futures import FIRST_COMPLETED, ThreadPoolExecutor, wait
 from datetime import UTC, datetime
 from pathlib import Path
 
@@ -86,12 +87,29 @@ class Runner:
                 "answers": result["answers"],
                 "usage": result.get("usage", {}),
                 "settings": {k: result.get("meta", {}).get(k) for k in ("temperature", "passes")},
+                "readout": {
+                    k: result.get("meta", {}).get(k)
+                    for k in (
+                        "probability_source",
+                        "denoising_steps",
+                        "candidate_mass",
+                        "unrestricted_first_token",
+                        "answer_position",
+                    )
+                },
             }
         except httpx.HTTPError:
             return {
                 "ok": False,
                 "latency_s": time.perf_counter() - start,
                 "error": "Local HTTP request failed",
+            }
+        except (KeyError, TypeError, ValueError, AttributeError):
+            return {
+                "ok": False,
+                "latency_s": time.perf_counter() - start,
+                "error": "Local response has an invalid schema",
+                "category": "invalid_response",
             }
 
     def close(self):
@@ -110,7 +128,10 @@ def outcome(result, task):
 
     if not result.get("ok"):
         return {"valid": False, "correct": False, "predicted": None}
-    answer = result.get("answers", {}).get("decision", {})
+    answers = result.get("answers")
+    answer = answers.get("decision") if isinstance(answers, dict) else None
+    if not isinstance(answer, dict):
+        return {"valid": False, "correct": False, "predicted": None}
     if answer.get("type") != task.question["type"]:
         return {"valid": False, "correct": False, "predicted": None}
     probs = answer.get("probabilities")
@@ -124,37 +145,93 @@ def outcome(result, task):
     return score_task(probs, task)
 
 
+def measured_requests(runner, tasks, concurrency):
+    """Bound in-flight HTTP requests; never queue the entire dataset on failure."""
+    if concurrency == 1:
+        for dataset, task in tasks:
+            yield dataset, task, runner.request(task)
+        return
+    if runner.backend != "local":
+        raise ValueError("Concurrent runs currently support only the local HTTP backend")
+    pending = {}
+    remaining = iter(tasks)
+    with ThreadPoolExecutor(max_workers=concurrency) as pool:
+
+        def submit_next():
+            item = next(remaining, None)
+            if item is not None:
+                dataset, task = item
+                pending[pool.submit(runner.request, task)] = (dataset, task)
+
+        for _ in range(concurrency):
+            submit_next()
+        try:
+            while pending:
+                done, _ = wait(pending, return_when=FIRST_COMPLETED)
+                for future in done:
+                    dataset, task = pending.pop(future)
+                    yield dataset, task, future.result()
+                    submit_next()
+        finally:
+            for future in pending:
+                future.cancel()
+
+
+def check_settings(result, backend, expected=None, expected_model=None):
+    expected = expected or {"temperature": 1.0, "passes": 1}
+    if backend == "local" and result.get("ok") and result.get("settings") != expected:
+        raise ValueError(f"Frozen benchmark settings differ: expected {expected}")
+    if expected_model and result.get("ok") and result.get("model") != expected_model:
+        raise ValueError("Active model differs from the requested benchmark model")
+
+
 def run(args, tasks, hashes):
     args.output.mkdir(parents=True, exist_ok=True)
     path = args.output / f"{args.backend}.jsonl"
     meta_path = args.output / f"{args.backend}-run.json"
-    if path.exists():
+    if path.exists() or meta_path.exists():
         raise ValueError(f"Refusing to overwrite measured results: {path}; choose another --output")
+    if args.concurrency < 1 or (args.backend == "gateway" and args.concurrency != 1):
+        raise ValueError("Concurrency must be positive; Gateway currently requires concurrency=1")
     runner = Runner(args.backend, args.url, ROOT / "web")
     meta = {
         "upstream_commit": UPSTREAM_COMMIT,
         "dataset_sha256": hashes,
         "public_items": len(tasks),
         "backend": args.backend,
-        "concurrency": 1,
+        "concurrency": args.concurrency,
         "warmup_requests": 2,
         "retries": 0,
         "completed": False,
         "started": datetime.now(UTC).isoformat(),
+        "harness_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+        "expected_model": args.expected_model,
+        "expected_settings": {"temperature": 1.0, "passes": args.expected_passes}
+        if args.backend == "local"
+        else None,
         "latency_scope": "client HTTP loopback"
         if args.backend == "local"
         else "AI SDK through Vercel gateway; excludes Node startup",
     }
     meta_path.write_text(json.dumps(meta, indent=2) + "\n")
+    measured_start = None
+    measured_count = 0
+    measured_valid = 0
+    requests = None
     try:
         for _ in range(2):
             warmup = runner.request(tasks[0][1])
             if not warmup.get("ok"):
                 raise RuntimeError("Warmup failed: " + warmup.get("error", "invalid response"))
+            check_settings(warmup, args.backend, meta["expected_settings"], args.expected_model)
+            if not outcome(warmup, tasks[0][1])["valid"]:
+                raise RuntimeError("Warmup returned an invalid distribution")
         failures = 0
         with path.open("x") as output:
-            for i, (dataset, task) in enumerate(tasks):
-                result = runner.request(task)
+            measured_start = time.perf_counter()
+            requests = measured_requests(runner, tasks, args.concurrency)
+            for i, (dataset, task, result) in enumerate(requests):
+                check_settings(result, args.backend, meta["expected_settings"], args.expected_model)
                 scored = outcome(result, task)
                 row = {
                     "id": task.id,
@@ -168,6 +245,8 @@ def run(args, tasks, hashes):
                 }
                 output.write(json.dumps(row, ensure_ascii=False) + "\n")
                 output.flush()
+                measured_count += 1
+                measured_valid += int(scored["valid"])
                 if result.get("status_code") in (401, 403, 429):
                     raise RuntimeError(f"Gateway HTTP {result['status_code']}; run stopped")
                 failures = failures + 1 if not result.get("ok") else 0
@@ -179,6 +258,17 @@ def run(args, tasks, hashes):
                     )
         meta["completed"] = True
     finally:
+        if measured_start is not None:
+            seconds = time.perf_counter() - measured_start
+            meta.update(
+                measured_seconds=seconds,
+                measured_items=measured_count,
+                valid_items=measured_valid,
+                attempts_per_second=measured_count / seconds,
+                valid_decisions_per_second=measured_valid / seconds,
+            )
+        if requests is not None:
+            requests.close()
         meta["finished"] = datetime.now(UTC).isoformat()
         meta_path.write_text(json.dumps(meta, indent=2) + "\n")
         runner.close()
@@ -200,6 +290,8 @@ def aggregate(rows, tasks_by_id):
         "count": len(rows),
         "scorable": len(scored),
         "valid_distributions": len(valid),
+        "strict_valid_distributions": sum(r["score"].get("strict_valid", False) for r in valid),
+        "renormalized_distributions": sum(r["score"].get("renormalized", False) for r in valid),
         "correct": sum(bool(r["score"]["correct"]) for r in scored),
         "accuracy": mean([int(bool(r["score"]["correct"])) for r in scored]),
         "schema_failures": sum(not r["score"]["valid"] for r in rows),
@@ -239,6 +331,41 @@ def aggregate(rows, tasks_by_id):
     }
 
 
+def load_run(directory, backend, tasks, hashes):
+    """Verify coverage and rescore saved native probabilities before aggregation."""
+    rows = [json.loads(line) for line in (directory / f"{backend}.jsonl").read_text().splitlines()]
+    meta = json.loads((directory / f"{backend}-run.json").read_text())
+    if meta["upstream_commit"] != UPSTREAM_COMMIT or meta["dataset_sha256"] != hashes:
+        raise ValueError("Dataset revision or hashes differ from the run")
+    task_map = {t.id: (dataset, t) for dataset, t in tasks}
+    ids = [r["id"] for r in rows]
+    if len(ids) != len(set(ids)):
+        raise ValueError("Duplicate task IDs in measured run")
+    if not set(ids) <= task_map.keys():
+        raise ValueError("Unknown task IDs in measured run")
+    if meta["completed"] and set(ids) != task_map.keys():
+        raise ValueError("Completed run is missing task IDs")
+    for row in rows:
+        dataset, task = task_map[row["id"]]
+        expected = {
+            "dataset": dataset,
+            "family": task.family,
+            "question_type": task.question["type"],
+            "expected": task.expected,
+            "excluded": bool(task.provenance.get("exclude_reason")),
+        }
+        if any(row[k] != v for k, v in expected.items()):
+            raise ValueError("Saved task metadata differs from the pinned dataset")
+        latency = row["result"].get("latency_s")
+        if type(latency) not in (int, float) or not math.isfinite(latency) or latency < 0:
+            raise ValueError("Invalid recorded latency")
+        check_settings(
+            row["result"], backend, meta.get("expected_settings"), meta.get("expected_model")
+        )
+        row["score"] = outcome(row["result"], task)
+    return rows, meta
+
+
 def summarize(args, tasks, hashes):
     task_map = {t.id: t for _, t in tasks}
     summary = {
@@ -252,10 +379,7 @@ def summarize(args, tasks, hashes):
         path = args.output / f"{backend}.jsonl"
         if not path.exists():
             continue
-        rows = [json.loads(line) for line in path.read_text().splitlines()]
-        meta = json.loads((args.output / f"{backend}-run.json").read_text())
-        if meta["dataset_sha256"] != hashes:
-            raise ValueError("Dataset hashes differ from the run")
+        rows, meta = load_run(args.output, backend, tasks, hashes)
         by_model[backend] = {r["id"]: r for r in rows}
         groups = defaultdict(list)
         for row in rows:
@@ -264,6 +388,10 @@ def summarize(args, tasks, hashes):
             groups[f"type:{row['question_type']}"].append(row)
         summary["models"][backend] = {
             "completed": meta["completed"],
+            "coverage": len(rows) / len(tasks),
+            "concurrency": meta["concurrency"],
+            "measured_seconds": meta.get("measured_seconds"),
+            "valid_decisions_per_second": meta.get("valid_decisions_per_second"),
             "overall": aggregate(rows, task_map),
             "groups": {k: aggregate(v, task_map) for k, v in groups.items()},
         }
@@ -296,6 +424,9 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--upstream", type=Path, required=True)
     parser.add_argument("--backend", choices=["local", "gateway"], default="local")
+    parser.add_argument("--concurrency", type=int, default=1)
+    parser.add_argument("--expected-passes", type=int, default=1)
+    parser.add_argument("--expected-model")
     parser.add_argument("--url", default="http://127.0.0.1:8000")
     parser.add_argument("--output", type=Path, default=ROOT / "reports/jevbench")
     parser.add_argument("--summarize", action="store_true")

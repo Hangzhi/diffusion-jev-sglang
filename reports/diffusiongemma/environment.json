@@ -1,0 +1,44 @@
+{
+  "python": "3.12.3",
+  "engine_packages": {
+    "torch": "2.13.0",
+    "transformers": "5.12.1",
+    "sglang-kernel": "0.4.7",
+    "flashinfer-python": "0.6.18",
+    "triton": "3.7.1",
+    "numpy": "2.3.5",
+    "pillow": "11.3.0",
+    "tokenizers": "0.22.2"
+  },
+  "model": "google/diffusiongemma-26B-A4B-it",
+  "model_revision": "f7f5b7f5fa82ffc52addd066915886d497f5517b",
+  "sglang_revision": "ef90bf677e4e6b280bf796f1c5f4ef0f05dda27f",
+  "gpu": "NVIDIA A100-SXM4-80GB, 81920 MiB, 580.159.04",
+  "patches": {
+    "srt/dllm/algorithm/gemma4_renoise.py": "2e88531d74cea1136fae16290598421b3a45434c799f7c85c2cfa03ac7d5cafe",
+    "srt/dllm/mixin/scheduler.py": "3f464888c1f98dcbcde593c8b4843ef30812a9c8d55ba6bb2a45878f9b39848f",
+    "srt/managers/schedule_policy.py": "e304b37c34a46007b82bf007e5067d1e81b3b463b8d88303bae2504044beea5b"
+  },
+  "configuration": {
+    "dtype": "bfloat16",
+    "attention": "triton",
+    "canvas": 256,
+    "max_denoising_steps": 48,
+    "sampler_seed": 42,
+    "context_length": 8192,
+    "max_running_requests": 4,
+    "cuda_graphs": false,
+    "prefix_caching": false,
+    "synchronous_dllm": true,
+    "readout_temperature": 1.0,
+    "answer_position": 4,
+    "answer_prefix_token_ids": [
+      100,
+      45518,
+      107,
+      101
+    ],
+    "max_new_tokens": 5
+  },
+  "adapter_sha256": "26d271683367af301d3e8f0d3137458916bc8b2cd47f5a2485ce7e43be459bb8"
+}

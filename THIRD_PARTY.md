@@ -2,9 +2,13 @@
 
 - [SGLang](https://github.com/sgl-project/sglang), Apache-2.0. The project installs it separately and includes a small integration patch. The inference extension uses its public/internal engine interfaces.
 - [LLaDA2.1-mini](https://huggingface.co/inclusionAI/LLaDA2.1-mini), model card lists Apache-2.0. Weights are downloaded from the pinned upstream revision and are not included in this repository.
+- [DiffusionGemma 26B A4B](https://huggingface.co/google/diffusiongemma-26B-A4B-it), Google DeepMind, model card lists Apache-2.0. Weights are downloaded separately. Native image/text support uses a pinned experimental SGLang checkout; the local readout and context-admission patches are included here.
+- [Quick, Draw! dataset](https://github.com/googlecreativelab/quickdraw-dataset), Google, Inc., [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). The optional Doodle Detective preparation script selects simplified vectors and renders them into JPEGs; these are modified renderings. Downloaded source records and gallery images are excluded from Git. Demo screenshots contain attributed sample renderings.
+- [Kaggle Flowers](https://www.kaggle.com/datasets/abdelrahmanatef01/flowers-dataset-for-image-classification), version 1, uploader declares Apache-2.0. Downloaded images are excluded from Git; optional preparation records provenance and archive hashes.
 - React and React DOM (MIT), Lucide icons (ISC), Vite (MIT), and their dependencies. Bundled JS preserves upstream license comments; exact package versions are in `web/package-lock.json`.
 - [TypeSafe documentation](https://docs.typesafe.ai/api) is referenced to describe interoperability; no hosted Jev implementation, model, or branding is included.
 - Kaggle Emojify is optional and is not redistributed. Review its dataset terms before downloading or publishing derived examples.
+- [TweetEval](https://github.com/cardiffnlp/tweeteval) emoji data and published predictions are optional benchmark inputs. Their provenance and hashes are recorded; source tweet text is excluded from Git. Reports retain aggregate metrics, source row indices, and model outputs.
 
 The bundled emoji examples and playground presets are original synthetic examples written for this project.
 

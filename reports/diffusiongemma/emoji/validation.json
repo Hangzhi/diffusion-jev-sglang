@@ -1,0 +1,32 @@
+{
+  "emojify": {
+    "sklearn_macro_f1": 0.8301813837297708,
+    "matches_saved_summary": true
+  },
+  "tweeteval": {
+    "sklearn_macro_f1": 0.24619414276875623,
+    "matches_saved_summary": true
+  },
+  "published_baseline": {
+    "source_rows_aligned": 1000,
+    "accuracy": 0.491,
+    "macro_f1": 0.3381264373788335,
+    "matches_saved_summary": true
+  },
+  "sklearn_version": "1.9.1",
+  "harness_metrics_and_manifest_hashes_match": true,
+  "checked_at": "2026-09-21T05:53:06.137031+00:00",
+  "tests_passed": 52,
+  "tests_skipped": 2,
+  "new_emoji_tests": 7,
+  "lint_passed": true,
+  "health": {
+    "ready": true,
+    "model": "google/diffusiongemma-26B-A4B-it",
+    "display_name": "DiffusionGemma 26B A4B",
+    "supports_images": true,
+    "backend": "sglang",
+    "probability_source": "self_conditioned_denoiser_logits",
+    "temperature": 1.0
+  }
+}

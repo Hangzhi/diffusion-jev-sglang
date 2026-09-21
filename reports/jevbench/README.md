@@ -1,5 +1,7 @@
 # Local diffusion Jev versus TypeSafe Jev
 
+Follow-up: [fresh local throughput and reproducibility measurements](../jevbench-load-20260921/README.md) repeat this exact corpus with one and four concurrent requests. These do not add a live hosted Jev result.
+
 Measured September 21, 2026. **Your local model was run live. The TypeSafe Jev 1.13.0 column is a historical published reference, not a new Vercel Gateway request.** A replacement Gateway credential was unavailable, so the cloud example could not authenticate and its setup is not claimed verified.
 
 On the exact same 231 public task IDs, local accuracy was **65.8%**, versus **86.6%** for published Jev, a **20.8 percentage-point gap**. Both solved every easy item; Jev's advantage appears on original and hard decision tasks.

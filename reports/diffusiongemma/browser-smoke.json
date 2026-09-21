@@ -1,0 +1,189 @@
+{
+  "passed": true,
+  "console_errors": [],
+  "responses": [
+    {
+      "model": "google/diffusiongemma-26B-A4B-it",
+      "answers": {
+        "emoji": {
+          "type": "choice",
+          "choice": "\u2764\ufe0f",
+          "probabilities": {
+            "\u2764\ufe0f": 0.999999994618499,
+            "\u26bd": 1.0338144217627358e-09,
+            "\ud83d\ude0a": 1.2764966725584321e-09,
+            "\ud83d\ude22": 2.3942509440000164e-09,
+            "\ud83c\udf74": 6.769389379368725e-10
+          },
+          "confidence": 0.9999999287132778
+        },
+        "positive": {
+          "type": "noul",
+          "noul": 0.9999999884578531
+        },
+        "intensity": {
+          "type": "score",
+          "score": 2.999999854785217,
+          "legend": {
+            "0": "Neutral",
+            "1": "Mild",
+            "2": "Strong",
+            "3": "Very strong"
+          },
+          "probabilities": {
+            "0": 1.9020086145281526e-10,
+            "1": 5.598874882680839e-10,
+            "2": 1.4352440572006562e-07,
+            "3": 0.999999855725506
+          },
+          "confidence": 0.999998252940378
+        }
+      },
+      "usage": {
+        "input_tokens": 330,
+        "output_tokens": 15
+      },
+      "meta": {
+        "latency_ms": 306.23,
+        "probability_source": "self_conditioned_denoiser_logits",
+        "temperature": 1.0,
+        "passes": 48,
+        "candidate_logits": {
+          "emoji": [
+            26.28017807006836,
+            5.59016752243042,
+            5.801031589508057,
+            6.429982662200928,
+            5.166738033294678
+          ],
+          "positive": [
+            2.323462724685669,
+            20.600723266601562
+          ],
+          "intensity": [
+            2.850748062133789,
+            3.930403232574463,
+            9.476927757263184,
+            25.233688354492188
+          ]
+        },
+        "denoising_steps": {
+          "emoji": 2,
+          "positive": 2,
+          "intensity": 2
+        },
+        "candidate_mass": {
+          "emoji": 0.9999999944148906,
+          "positive": 0.9999976629348437,
+          "intensity": 0.9999999672904198
+        },
+        "unrestricted_first_token": {
+          "emoji": "A",
+          "positive": "B",
+          "intensity": "D"
+        },
+        "answer_position": {
+          "emoji": 4,
+          "positive": 4,
+          "intensity": 4
+        }
+      }
+    },
+    {
+      "model": "google/diffusiongemma-26B-A4B-it",
+      "answers": {
+        "flower": {
+          "type": "choice",
+          "choice": "rose",
+          "probabilities": {
+            "daisy": 3.776581880213511e-13,
+            "dandelion": 3.5532404746915237e-13,
+            "rose": 0.9999999999851166,
+            "sunflower": 7.843384379009315e-12,
+            "tulip": 6.307066840665446e-12
+          },
+          "confidence": 0.9999999997520296
+        }
+      },
+      "usage": {
+        "input_tokens": 382,
+        "output_tokens": 5
+      },
+      "meta": {
+        "latency_ms": 307.71,
+        "probability_source": "self_conditioned_denoiser_logits",
+        "temperature": 1.0,
+        "passes": 48,
+        "candidate_logits": {
+          "flower": [
+            -4.6802167892456055,
+            -4.741176128387451,
+            23.924570083618164,
+            -1.6467806100845337,
+            -1.864780306816101
+          ]
+        },
+        "denoising_steps": {
+          "flower": 2
+        },
+        "candidate_mass": {
+          "flower": 0.9999999989184585
+        },
+        "unrestricted_first_token": {
+          "flower": "C"
+        },
+        "answer_position": {
+          "flower": 4
+        }
+      }
+    },
+    {
+      "model": "google/diffusiongemma-26B-A4B-it",
+      "answers": {
+        "flower": {
+          "type": "choice",
+          "choice": "rose",
+          "probabilities": {
+            "daisy": 7.707689382201474e-11,
+            "dandelion": 2.283497264650925e-11,
+            "rose": 0.9999999990048247,
+            "sunflower": 6.099630356129024e-10,
+            "tulip": 2.853003858779288e-10
+          },
+          "confidence": 0.9999999859816447
+        }
+      },
+      "usage": {
+        "input_tokens": 387,
+        "output_tokens": 5
+      },
+      "meta": {
+        "latency_ms": 484.51,
+        "probability_source": "self_conditioned_denoiser_logits",
+        "temperature": 1.0,
+        "passes": 48,
+        "candidate_logits": {
+          "flower": [
+            0.9059745073318481,
+            -0.3105357885360718,
+            24.19219207763672,
+            2.974569320678711,
+            2.2147135734558105
+          ]
+        },
+        "denoising_steps": {
+          "flower": 2
+        },
+        "candidate_mass": {
+          "flower": 0.9999999602745205
+        },
+        "unrestricted_first_token": {
+          "flower": "C"
+        },
+        "answer_position": {
+          "flower": 4
+        }
+      }
+    }
+  ]
+}

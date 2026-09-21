@@ -1,0 +1,26 @@
+{
+  "checked_at": "2026-09-21T05:32:53.765866+00:00",
+  "supervisor_pid": 48120,
+  "supervisor_exists": true,
+  "health": {
+    "ready": true,
+    "model": "google/diffusiongemma-26B-A4B-it",
+    "display_name": "DiffusionGemma 26B A4B",
+    "supports_images": true,
+    "backend": "sglang",
+    "probability_source": "self_conditioned_denoiser_logits",
+    "temperature": 1.0
+  },
+  "dataset_count": 2742,
+  "prepared_jpeg_count": 2742,
+  "frozen_image_benchmark_count": 100,
+  "gallery_request_status": 200,
+  "image_request_status": 200,
+  "web_app_status": 200,
+  "api_url": "http://127.0.0.1:8000",
+  "mac_url": "http://localhost:18000",
+  "mac_access_requires_ssh_forwarding": true,
+  "text_benchmark_completed": true,
+  "image_benchmark_completed": true,
+  "browser_checks_passed": true
+}

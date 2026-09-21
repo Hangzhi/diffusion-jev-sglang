@@ -1,0 +1,110 @@
+{
+  "count": 50,
+  "correct": 42,
+  "accuracy": 0.84,
+  "accuracy_wilson_95": [
+    0.7148578393696501,
+    0.916625793219666
+  ],
+  "macro_f1": 0.8301813837297708,
+  "balanced_accuracy": 0.8476190476190476,
+  "by_class": {
+    "❤️": {
+      "count": 7,
+      "correct": 4,
+      "precision": 0.5,
+      "recall": 0.5714285714285714,
+      "f1": 0.5333333333333333
+    },
+    "⚾": {
+      "count": 8,
+      "correct": 8,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "😄": {
+      "count": 15,
+      "correct": 10,
+      "precision": 0.8333333333333334,
+      "recall": 0.6666666666666666,
+      "f1": 0.7407407407407407
+    },
+    "😞": {
+      "count": 15,
+      "correct": 15,
+      "precision": 0.9375,
+      "recall": 1.0,
+      "f1": 0.967741935483871
+    },
+    "🍴": {
+      "count": 5,
+      "correct": 5,
+      "precision": 0.8333333333333334,
+      "recall": 1.0,
+      "f1": 0.9090909090909091
+    }
+  },
+  "confusion_matrix": {
+    "❤️": {
+      "❤️": 4,
+      "⚾": 0,
+      "😄": 2,
+      "😞": 1,
+      "🍴": 0,
+      "invalid": 0
+    },
+    "⚾": {
+      "❤️": 0,
+      "⚾": 8,
+      "😄": 0,
+      "😞": 0,
+      "🍴": 0,
+      "invalid": 0
+    },
+    "😄": {
+      "❤️": 4,
+      "⚾": 0,
+      "😄": 10,
+      "😞": 0,
+      "🍴": 1,
+      "invalid": 0
+    },
+    "😞": {
+      "❤️": 0,
+      "⚾": 0,
+      "😄": 0,
+      "😞": 15,
+      "🍴": 0,
+      "invalid": 0
+    },
+    "🍴": {
+      "❤️": 0,
+      "⚾": 0,
+      "😄": 0,
+      "😞": 0,
+      "🍴": 5,
+      "invalid": 0
+    }
+  },
+  "valid": 50,
+  "failures": 0,
+  "top3_accuracy_including_failures": 0.94,
+  "probability_metrics_valid_only": {
+    "accuracy": 0.84,
+    "nll": 2.8976512498906373,
+    "brier": 0.3213443146119229,
+    "ece_10_bins": 0.1636677317571607
+  },
+  "readout_temperature": 1.0,
+  "latency_ms": {
+    "p50": 178.08985407464206,
+    "p95": 292.68506108783185
+  },
+  "incorrect_with_top_probability_at_least_90_percent": 8,
+  "candidate_mass_below_half_count": 0,
+  "denoising_steps": {
+    "2": 45,
+    "4": 5
+  }
+}

@@ -14,6 +14,11 @@ class BackendError(RuntimeError):
 
 
 class SGLangBackend:
+    model_id = MODEL
+    display_name = "LLaDA 2.1 mini"
+    supports_images = False
+    probability_source = "masked_position_logits"
+
     def __init__(self, url, tokenizer, concurrency=8, expected_passes=1):
         self.expected_passes = expected_passes
         self.url = url.rstrip("/")

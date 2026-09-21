@@ -8,17 +8,19 @@ import {
   ChevronDown,
   CircleHelp,
   Code2,
-  Copy,
   Leaf,
+  Image as ImageIcon,
   LoaderCircle,
   Play,
   Plus,
   RotateCcw,
   Sparkles,
   Terminal,
+  Upload,
   X,
 } from "lucide-react";
 import "./style.css";
+import { DrawPad } from "./DrawPad";
 type Question = {
   type: "noul" | "choice" | "score";
   instructions: unknown;
@@ -28,7 +30,23 @@ type Request = {
   model: string;
   state: unknown;
   questions: Record<string, Question>;
+  images?: string[];
 };
+type GalleryImage = { id: string; label: string; split: string; benchmark: boolean };
+type SelectedImage = { input: string; url: string; label?: string };
+const flowerQuestions: Record<string, Question> = {
+  flower: { type: "choice", instructions: "Which type of flower is most prominent in the attached image?",
+    criteria: { daisy: "A daisy flower", dandelion: "A dandelion flower or seed head", rose: "A rose flower", sunflower: "A sunflower", tulip: "A tulip flower" } },
+};
+const doodleQuestions: Record<string, Question> = {
+  doodle: { type: "choice", instructions: "What object does the attached hand-drawn sketch depict? Choose the closest category.",
+    criteria: { airplane: "An airplane with wings", apple: "An apple fruit", bicycle: "A bicycle with two wheels", cat: "A cat", clock: "A clock face with hands", fish: "A fish with fins and a tail", pizza: "A pizza or a slice of pizza", umbrella: "An umbrella" } },
+};
+const visionDemos = {
+  flowers: { name: "Flowers", state: "Classify the flower shown in the attached image.", questions: flowerQuestions, split: "test", answerKey: "flower" },
+  quickdraw: { name: "Doodle Detective", state: "Identify the object in this sketch from its visual appearance.", questions: doodleQuestions, split: "demo", answerKey: "doodle" },
+};
+type VisionDemo = keyof typeof visionDemos;
 type Preset = {
   id: string;
   name: string;
@@ -48,10 +66,22 @@ type Result = {
   model: string;
   answers: Record<string, Answer>;
   usage: { input_tokens: number; output_tokens: number };
-  meta: { latency_ms: number; passes: number; temperature: number };
+  meta: { latency_ms: number; passes: number; temperature: number; probability_source: string };
 };
 const pretty = (v: unknown) => JSON.stringify(v, null, 2);
 function App() {
+  const [mode, setMode] = useState<"text" | "vision">("text");
+  const [modelName, setModelName] = useState("Connecting to model");
+  const [supportsImages, setSupportsImages] = useState(false);
+  const [visionDemo, setVisionDemo] = useState<VisionDemo>("flowers");
+  const [drawing, setDrawing] = useState(false);
+  const [galleryError, setGalleryError] = useState("");
+  const [selectedImage, setSelectedImage] = useState<SelectedImage | null>(null);
+  const [gallery, setGallery] = useState<GalleryImage[]>([]);
+  const [galleryTotal, setGalleryTotal] = useState(0);
+  const [galleryOffset, setGalleryOffset] = useState(0);
+  const [galleryLabel, setGalleryLabel] = useState("");
+  const [dataset, setDataset] = useState<{ title: string; count: number; benchmark_count: number; source: string; license: string; labels: string[] } | null>(null);
   const [presets, setPresets] = useState<Preset[]>([]),
     [active, setActive] = useState("emoji");
   const [state, setState] = useState(""),
@@ -62,11 +92,12 @@ function App() {
     [result, setResult] = useState<Result | null>(null),
     [error, setError] = useState("");
   const [tab, setTab] = useState("results"),
-    [copied, setCopied] = useState(false),
     [editor, setEditor] = useState(false),
     [questionJson, setQuestionJson] = useState(""),
     [stale, setStale] = useState(false);
   const load = (p: Preset) => {
+    setMode("text");
+    setSelectedImage(null);
     setActive(p.id);
     setStructured(typeof p.request.state !== "string");
     setState(
@@ -92,16 +123,63 @@ function App() {
     const poll = () =>
       fetch("/health")
         .then((r) => r.json())
-        .then((h) => setReady(h.ready))
+        .then((h) => {
+          setReady(h.ready);
+          setModelName(h.display_name || h.model);
+          setSupportsImages(Boolean(h.supports_images));
+        })
         .catch(() => setReady(false));
     poll();
     const id = setInterval(poll, 5000);
     return () => clearInterval(id);
   }, []);
+  useEffect(() => {
+    if (mode !== "vision") return;
+    const controller = new AbortController();
+    setGallery([]); setGalleryTotal(0); setDataset(null); setGalleryError("");
+    fetch(`/api/datasets/${visionDemo}`, { signal: controller.signal })
+      .then(async r => { if (!r.ok) throw new Error("This gallery is not prepared yet. You can still upload an image or draw a doodle."); return r.json(); })
+      .then(setDataset)
+      .catch(e => { if (e.name !== "AbortError") setGalleryError(e.message); });
+    fetch(`/api/datasets/${visionDemo}/images?split=${visionDemos[visionDemo].split}&offset=${galleryOffset}&limit=12&label=${encodeURIComponent(galleryLabel)}`, { signal: controller.signal })
+      .then(async r => { if (!r.ok) throw new Error("Could not load image gallery."); return r.json(); })
+      .then(body => { setGallery(body.items); setGalleryTotal(body.total); })
+      .catch(e => { if (e.name !== "AbortError") setGalleryError(e.message); });
+    return () => controller.abort();
+  }, [mode, visionDemo, galleryOffset, galleryLabel]);
+  const openVision = (demo: VisionDemo = visionDemo) => {
+    setMode("vision"); setSelectedImage(null); setResult(null); setError(""); setStale(false);
+    setVisionDemo(demo); setDrawing(false); setGalleryLabel(""); setGalleryOffset(0);
+    setStructured(false); setState(visionDemos[demo].state);
+    setQuestions(visionDemos[demo].questions);
+  };
+  const selectGalleryImage = (item: GalleryImage) => {
+    setSelectedImage({ input: `${visionDemo}:${item.id}`, url: `/api/datasets/${visionDemo}/image/${item.id}`, label: item.label });
+    setResult(null); setError(""); setStale(false);
+  };
+  const updateDrawing = (url: string | null) => {
+    setSelectedImage(url ? { input: url, url } : null);
+    setResult(null); setError(""); setStale(false);
+  };
+  const uploadImage = async (file?: File) => {
+    if (!file) return;
+    if (!["image/jpeg", "image/png", "image/webp"].includes(file.type) || file.size > 6_000_000) {
+      setError("Choose a JPEG, PNG or WebP image up to 6 MB."); return;
+    }
+    const reader = new FileReader();
+    reader.onload = () => {
+      const url = String(reader.result);
+      setDrawing(false);
+      setSelectedImage({ input: url, url }); setResult(null); setError(""); setStale(false);
+    };
+    reader.onerror = () => setError("Could not read the image.");
+    reader.readAsDataURL(file);
+  };
   const request = (): Request => ({
     model: "diffusion-jev",
     state: structured ? JSON.parse(state) : state,
     questions,
+    ...(mode === "vision" && selectedImage ? { images: [selectedImage.input] } : {}),
   });
   const evaluate = async () => {
     setBusy(true);
@@ -124,18 +202,6 @@ function App() {
       setError(e instanceof Error ? e.message : "Evaluation failed");
     } finally {
       setBusy(false);
-    }
-  };
-  const copy = async () => {
-    try {
-      const data = JSON.stringify(request()).replaceAll("'", "'\\''");
-      await navigator.clipboard.writeText(
-        `curl '${window.location.origin}/v1/systemone' \\\n  -H 'Content-Type: application/json' \\\n  -d '${data}'`,
-      );
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    } catch (e) {
-      setError("Could not copy. Check JSON or browser clipboard permissions.");
     }
   };
   const [editorError, setEditorError] = useState("");
@@ -224,7 +290,7 @@ function App() {
             </div>
             <div>
               <small>POWERED BY</small>
-              <strong>LLaDA 2.1 mini</strong>
+              <strong>{modelName}</strong>
               <span>SGLang · BF16 · diffusion</span>
             </div>
             <span className={"status " + (ready ? "online" : "")}>
@@ -233,12 +299,25 @@ function App() {
             </span>
           </div>
         </div>
+        <div className="mode-tabs" role="group" aria-label="Classification mode">
+          <button className={mode === "text" ? "selected" : ""} disabled={busy}
+            onClick={() => { const p = presets.find(x => x.id === active) || presets[0]; if (p) load(p); }}>
+            <Braces size={15} /> Text decisions
+          </button>
+          <button className={mode === "vision" ? "selected" : ""} disabled={busy || !supportsImages} onClick={() => openVision()}>
+            <ImageIcon size={15} /> Image classification
+          </button>
+        </div>
         <div className="workspace-top">
           <span className="workspace-label">
             <Terminal size={16} /> Decision playground
           </span>
           <div className="preset-tabs">
-            {presets.map((p) => (
+            {mode === "vision" && (Object.keys(visionDemos) as VisionDemo[]).map(id => (
+              <button key={id} disabled={busy} className={visionDemo === id ? "selected" : ""}
+                onClick={() => openVision(id)}>{visionDemos[id].name}</button>
+            ))}
+            {mode === "text" && presets.map((p) => (
               <button
                 disabled={busy}
                 className={active === p.id ? "selected" : ""}
@@ -252,6 +331,70 @@ function App() {
         </div>
         <div className="workspace">
           <section className="input-panel">
+            <div className="actions">
+              <button
+                className="evaluate"
+                disabled={busy || !ready || !state.trim() || (mode === "vision" && !selectedImage)}
+                onClick={evaluate}
+              >
+                {busy ? (
+                  <LoaderCircle className="spin" size={16} />
+                ) : (
+                  <Play size={14} fill="currentColor" />
+                )}
+                {busy ? "Evaluating…" : mode === "vision" ? visionDemo === "quickdraw" ? "Guess doodle" : "Classify image" : "Evaluate state"}
+                <ArrowRight size={16} />
+              </button>
+            </div>
+            {mode === "vision" && (
+              <div className="vision-panel">
+                <div className="panel-heading"><h2><ImageIcon size={18} /> Choose an image</h2>
+                  <label className={"upload-button" + (busy ? " disabled" : "")}>
+                    <Upload size={14} /> Upload
+                    <input type="file" aria-label="Upload classification image" accept="image/jpeg,image/png,image/webp"
+                      disabled={busy} onChange={e => { void uploadImage(e.target.files?.[0]); e.target.value = ""; }} />
+                  </label>
+                </div>
+                {visionDemo === "quickdraw" && <>
+                  <p className="doodle-intro">Can a diffusion model read your scribbles? Try a real Quick, Draw! sketch or make your own.</p>
+                  {questions.doodle?.type === "choice" && questions.doodle.criteria != null &&
+                    <div className="doodle-categories"><span>Possible guesses</span><div className="chips">
+                      {Object.keys(questions.doodle.criteria).map(label => <span key={label}>{label}</span>)}
+                    </div></div>}
+                  <div className="doodle-tabs" role="group" aria-label="Doodle source">
+                    <button disabled={busy} className={!drawing ? "selected" : ""} onClick={() => { if (drawing) { setDrawing(false); updateDrawing(null); } }}>Try a sketch</button>
+                    <button disabled={busy} className={drawing ? "selected" : ""} onClick={() => { if (!drawing) { setDrawing(true); updateDrawing(null); } }}>Draw your own</button>
+                  </div>
+                </>}
+                {drawing ? <DrawPad disabled={busy} onChange={updateDrawing} /> : selectedImage ? (
+                  <div className="selected-image">
+                    <img src={selectedImage.url} alt="Selected image to classify" />
+                    <span>{selectedImage.label && !stale && result?.answers[visionDemos[visionDemo].answerKey]?.choice
+                      ? `Dataset label: ${selectedImage.label} · ${result.answers[visionDemos[visionDemo].answerKey]?.choice === selectedImage.label ? "Matched" : "Different guess"}`
+                      : "The model receives image pixels, without the dataset label."}</span>
+                  </div>
+                ) : <div className="image-placeholder"><ImageIcon size={28} /><span>Select {visionDemo === "flowers" ? "a flower" : "a sketch"} below or upload your own image.</span></div>}
+                {!drawing && galleryError && <p className="gallery-message">{galleryError}</p>}
+                {!drawing && dataset && <>
+                  <div className="gallery-heading"><div><strong>{dataset.title}</strong><small>{dataset.count.toLocaleString()} images · {dataset.labels.length} classes · {dataset.benchmark_count ? `${dataset.benchmark_count} benchmark images` : "Demo collection"}</small></div>
+                    <select aria-label="Filter image category" disabled={busy} value={galleryLabel} onChange={e => { setGalleryLabel(e.target.value); setGalleryOffset(0); }}>
+                      <option value="">All categories</option>{dataset.labels.map(label => <option key={label} value={label}>{label}</option>)}
+                    </select>
+                  </div>
+                  <div className="image-gallery">{gallery.map((item, i) => (
+                    <button key={item.id} disabled={busy} aria-label={`Select ${visionDemo === "flowers" ? "flower image" : "doodle"} ${galleryOffset + i + 1}`}
+                      className={selectedImage?.input === `${visionDemo}:${item.id}` ? "selected" : ""} onClick={() => selectGalleryImage(item)}>
+                      <img loading="lazy" src={`/api/datasets/${visionDemo}/image/${item.id}`} alt={`Image example ${galleryOffset + i + 1}`} />
+                    </button>
+                  ))}</div>
+                  <div className="gallery-footer"><button disabled={busy || galleryOffset === 0} onClick={() => setGalleryOffset(Math.max(0, galleryOffset - 12))}>Previous</button>
+                    <span>{Math.min(galleryOffset + 1, galleryTotal)}–{Math.min(galleryOffset + 12, galleryTotal)} of {galleryTotal} {visionDemo === "flowers" ? "test images" : "sketches"}</span>
+                    <button disabled={busy || galleryOffset + 12 >= galleryTotal} onClick={() => setGalleryOffset(galleryOffset + 12)}>Next</button>
+                  </div>
+                  <a className="dataset-source" href={dataset.source} target="_blank" rel="noreferrer">Dataset source · {dataset.license} <ArrowUpRight size={12} /></a>
+                </>}
+              </div>
+            )}
             <div className="panel-heading">
               <h2>
                 <span className="step">01</span> Give it context
@@ -262,6 +405,7 @@ function App() {
                 aria-label="Reset example"
                 disabled={busy}
                 onClick={() => {
+                  if (mode === "vision") { openVision(); return; }
                   const p = presets.find((x) => x.id === active);
                   if (p) load(p);
                 }}
@@ -338,25 +482,6 @@ function App() {
                 </div>
               ))}
             </div>
-            <div className="actions">
-              <button
-                className="evaluate"
-                disabled={busy || !ready || !state.trim()}
-                onClick={evaluate}
-              >
-                {busy ? (
-                  <LoaderCircle className="spin" size={16} />
-                ) : (
-                  <Play size={14} fill="currentColor" />
-                )}
-                {busy ? "Evaluating…" : "Evaluate state"}
-                <ArrowRight size={16} />
-              </button>
-              <button className="curl-button" onClick={copy}>
-                {copied ? <Check size={14} /> : <Copy size={14} />}{" "}
-                {copied ? "Copied" : "Copy cURL"}
-              </button>
-            </div>
             <div className="privacy">
               <span /> Context stays on your inference server.
             </div>
@@ -422,7 +547,7 @@ function App() {
                   Your model’s decisions will appear here.
                 </p>
                 <span className="empty-tip">
-                  <ArrowRight size={13} /> Start with “Evaluate state”
+                  <ArrowRight size={13} /> {mode === "text" ? "Start with “Evaluate state”" : visionDemo === "quickdraw" ? "Pick a sketch and try “Guess doodle”" : "Choose an image to classify"}
                 </span>
               </div>
             ) : tab === "json" ? (
@@ -477,8 +602,8 @@ function App() {
                   </article>
                 ))}
                 <div className="result-foot">
-                  <Check size={14} /> Real model logits · {result.meta.passes}{" "}
-                  pass{result.meta.passes > 1 ? "es" : ""} · T=
+                  <Check size={14} /> {result.meta.probability_source === "self_conditioned_denoiser_logits" ? "Denoiser scores · up to " : "Real model logits · "}{result.meta.passes}{" "}
+                  {result.meta.probability_source === "self_conditioned_denoiser_logits" ? "steps" : `pass${result.meta.passes > 1 ? "es" : ""}`} · T=
                   {result.meta.temperature.toFixed(2)}
                 </div>
               </div>
@@ -487,7 +612,7 @@ function App() {
               <CircleHelp size={14} />
               <span>
                 Probabilities are normalized over your candidate options.
-                <br />A confident answer can still be wrong.
+                <br />{supportsImages ? "Denoiser scores include self-conditioning and are not calibrated confidence." : "A confident answer can still be wrong."}
               </span>
             </div>
           </section>

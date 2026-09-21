@@ -206,3 +206,22 @@ def doctor():
     )
     checks["gpu"] = result.stdout.strip() or result.stderr.strip()
     typer.echo(json.dumps(checks, indent=2))
+
+
+@app.command("serve-gemma")
+def serve_gemma(
+    model_path: Path = Path("/workspace/models/diffusiongemma-26B-A4B-it"),
+    engine_url: str = "http://127.0.0.1:30000",
+    host: str = "127.0.0.1",
+    port: int = 8000,
+    denoising_steps: int = typer.Option(48, min=1, max=256),
+):
+    """Serve the Jev API and image playground using a running DiffusionGemma engine."""
+    from transformers import PreTrainedTokenizerFast
+
+    from .api import create_app
+    from .gemma_backend import DiffusionGemmaBackend
+
+    tokenizer = PreTrainedTokenizerFast.from_pretrained(str(model_path))
+    backend = DiffusionGemmaBackend(engine_url, tokenizer, expected_passes=denoising_steps)
+    uvicorn.run(create_app(backend), host=host, port=port)

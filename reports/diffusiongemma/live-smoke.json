@@ -1,0 +1,144 @@
+[
+  {
+    "request": {
+      "model": "jev",
+      "state": "Classify the flower shown in the attached image.",
+      "images": [
+        "04f2b384867a974563a921d970a48684d70221be4c4e94aa768ed54c04914c73"
+      ],
+      "questions": {
+        "flower": {
+          "type": "choice",
+          "instructions": "Which type of flower is most prominent in the attached image?",
+          "criteria": {
+            "daisy": "A daisy flower",
+            "dandelion": "A dandelion flower or seed head",
+            "rose": "A rose flower",
+            "sunflower": "A sunflower",
+            "tulip": "A tulip flower"
+          }
+        }
+      }
+    },
+    "expected_label": "sunflower",
+    "response": {
+      "model": "google/diffusiongemma-26B-A4B-it",
+      "answers": {
+        "flower": {
+          "type": "choice",
+          "choice": "sunflower",
+          "probabilities": {
+            "daisy": 5.445873156948638e-10,
+            "dandelion": 9.64840001853348e-11,
+            "rose": 6.356303218831139e-09,
+            "sunflower": 0.9999999908698675,
+            "tulip": 2.1327579436678192e-09
+          },
+          "confidence": 0.9999998847287991
+        }
+      },
+      "usage": {
+        "input_tokens": 397,
+        "output_tokens": 5
+      },
+      "meta": {
+        "latency_ms": 879.25,
+        "probability_source": "self_conditioned_denoiser_logits",
+        "temperature": 1.0,
+        "passes": 48,
+        "candidate_logits": {
+          "flower": [
+            1.825865626335144,
+            0.09521453082561493,
+            4.283039569854736,
+            23.156858444213867,
+            3.1910085678100586
+          ]
+        },
+        "denoising_steps": {
+          "flower": 2
+        },
+        "candidate_mass": {
+          "flower": 0.9999999799836842
+        },
+        "unrestricted_first_token": {
+          "flower": "D"
+        },
+        "answer_position": {
+          "flower": 4
+        }
+      }
+    }
+  },
+  {
+    "request": {
+      "model": "jev",
+      "state": "Classify the flower shown in the attached image.",
+      "images": [
+        "023d45d6d88dbd784d41e9e5e0cfdff3d7170d089179e408e74c95fdebc8de4d"
+      ],
+      "questions": {
+        "flower": {
+          "type": "choice",
+          "instructions": "Which type of flower is most prominent in the attached image?",
+          "criteria": {
+            "daisy": "A daisy flower",
+            "dandelion": "A dandelion flower or seed head",
+            "rose": "A rose flower",
+            "sunflower": "A sunflower",
+            "tulip": "A tulip flower"
+          }
+        }
+      }
+    },
+    "expected_label": "rose",
+    "response": {
+      "model": "google/diffusiongemma-26B-A4B-it",
+      "answers": {
+        "flower": {
+          "type": "choice",
+          "choice": "rose",
+          "probabilities": {
+            "daisy": 3.776581880213511e-13,
+            "dandelion": 3.5532404746915237e-13,
+            "rose": 0.9999999999851166,
+            "sunflower": 7.843384379009315e-12,
+            "tulip": 6.307066840665446e-12
+          },
+          "confidence": 0.9999999997520296
+        }
+      },
+      "usage": {
+        "input_tokens": 382,
+        "output_tokens": 5
+      },
+      "meta": {
+        "latency_ms": 312.69,
+        "probability_source": "self_conditioned_denoiser_logits",
+        "temperature": 1.0,
+        "passes": 48,
+        "candidate_logits": {
+          "flower": [
+            -4.6802167892456055,
+            -4.741176128387451,
+            23.924570083618164,
+            -1.6467806100845337,
+            -1.864780306816101
+          ]
+        },
+        "denoising_steps": {
+          "flower": 2
+        },
+        "candidate_mass": {
+          "flower": 0.9999999989184585
+        },
+        "unrestricted_first_token": {
+          "flower": "C"
+        },
+        "answer_position": {
+          "flower": 4
+        }
+      }
+    }
+  }
+]

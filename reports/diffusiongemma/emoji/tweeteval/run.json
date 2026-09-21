@@ -1,0 +1,62 @@
+{
+  "completed": true,
+  "started": "2026-09-21T05:44:56.069739+00:00",
+  "model": "google/diffusiongemma-26B-A4B-it",
+  "model_revision": "f7f5b7f5fa82ffc52addd066915886d497f5517b",
+  "sglang_revision": "ef90bf677e4e6b280bf796f1c5f4ef0f05dda27f",
+  "dataset": "tweeteval",
+  "dataset_manifest_sha256": "06ba9d34680703e0fb8b17841b7c313e40dcde18ddeff9685898a0dbba158e83",
+  "harness_sha256": "fb502de896cb4cdb3b23c29527c7505b28006c3673e202b5220b886b9808e037",
+  "metrics_sha256": "e30147d87ac2e68a4049352200d576e667ea858f2e769d43223f40ec9e4bee8e",
+  "concurrency": 1,
+  "retries": 0,
+  "warmup_requests": 2,
+  "temperature": 1.0,
+  "max_denoising_steps": 48,
+  "latency_scope": "client HTTP loopback including adapter and response validation",
+  "question": {
+    "type": "choice",
+    "instructions": "Predict the single emoji the author most likely used with this tweet. Choose the most likely emoji from the provided options.",
+    "criteria": {
+      "❤": "red heart",
+      "😍": "smiling face with hearteyes",
+      "😂": "face with tears of joy",
+      "💕": "two hearts",
+      "🔥": "fire",
+      "😊": "smiling face with smiling eyes",
+      "😎": "smiling face with sunglasses",
+      "✨": "sparkles",
+      "💙": "blue heart",
+      "😘": "face blowing a kiss",
+      "📷": "camera",
+      "🇺🇸": "United States",
+      "☀": "sun",
+      "💜": "purple heart",
+      "😉": "winking face",
+      "💯": "hundred points",
+      "😁": "beaming face with smiling eyes",
+      "🎄": "Christmas tree",
+      "📸": "camera with flash",
+      "😜": "winking face with tongue"
+    }
+  },
+  "split_runs": {
+    "dev": {
+      "items": 200,
+      "elapsed_s": 44.952428344171494,
+      "valid_decisions_per_second": 4.09321602364241
+    },
+    "test": {
+      "items": 1000,
+      "elapsed_s": 242.69541503256187,
+      "valid_decisions_per_second": 3.687749930833757
+    }
+  },
+  "live_official_jev_measured": false,
+  "calibration_frozen_before_test": "2026-09-21T05:45:43.051802+00:00",
+  "finished": "2026-09-21T05:49:46.056424+00:00",
+  "measured_items": {
+    "dev": 200,
+    "test": 1000
+  }
+}

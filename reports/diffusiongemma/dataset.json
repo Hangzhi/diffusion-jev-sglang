@@ -1,0 +1,742 @@
+{
+  "dataset": "flowers",
+  "title": "Kaggle Flowers",
+  "labels": [
+    "daisy",
+    "dandelion",
+    "rose",
+    "sunflower",
+    "tulip"
+  ],
+  "source": "https://www.kaggle.com/datasets/abdelrahmanatef01/flowers-dataset-for-image-classification",
+  "version": 1,
+  "license": "Apache 2.0",
+  "archive_sha256": "6196b0c75bd74bc11526d1fec4ca766dc32f8f99d2cac487c78c5fdb512e048d",
+  "count": 2742,
+  "duplicates_removed": 3,
+  "conflicting_images_removed": 1,
+  "invalid_images_removed": 0,
+  "counts": {
+    "test:tulip": 126,
+    "train:rose": 350,
+    "train:sunflower": 337,
+    "train:tulip": 414,
+    "train:daisy": 366,
+    "dev:rose": 51,
+    "train:dandelion": 462,
+    "test:daisy": 95,
+    "test:dandelion": 117,
+    "dev:daisy": 40,
+    "test:rose": 95,
+    "test:sunflower": 92,
+    "dev:tulip": 66,
+    "dev:dandelion": 67,
+    "dev:sunflower": 64
+  },
+  "benchmark_count": 100,
+  "benchmark_per_class": 20,
+  "method": "Exact decoded-pixel deduplication; SHA256 split 70/10/20 train/dev/test; first sorted IDs per test class for the frozen benchmark. Near-duplicates are not detected.",
+  "manifest_sha256": "2a8aacdfebaf745db9e2310fd71f52130849b181648722754f5ab74e669591c7",
+  "benchmark_images": [
+    {
+      "id": "00230ec4cba36ab572b9c2210c3ca6fb6d9743cac5545a5fa7fa8986d6dfcbb8",
+      "label": "tulip",
+      "split": "test",
+      "width": 500,
+      "height": 310
+    },
+    {
+      "id": "01125d33a63ada06aa1eea30933744b9fd11ae46c93c10f6d01ccb4e41dc5905",
+      "label": "daisy",
+      "split": "test",
+      "width": 500,
+      "height": 333
+    },
+    {
+      "id": "012be4c8da343da88f40b79ca80add59ee0d799aaa19071f38ef60e4febd7686",
+      "label": "dandelion",
+      "split": "test",
+      "width": 320,
+      "height": 213
+    },
+    {
+      "id": "0147c28e0d46204b2d5de37f9731eef7eb9159c4fd091ca9d4c499aa170860cb",
+      "label": "dandelion",
+      "split": "test",
+      "width": 240,
+      "height": 240
+    },
+    {
+      "id": "0172fa3094b179470066f134c1734f7b76fd39ee0cdd60af67033feb5c4a4101",
+      "label": "daisy",
+      "split": "test",
+      "width": 240,
+      "height": 240
+    },
+    {
+      "id": "023d45d6d88dbd784d41e9e5e0cfdff3d7170d089179e408e74c95fdebc8de4d",
+      "label": "rose",
+      "split": "test",
+      "width": 240,
+      "height": 208
+    },
+    {
+      "id": "033b5429061c9c51c0abd90443c37b19d5a9a9cfccf8410d89f89b71cf9df780",
+      "label": "daisy",
+      "split": "test",
+      "width": 320,
+      "height": 240
+    },
+    {
+      "id": "038c9152fb8712186b3087ecdd0d2c635c605d04fcb6bc35324ebc01ae423553",
+      "label": "tulip",
+      "split": "test",
+      "width": 320,
+      "height": 240
+    },
+    {
+      "id": "03a88d31957711f9daa06f4e051ac8b993b79c1096c9e913dd0a632f41e18b61",
+      "label": "dandelion",
+      "split": "test",
+      "width": 320,
+      "height": 216
+    },
+    {
+      "id": "0403b039bd206273e5d1c2f40cd7f612d85b80bf1a047ea11f85c70ebc1afff6",
+      "label": "tulip",
+      "split": "test",
+      "width": 320,
+      "height": 252
+    },
+    {
+      "id": "0426f7e3107b75be244a1edbe84d8f87946f8e943a61f8ab007e807294e85c7f",
+      "label": "tulip",
+      "split": "test",
+      "width": 180,
+      "height": 240
+    },
+    {
+      "id": "049b3b95e26df063d365f94ad835a56593d4fe121045c158d315a07998a22599",
+      "label": "tulip",
+      "split": "test",
+      "width": 320,
+      "height": 213
+    },
+    {
+      "id": "04ab3701fba7be928f1b183f3a77dc790afb9b24d8feb27c0b8f8b57c03f568b",
+      "label": "daisy",
+      "split": "test",
+      "width": 320,
+      "height": 235
+    },
+    {
+      "id": "04f2b384867a974563a921d970a48684d70221be4c4e94aa768ed54c04914c73",
+      "label": "sunflower",
+      "split": "test",
+      "width": 320,
+      "height": 264
+    },
+    {
+      "id": "0505351442d39264ff934f0eff4584cd06b6d87692f71d076187cf4c05bd338f",
+      "label": "sunflower",
+      "split": "test",
+      "width": 320,
+      "height": 240
+    },
+    {
+      "id": "053abd893b73a219769b11a4afcc9d41d5de3d4a1f520681f8bf1bda2438e67c",
+      "label": "daisy",
+      "split": "test",
+      "width": 200,
+      "height": 240
+    },
+    {
+      "id": "0748dcd2511ef06b47fb19a3ad367a4a14f51896842d1520390cdff1926a3c4f",
+      "label": "dandelion",
+      "split": "test",
+      "width": 500,
+      "height": 313
+    },
+    {
+      "id": "08201e1bc98fb0bc630f086fdb347d50057ec07da756f5aa58b84cd78d8c8677",
+      "label": "daisy",
+      "split": "test",
+      "width": 500,
+      "height": 333
+    },
+    {
+      "id": "087099f3b59dc025f0e683969b9a6e145d10e5e00db145fa21c6662cdd59d00d",
+      "label": "rose",
+      "split": "test",
+      "width": 182,
+      "height": 240
+    },
+    {
+      "id": "08be7cd23a34cd207941d9e4df47951ecdb81bdaf2ce86b9eaa4a2c89e283fc4",
+      "label": "dandelion",
+      "split": "test",
+      "width": 500,
+      "height": 274
+    },
+    {
+      "id": "098c51ba3507cfb030791bca1071cf9087bd04c170f9c0a80da2a55ae1e31dc5",
+      "label": "sunflower",
+      "split": "test",
+      "width": 500,
+      "height": 281
+    },
+    {
+      "id": "09df2a549776ee863090ac5e547a360f0f3b71bc2b8c28bb70505d8c1154568f",
+      "label": "dandelion",
+      "split": "test",
+      "width": 237,
+      "height": 240
+    },
+    {
+      "id": "0a0501a2921876741512f2ed3050ea5801cc62acc167c1a5795fea6b09daa198",
+      "label": "tulip",
+      "split": "test",
+      "width": 500,
+      "height": 304
+    },
+    {
+      "id": "0b2b4c0bb6c8de529adab19594d0b753615f89503105e156ea43a95fa6f6578c",
+      "label": "daisy",
+      "split": "test",
+      "width": 320,
+      "height": 241
+    },
+    {
+      "id": "0ba75c28145400292d5a15b396834b629dcc73b5defe6618e36215fc90603857",
+      "label": "tulip",
+      "split": "test",
+      "width": 209,
+      "height": 240
+    },
+    {
+      "id": "0c451b892a67b370b7a39f418d03da515a4fdba7b5f99102f40ac6e9c42ea0fc",
+      "label": "daisy",
+      "split": "test",
+      "width": 320,
+      "height": 232
+    },
+    {
+      "id": "0c8a33102f57f80fba2fef6fde499692333ccd74b2221882030e575da827941e",
+      "label": "daisy",
+      "split": "test",
+      "width": 500,
+      "height": 333
+    },
+    {
+      "id": "0d5fc6a35bfc612516ecb2eebd278ab3cf7d5d49116b60220f706ddc5ea82a1c",
+      "label": "tulip",
+      "split": "test",
+      "width": 320,
+      "height": 204
+    },
+    {
+      "id": "0dc50a0f2e250bb908104e4e4861bd54c939e41b89a6736ef662ba151d36342d",
+      "label": "daisy",
+      "split": "test",
+      "width": 240,
+      "height": 240
+    },
+    {
+      "id": "0dd0f5e6d0e9a1314a4cb2dda1dc0123f32db82092a4a01faf743f0f16132ffd",
+      "label": "sunflower",
+      "split": "test",
+      "width": 500,
+      "height": 313
+    },
+    {
+      "id": "0e5c479b504e1e258bf849f647dbf90be095639336258627e951660babf43f16",
+      "label": "dandelion",
+      "split": "test",
+      "width": 500,
+      "height": 332
+    },
+    {
+      "id": "0eaf91bbd32eeb23efede69d5868937f3aa66b0f164e29f17518ef620e13068c",
+      "label": "sunflower",
+      "split": "test",
+      "width": 500,
+      "height": 332
+    },
+    {
+      "id": "0f42ec94f1994b6c7543159f853d8777ec171cd9c52f691378a9219d4078b915",
+      "label": "sunflower",
+      "split": "test",
+      "width": 320,
+      "height": 240
+    },
+    {
+      "id": "0f53bdf189a808ce19da5d0183b5bea848c7062d011c266748a74cdeadbb15d8",
+      "label": "rose",
+      "split": "test",
+      "width": 163,
+      "height": 240
+    },
+    {
+      "id": "0f97d94e8e9e58066df03aa9382fa95d8b858c56b249bfbe52c028db8b37f741",
+      "label": "daisy",
+      "split": "test",
+      "width": 240,
+      "height": 235
+    },
+    {
+      "id": "0fc61d6919c4c47321d2315e1c032c78a8e265c52cf4be051c26d88d521a7709",
+      "label": "sunflower",
+      "split": "test",
+      "width": 320,
+      "height": 213
+    },
+    {
+      "id": "1026a201fe8040fa1ca7e132c32adc495c87e73aa60dd8bdaeca82e9f02d4547",
+      "label": "daisy",
+      "split": "test",
+      "width": 320,
+      "height": 213
+    },
+    {
+      "id": "10343539d940569bffcb1461299de3c27b9fcee8fe8a5f740ea82816ac91d901",
+      "label": "sunflower",
+      "split": "test",
+      "width": 320,
+      "height": 240
+    },
+    {
+      "id": "1067a224f7275132165b8da876fc5711554998f57d21d2df2582acc4722ff53b",
+      "label": "dandelion",
+      "split": "test",
+      "width": 320,
+      "height": 240
+    },
+    {
+      "id": "11c3bd9d30ec7564767a00542c79fe86b2a38590d2da3d9b74090a325672779d",
+      "label": "rose",
+      "split": "test",
+      "width": 240,
+      "height": 240
+    },
+    {
+      "id": "1259ea0ed6d7eae7c8d185c9a687ebc8a34af58072cdfaa6c53aa3521cec3b9e",
+      "label": "dandelion",
+      "split": "test",
+      "width": 159,
+      "height": 240
+    },
+    {
+      "id": "12cf0c8e0ae8714210aeed11060d4d1c9dec152f4baa248427340e91f6833869",
+      "label": "dandelion",
+      "split": "test",
+      "width": 320,
+      "height": 240
+    },
+    {
+      "id": "13bc52f4569668796cbef2596bab4b8efec006ce3ec4b6239799ffd076f290de",
+      "label": "daisy",
+      "split": "test",
+      "width": 320,
+      "height": 240
+    },
+    {
+      "id": "13f3b2eed2d40b410f2512723dde4911dc5f9060fb365845a52f311318a3a7d8",
+      "label": "rose",
+      "split": "test",
+      "width": 320,
+      "height": 240
+    },
+    {
+      "id": "14063c8c33359216de489adf45f89129988326872066c6ed8feee4ae9413f8ae",
+      "label": "tulip",
+      "split": "test",
+      "width": 320,
+      "height": 240
+    },
+    {
+      "id": "142d25d19bdce955aeb299fafbb316ccfbd00215ec9933d9e5c411feb90a5a77",
+      "label": "tulip",
+      "split": "test",
+      "width": 320,
+      "height": 218
+    },
+    {
+      "id": "14898bc0b1975019831e625b897e6d389e96f04d72fbc723756736e2d559dab7",
+      "label": "dandelion",
+      "split": "test",
+      "width": 320,
+      "height": 240
+    },
+    {
+      "id": "148c73006d81bbdf7967017305ac86b8b515f995d78b84e7e75196ca4b37e475",
+      "label": "dandelion",
+      "split": "test",
+      "width": 500,
+      "height": 281
+    },
+    {
+      "id": "14ba000bbe476954b1945f4de17f1780661fcec0175ce8efbec4d868485fcaee",
+      "label": "daisy",
+      "split": "test",
+      "width": 500,
+      "height": 441
+    },
+    {
+      "id": "152be950a5b357c9e8b98a76a84b48298798c9485f265b0d8cc9d6c2ab5e6d85",
+      "label": "tulip",
+      "split": "test",
+      "width": 500,
+      "height": 332
+    },
+    {
+      "id": "191a449e2dd8d9552dce270ca78370176510f449f6d21ddfd77a769131ebcdb6",
+      "label": "rose",
+      "split": "test",
+      "width": 320,
+      "height": 241
+    },
+    {
+      "id": "19701175b17a7c14f4b4deca9567bb36292b63037cb1cd5ef200a92e13e4fe6e",
+      "label": "sunflower",
+      "split": "test",
+      "width": 500,
+      "height": 332
+    },
+    {
+      "id": "19aaa93436258bb66f5096183e6327e0ccbceff479c2a162eb4650df5458e557",
+      "label": "rose",
+      "split": "test",
+      "width": 500,
+      "height": 230
+    },
+    {
+      "id": "1a1b82603ae1c09fe596596d18f840bbdd1878ed5a04dfd5adc1f5c5e313685c",
+      "label": "daisy",
+      "split": "test",
+      "width": 320,
+      "height": 240
+    },
+    {
+      "id": "1a20273a0de39d3f69a38c65aa4962b14e863acffa6687f8bbdb5bb37d7bf19d",
+      "label": "tulip",
+      "split": "test",
+      "width": 500,
+      "height": 218
+    },
+    {
+      "id": "1a3851e9b061085f8eeadebf3cc35b9b081fedae55f9fc95833fc1066c876be4",
+      "label": "sunflower",
+      "split": "test",
+      "width": 320,
+      "height": 256
+    },
+    {
+      "id": "1a4976f3555d775b51a87430aa8a23a2289fb793ca0e5905da77ab024ae63c84",
+      "label": "daisy",
+      "split": "test",
+      "width": 180,
+      "height": 240
+    },
+    {
+      "id": "1aee1ab6c17f6bcfafd516638495c9a6b469b4a8623800f97114a50d0f69776e",
+      "label": "dandelion",
+      "split": "test",
+      "width": 320,
+      "height": 213
+    },
+    {
+      "id": "1af0301cf5c1a84d5171bf5fac5d6c9a2d0d374f54dc4536e898a258fdd53189",
+      "label": "dandelion",
+      "split": "test",
+      "width": 500,
+      "height": 333
+    },
+    {
+      "id": "1afb7d91366e797dfe2e8fcd8952f4df2909a531c04e74adaeb768caf84c565a",
+      "label": "sunflower",
+      "split": "test",
+      "width": 320,
+      "height": 240
+    },
+    {
+      "id": "1b1a965996bd02e3c5e079967c62df50f969d1522c4ec7365424e1146cec972b",
+      "label": "dandelion",
+      "split": "test",
+      "width": 500,
+      "height": 332
+    },
+    {
+      "id": "1b3592fcfdab633b18a58100634c0900bcf7fb5bee5aba445a114f0055ba6d24",
+      "label": "sunflower",
+      "split": "test",
+      "width": 180,
+      "height": 240
+    },
+    {
+      "id": "1d6b7e90fac965ac730202c524689e663336a7ddbd5667157e997f7f4a90ffab",
+      "label": "tulip",
+      "split": "test",
+      "width": 320,
+      "height": 213
+    },
+    {
+      "id": "1e35bd59d7b768df286cf90b95ddd0002dd45abfb6710b65b82d1e1b9e882eec",
+      "label": "daisy",
+      "split": "test",
+      "width": 500,
+      "height": 332
+    },
+    {
+      "id": "1eb99092fe16e253455f8b97af156e9259018988d870879996b05bdee8138596",
+      "label": "daisy",
+      "split": "test",
+      "width": 240,
+      "height": 240
+    },
+    {
+      "id": "1eebe675519efdec105cb6b8b406101336741a1c59eb9f8d190201d953f9df13",
+      "label": "rose",
+      "split": "test",
+      "width": 320,
+      "height": 229
+    },
+    {
+      "id": "1f78a018652a30450ca3a1fb5c0d69e2f1a3852c4ddedf88f1fd49815eb6336c",
+      "label": "dandelion",
+      "split": "test",
+      "width": 320,
+      "height": 220
+    },
+    {
+      "id": "201b1b4fc79bdf2dad2ccc12dec62f0fcf2e06d5fd819a8ae75c33919700e990",
+      "label": "rose",
+      "split": "test",
+      "width": 320,
+      "height": 240
+    },
+    {
+      "id": "202914a658f05d7b6da5528015109b76e4efa23e3b4a5fc5ef399cff08d4a6b2",
+      "label": "daisy",
+      "split": "test",
+      "width": 159,
+      "height": 240
+    },
+    {
+      "id": "204d698a6538f9f13916886ff24af7e3c1f40aa769bcafc7977713b09ca2d505",
+      "label": "tulip",
+      "split": "test",
+      "width": 320,
+      "height": 240
+    },
+    {
+      "id": "20702ea8c972141aeb64096ff05b9dcc4fc95208c5b97c78bf4c6c8f5d2dca2a",
+      "label": "dandelion",
+      "split": "test",
+      "width": 500,
+      "height": 333
+    },
+    {
+      "id": "2155d85bffde7f78ef1f490835daaa23da865eab064eb1565a24ab8447058171",
+      "label": "sunflower",
+      "split": "test",
+      "width": 161,
+      "height": 240
+    },
+    {
+      "id": "219b18f9b0c087d0cf9840bdc58931147bc91b458a2bfee526fde48d22efd897",
+      "label": "sunflower",
+      "split": "test",
+      "width": 320,
+      "height": 213
+    },
+    {
+      "id": "2240c810e0cd499687deec7c9bd65c4d27eeac712fad2c3109074760d303a892",
+      "label": "tulip",
+      "split": "test",
+      "width": 240,
+      "height": 240
+    },
+    {
+      "id": "22447f4d69ff28fa331e17507d1bb22ce480c30e3dbb28bd3b51e959c06e1fd8",
+      "label": "sunflower",
+      "split": "test",
+      "width": 320,
+      "height": 240
+    },
+    {
+      "id": "22615a04281856176f608f10538cf7699bb60da0425e1ceee5befabf00403183",
+      "label": "daisy",
+      "split": "test",
+      "width": 240,
+      "height": 215
+    },
+    {
+      "id": "22799817eef9b155d70b6fc306235bf8df8f24c08550edf5595239a59ce82fa0",
+      "label": "tulip",
+      "split": "test",
+      "width": 500,
+      "height": 332
+    },
+    {
+      "id": "229a4d413d2da2a79aed480ac8d216c9a117b48d29057ee570ff1cee75262135",
+      "label": "rose",
+      "split": "test",
+      "width": 500,
+      "height": 281
+    },
+    {
+      "id": "22e938ee64e13daeba4013b35e64de9a793e1015c787ef3a00e4832f78ebd7d5",
+      "label": "dandelion",
+      "split": "test",
+      "width": 180,
+      "height": 240
+    },
+    {
+      "id": "2452a1b4bf9911d4c4a3b1044383ced3f7480752ccb7d9554dc28f501a89804e",
+      "label": "tulip",
+      "split": "test",
+      "width": 500,
+      "height": 331
+    },
+    {
+      "id": "246c44deb5a7c20fb4f2f3da701ae9e09f0e1e08b1bdc8fecd4ed0db14565e0e",
+      "label": "rose",
+      "split": "test",
+      "width": 320,
+      "height": 234
+    },
+    {
+      "id": "26aa35faf1a5e7b11258145db4870dba3fec7a222266e4309213d291152a0ecc",
+      "label": "dandelion",
+      "split": "test",
+      "width": 500,
+      "height": 333
+    },
+    {
+      "id": "27141e0ade4f0a8b8f9c4756a0ad5c6b9c0bea527ede3a8a360336863779814b",
+      "label": "dandelion",
+      "split": "test",
+      "width": 320,
+      "height": 240
+    },
+    {
+      "id": "28738776973af60e0a754ab84604f86d6c5a51e7018239cbcd0d0681af23cfd4",
+      "label": "sunflower",
+      "split": "test",
+      "width": 500,
+      "height": 333
+    },
+    {
+      "id": "28d3483e1a108b4807d242814ee6a2541f8bf6460d5cb9db78452e32ef48b886",
+      "label": "tulip",
+      "split": "test",
+      "width": 320,
+      "height": 213
+    },
+    {
+      "id": "28e27bbf27ffd92a18e47a4dea4a63e4b3b8150eac695b5202f0671c99d980ec",
+      "label": "sunflower",
+      "split": "test",
+      "width": 320,
+      "height": 240
+    },
+    {
+      "id": "2a59b6ab81432e80dca9718243343caa4be4c81bd862006b1f40965cc4271baf",
+      "label": "rose",
+      "split": "test",
+      "width": 500,
+      "height": 333
+    },
+    {
+      "id": "2c33c32e37942d9a9d9316fc867d89fe78c0262c23d10ab0e01b208e27ef4d58",
+      "label": "rose",
+      "split": "test",
+      "width": 320,
+      "height": 200
+    },
+    {
+      "id": "2d0b2117dacb891bae552a36f2acc995d1b269d4532d121edb17f0be064e0227",
+      "label": "tulip",
+      "split": "test",
+      "width": 320,
+      "height": 213
+    },
+    {
+      "id": "2d50d09ea3203c7b39c743adeb8105ebc63a21fe3929841812b378276ed70c46",
+      "label": "tulip",
+      "split": "test",
+      "width": 320,
+      "height": 258
+    },
+    {
+      "id": "2dd617866a69da68c1bc9be1610adffde56bb696c3a11a6f99867a181d99f25b",
+      "label": "sunflower",
+      "split": "test",
+      "width": 500,
+      "height": 333
+    },
+    {
+      "id": "2dfae976aebdc63520ccaad48d497d663bf55525fef8a488bae46c1c03b71ccd",
+      "label": "sunflower",
+      "split": "test",
+      "width": 500,
+      "height": 333
+    },
+    {
+      "id": "2e701c1385203c1558b3a63732f123b385f09387acb2880a19cc6188fa51ea59",
+      "label": "rose",
+      "split": "test",
+      "width": 500,
+      "height": 334
+    },
+    {
+      "id": "2f3440b5380e67bed2a6ee80644bfae02e78486fac454e2f2c92d2a63edfdfab",
+      "label": "rose",
+      "split": "test",
+      "width": 500,
+      "height": 331
+    },
+    {
+      "id": "3011b49c3ff539da0a2dd6e176bf79488a02380a71a1303a6ad97a744d5a91e3",
+      "label": "sunflower",
+      "split": "test",
+      "width": 240,
+      "height": 240
+    },
+    {
+      "id": "317b532e01c6924b319d87652cf1657c920c170a0d3711818d68354541214166",
+      "label": "rose",
+      "split": "test",
+      "width": 320,
+      "height": 240
+    },
+    {
+      "id": "32231dcd5b78d4cd3d282c1bf2b1d8e65e76c375d902a4f7cd8fb6a1a9e140be",
+      "label": "rose",
+      "split": "test",
+      "width": 500,
+      "height": 334
+    },
+    {
+      "id": "34bb29b45cbd2f200fe434d186b416be0f59b9aecac67d47b27cfb820cc70f6d",
+      "label": "rose",
+      "split": "test",
+      "width": 500,
+      "height": 313
+    },
+    {
+      "id": "38ed797e13725a0ffc15948d748fb2a74c8959549f3e33552b7690d28f7b920a",
+      "label": "rose",
+      "split": "test",
+      "width": 320,
+      "height": 240
+    },
+    {
+      "id": "3c5fa5e7abea3a8ba0cffa969a796b636b14d906754bc02eb60f4011be338b43",
+      "label": "rose",
+      "split": "test",
+      "width": 500,
+      "height": 333
+    }
+  ]
+}

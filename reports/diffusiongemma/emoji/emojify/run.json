@@ -1,0 +1,47 @@
+{
+  "completed": true,
+  "started": "2026-09-21T05:42:16.996847+00:00",
+  "model": "google/diffusiongemma-26B-A4B-it",
+  "model_revision": "f7f5b7f5fa82ffc52addd066915886d497f5517b",
+  "sglang_revision": "ef90bf677e4e6b280bf796f1c5f4ef0f05dda27f",
+  "dataset": "emojify",
+  "dataset_manifest_sha256": "df55e97e3d20cab7b079331cf381e2bcb2ca86b093c8a43bd3428e47158ea940",
+  "harness_sha256": "a9f8f274950b121263044bd00b18abee9351674375c4a4be1b42f040ca5b1258",
+  "metrics_sha256": "e30147d87ac2e68a4049352200d576e667ea858f2e769d43223f40ec9e4bee8e",
+  "concurrency": 1,
+  "retries": 0,
+  "warmup_requests": 2,
+  "temperature": 1.0,
+  "max_denoising_steps": 48,
+  "latency_scope": "client HTTP loopback including adapter and response validation",
+  "question": {
+    "type": "choice",
+    "instructions": "Which emoji best matches the emotion or activity in this message?",
+    "criteria": {
+      "❤️": "Love and affection",
+      "⚾": "Sports and ball games",
+      "😄": "Happiness and joy",
+      "😞": "Sadness, disappointment, or distress",
+      "🍴": "Food, eating, or hunger"
+    }
+  },
+  "split_runs": {
+    "dev": {
+      "items": 20,
+      "elapsed_s": 4.123716203961521,
+      "valid_decisions_per_second": 4.849994279622503
+    },
+    "test": {
+      "items": 50,
+      "elapsed_s": 9.500725186895579,
+      "valid_decisions_per_second": 5.262756159810345
+    }
+  },
+  "live_official_jev_measured": false,
+  "calibration_frozen_before_test": "2026-09-21T05:42:22.185799+00:00",
+  "finished": "2026-09-21T05:42:31.787066+00:00",
+  "measured_items": {
+    "dev": 20,
+    "test": 50
+  }
+}
