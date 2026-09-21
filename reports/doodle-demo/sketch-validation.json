@@ -1,0 +1,371 @@
+{
+  "passed": true,
+  "recorded_at": "2026-09-21T22:50:09.251450+00:00",
+  "browser": "153.0.8010.12",
+  "checks": [
+    "Root opens drawing pad; mouse strokes produce a real clock prediction",
+    "Clear drawing and reopening the demo reset pixels and disable guessing",
+    "Gallery paging/filtering works; labels appear only after inference",
+    "Flowers and text still evaluate; links preserve the selected demo on reload",
+    "Drawing and image upload work when gallery endpoints return 404",
+    "Delayed examples do not replace a demo the user already selected",
+    "Simulated text-only health response retains the text-first interface",
+    "390px touch drawing produces a real clock prediction, with no horizontal overflow"
+  ],
+  "console_errors": [],
+  "drawing_sha256": "b4418c670cbc951e5a5d8cdc433b3503cc19ff6d72df285e2406989364bd1189",
+  "responses": {
+    "drawn_clock": {
+      "model": "google/diffusiongemma-26B-A4B-it",
+      "answers": {
+        "doodle": {
+          "type": "choice",
+          "choice": "clock",
+          "probabilities": {
+            "airplane": 1.6749371246956566e-09,
+            "apple": 1.9302679918405107e-10,
+            "bicycle": 3.35365719752901e-10,
+            "cat": 1.1397715530717556e-09,
+            "clock": 0.9999999958957093,
+            "fish": 8.47800223634667e-11,
+            "pizza": 5.773056353875695e-10,
+            "umbrella": 9.910384596033177e-11
+          },
+          "confidence": 0.9999999569187379
+        }
+      },
+      "usage": {
+        "input_tokens": 421,
+        "output_tokens": 5
+      },
+      "meta": {
+        "latency_ms": 365.68,
+        "probability_source": "self_conditioned_denoiser_logits",
+        "temperature": 1.0,
+        "passes": 48,
+        "candidate_logits": {
+          "doodle": [
+            3.8074824810028076,
+            1.6467806100845337,
+            2.1991732120513916,
+            3.422534704208374,
+            24.014972686767578,
+            0.824011504650116,
+            2.742323398590088,
+            0.9801198244094849
+          ]
+        },
+        "denoising_steps": {
+          "doodle": 2
+        },
+        "candidate_mass": {
+          "doodle": 0.9999999913297078
+        },
+        "unrestricted_first_token": {
+          "doodle": "E"
+        },
+        "answer_position": {
+          "doodle": 4
+        }
+      }
+    },
+    "gallery_cat": {
+      "model": "google/diffusiongemma-26B-A4B-it",
+      "answers": {
+        "doodle": {
+          "type": "choice",
+          "choice": "cat",
+          "probabilities": {
+            "airplane": 2.705824067193341e-10,
+            "apple": 1.2085382316739026e-09,
+            "bicycle": 1.0272851558475895e-08,
+            "cat": 0.9999999654965716,
+            "clock": 2.0521851629773813e-08,
+            "fish": 7.255014707556354e-10,
+            "pizza": 1.0040619747837214e-09,
+            "umbrella": 5.000412052277446e-10
+          },
+          "confidence": 0.9999996805440345
+        }
+      },
+      "usage": {
+        "input_tokens": 421,
+        "output_tokens": 5
+      },
+      "meta": {
+        "latency_ms": 316.08,
+        "probability_source": "self_conditioned_denoiser_logits",
+        "temperature": 1.0,
+        "passes": 48,
+        "candidate_logits": {
+          "doodle": [
+            1.802513837814331,
+            3.2991039752960205,
+            5.439197063446045,
+            23.832958221435547,
+            6.131182670593262,
+            2.7888002395629883,
+            3.113746166229248,
+            2.4166276454925537
+          ]
+        },
+        "denoising_steps": {
+          "doodle": 2
+        },
+        "candidate_mass": {
+          "doodle": 0.9999999379027307
+        },
+        "unrestricted_first_token": {
+          "doodle": "D"
+        },
+        "answer_position": {
+          "doodle": 4
+        }
+      }
+    },
+    "flower": {
+      "model": "google/diffusiongemma-26B-A4B-it",
+      "answers": {
+        "flower": {
+          "type": "choice",
+          "choice": "rose",
+          "probabilities": {
+            "daisy": 3.776581880213511e-13,
+            "dandelion": 3.5532404746915237e-13,
+            "rose": 0.9999999999851166,
+            "sunflower": 7.843384379009315e-12,
+            "tulip": 6.307066840665446e-12
+          },
+          "confidence": 0.9999999997520296
+        }
+      },
+      "usage": {
+        "input_tokens": 382,
+        "output_tokens": 5
+      },
+      "meta": {
+        "latency_ms": 296.84,
+        "probability_source": "self_conditioned_denoiser_logits",
+        "temperature": 1.0,
+        "passes": 48,
+        "candidate_logits": {
+          "flower": [
+            -4.6802167892456055,
+            -4.741176128387451,
+            23.924570083618164,
+            -1.6467806100845337,
+            -1.864780306816101
+          ]
+        },
+        "denoising_steps": {
+          "flower": 2
+        },
+        "candidate_mass": {
+          "flower": 0.9999999989184585
+        },
+        "unrestricted_first_token": {
+          "flower": "C"
+        },
+        "answer_position": {
+          "flower": 4
+        }
+      }
+    },
+    "text": {
+      "model": "google/diffusiongemma-26B-A4B-it",
+      "answers": {
+        "emoji": {
+          "type": "choice",
+          "choice": "\u2764\ufe0f",
+          "probabilities": {
+            "\u2764\ufe0f": 0.999999994618499,
+            "\u26bd": 1.0338144217627358e-09,
+            "\ud83d\ude0a": 1.2764966725584321e-09,
+            "\ud83d\ude22": 2.3942509440000164e-09,
+            "\ud83c\udf74": 6.769389379368725e-10
+          },
+          "confidence": 0.9999999287132778
+        },
+        "positive": {
+          "type": "noul",
+          "noul": 0.9999999884578531
+        },
+        "intensity": {
+          "type": "score",
+          "score": 2.999999854785217,
+          "legend": {
+            "0": "Neutral",
+            "1": "Mild",
+            "2": "Strong",
+            "3": "Very strong"
+          },
+          "probabilities": {
+            "0": 1.9020086145281526e-10,
+            "1": 5.598874882680839e-10,
+            "2": 1.4352440572006562e-07,
+            "3": 0.999999855725506
+          },
+          "confidence": 0.999998252940378
+        }
+      },
+      "usage": {
+        "input_tokens": 330,
+        "output_tokens": 15
+      },
+      "meta": {
+        "latency_ms": 334.43,
+        "probability_source": "self_conditioned_denoiser_logits",
+        "temperature": 1.0,
+        "passes": 48,
+        "candidate_logits": {
+          "emoji": [
+            26.28017807006836,
+            5.59016752243042,
+            5.801031589508057,
+            6.429982662200928,
+            5.166738033294678
+          ],
+          "positive": [
+            2.323462724685669,
+            20.600723266601562
+          ],
+          "intensity": [
+            2.850748062133789,
+            3.930403232574463,
+            9.476927757263184,
+            25.233688354492188
+          ]
+        },
+        "denoising_steps": {
+          "emoji": 2,
+          "positive": 2,
+          "intensity": 2
+        },
+        "candidate_mass": {
+          "emoji": 0.9999999944148906,
+          "positive": 0.9999976629348437,
+          "intensity": 0.9999999672904198
+        },
+        "unrestricted_first_token": {
+          "emoji": "A",
+          "positive": "B",
+          "intensity": "D"
+        },
+        "answer_position": {
+          "emoji": 4,
+          "positive": 4,
+          "intensity": 4
+        }
+      }
+    },
+    "upload_without_gallery": {
+      "model": "google/diffusiongemma-26B-A4B-it",
+      "answers": {
+        "doodle": {
+          "type": "choice",
+          "choice": "clock",
+          "probabilities": {
+            "airplane": 4.682135379648917e-09,
+            "apple": 8.26501280523065e-11,
+            "bicycle": 7.569713793495579e-11,
+            "cat": 1.1918324451514607e-09,
+            "clock": 0.9999999937115094,
+            "fish": 3.70374886400881e-11,
+            "pizza": 1.9352949721439114e-10,
+            "umbrella": 2.5608442822830248e-11
+          },
+          "confidence": 0.9999999374329516
+        }
+      },
+      "usage": {
+        "input_tokens": 421,
+        "output_tokens": 5
+      },
+      "meta": {
+        "latency_ms": 292.16,
+        "probability_source": "self_conditioned_denoiser_logits",
+        "temperature": 1.0,
+        "passes": 48,
+        "candidate_logits": {
+          "doodle": [
+            4.466551303863525,
+            0.42965811491012573,
+            0.3417820930480957,
+            3.0982890129089355,
+            23.64606285095215,
+            -0.37302765250205994,
+            1.280471682548523,
+            -0.7420361638069153
+          ]
+        },
+        "denoising_steps": {
+          "doodle": 2
+        },
+        "candidate_mass": {
+          "doodle": 0.9999999893319111
+        },
+        "unrestricted_first_token": {
+          "doodle": "E"
+        },
+        "answer_position": {
+          "doodle": 4
+        }
+      }
+    },
+    "touch_clock": {
+      "model": "google/diffusiongemma-26B-A4B-it",
+      "answers": {
+        "doodle": {
+          "type": "choice",
+          "choice": "clock",
+          "probabilities": {
+            "airplane": 1.5179655686294774e-08,
+            "apple": 2.566936179097808e-10,
+            "bicycle": 2.0802397798953563e-10,
+            "cat": 4.388171045719779e-09,
+            "clock": 0.999999979416651,
+            "fish": 1.272974781810991e-10,
+            "pizza": 3.6143507691091644e-10,
+            "umbrella": 6.20722007641965e-11
+          },
+          "confidence": 0.9999998072375367
+        }
+      },
+      "usage": {
+        "input_tokens": 421,
+        "output_tokens": 5
+      },
+      "meta": {
+        "latency_ms": 352.24,
+        "probability_source": "self_conditioned_denoiser_logits",
+        "temperature": 1.0,
+        "passes": 48,
+        "candidate_logits": {
+          "doodle": [
+            5.921260356903076,
+            1.8414322137832642,
+            1.6312023401260376,
+            4.6802167892456055,
+            23.924570083618164,
+            1.14007568359375,
+            2.183631420135498,
+            0.42184722423553467
+          ]
+        },
+        "denoising_steps": {
+          "doodle": 2
+        },
+        "candidate_mass": {
+          "doodle": 0.9999999863656763
+        },
+        "unrestricted_first_token": {
+          "doodle": "E"
+        },
+        "answer_position": {
+          "doodle": 4
+        }
+      }
+    }
+  },
+  "recording": "Real browser pointer input and unmodified GPU response; normal speed, 12 fps"
+}

@@ -10,10 +10,11 @@ uv run diffusion-jev serve
 On the Mac, forward a local port through the existing SSH host alias:
 
 ```bash
-ssh -N -L 18000:127.0.0.1:8000 YOUR_GPU_SSH_ALIAS
+ssh -N -o ExitOnForwardFailure=yes -o ServerAliveInterval=30 \
+  -L 18000:127.0.0.1:8000 YOUR_GPU_SSH_ALIAS
 ```
 
-Leave that terminal running, then open **http://localhost:18000** in the Mac browser. The model stays on the A100, and browser/API traffic goes through SSH. Only port 8000 needs forwarding; the SGLang engine remains private on remote port 30000.
+Leave that terminal running, then open **http://localhost:18000/#doodle** in the Mac browser. The model stays on the A100, and browser/API traffic goes through SSH. Only port 8000 needs forwarding; the SGLang engine remains private on remote port 30000.
 
 If 18000 is occupied, replace the first port with another free local port. If you connect with an explicit SSH port or identity file, use the same `-p` and `-i` flags as your normal connection. Start the tunnel on the Mac, not inside the remote SSH shell.
 

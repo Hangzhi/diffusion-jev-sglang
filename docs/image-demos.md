@@ -4,7 +4,7 @@ Both demos use **DiffusionGemma's native image input** through the same typed de
 
 ## Doodle Detective
 
-Open **Image classification → Doodle Detective**. Choose a sketch from the gallery, or select **Draw your own** and draw with a mouse or finger. Click **Guess doodle** at the top to see the model's prediction and distribution. Clear the drawing to start over. Uploading a PNG/JPEG/WebP works too.
+Open **Doodle Detective** at the top of the app, or go directly to `/#doodle`. It also opens by default when the backend supports images. The drawing pad is ready right away. Draw with a mouse or finger, or use **Try a sketch** to open the gallery. Click **Guess doodle** at the top to see the model's prediction and distribution. Clear the drawing to start over. Uploading a PNG/JPEG/WebP works too.
 
 The eight categories are **airplane, apple, bicycle, cat, clock, fish, pizza, and umbrella**. The model must pick among those eight options; an unrelated drawing will still get a guess. The scores are relative to this candidate set, not a guarantee that the drawing depicts one of them. Edit questions to try your own categories.
 
@@ -22,7 +22,7 @@ Preparation refuses to overwrite an existing manifest. Use a new `--output` dire
 
 ## Flowers
 
-Open **Image classification → Flowers** to identify daisy, dandelion, rose, sunflower, or tulip from a gallery image or upload. Prepare the gallery with:
+Open **Flowers** at the top of the app (or `/#flowers`) to identify daisy, dandelion, rose, sunflower, or tulip from a gallery image or upload. Prepare the gallery with:
 
 ```bash
 uv run python scripts/prepare_flowers.py

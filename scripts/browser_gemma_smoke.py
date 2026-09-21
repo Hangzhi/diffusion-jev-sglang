@@ -16,7 +16,7 @@ async def main():
         page = await browser.new_page(viewport={"width": 1440, "height": 1120})
         errors = []
         page.on("pageerror", lambda error: errors.append(str(error)))
-        await page.goto("http://127.0.0.1:8000", wait_until="networkidle")
+        await page.goto("http://127.0.0.1:8000/#text", wait_until="networkidle")
         await page.get_by_text("Ready", exact=True).wait_for(timeout=180000)
         assert await page.get_by_text("DiffusionGemma 26B A4B", exact=True).count() == 1
         responses = []
@@ -36,7 +36,7 @@ async def main():
         body = await evaluate()
         assert set(body["answers"]) == {"emoji", "positive", "intensity"}
         await page.screenshot(path=str(OUTPUT / "text-desktop.png"), full_page=True)
-        await page.get_by_role("button", name="Image classification", exact=True).click()
+        await page.get_by_role("button", name="Flowers", exact=True).click()
         await page.get_by_role("button", name="Select flower image 1", exact=True).wait_for()
         assert await page.locator(".image-gallery button").count() == 12
         await page.get_by_role("button", name="Next", exact=True).click()

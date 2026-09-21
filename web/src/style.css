@@ -812,7 +812,7 @@ footer {
   }
 }
 
-.mode-tabs { display: flex; gap: 8px; margin: 24px 0; }
+.mode-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 24px 0; }
 .mode-tabs button { display: flex; align-items: center; gap: 8px; border: 1px solid #d6dfcf; border-radius: 7px; padding: 11px 16px; background: #f8faf5; color: #52684e; font: inherit; cursor: pointer; }
 .mode-tabs button.selected { background: #285b40; color: white; border-color: #285b40; }
 .mode-tabs button:disabled { opacity: .5; cursor: default; }
@@ -846,8 +846,23 @@ footer {
 .draw-heading { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; margin: 18px 0 12px; color: #64785c; font-size: 11px; }
 .draw-pad canvas { display: block; width: min(100%, 360px); height: auto; margin: auto; border: 1px solid #d6dfcf; border-radius: 10px; touch-action: none; cursor: crosshair; background: white; }
 .draw-pad p { font-size: 12px; line-height: 1.6; color: #64785c; }
+.image-demo { padding-top: 24px; }
+.image-demo .intro { margin: 12px 0 20px; }
+.image-demo h1 { font-size: 38px; }
+.image-demo .intro p { margin-top: 10px; }
+.image-demo .model-card { margin-top: 0; }
+.image-demo .mode-tabs { margin: 18px 0; }
+.image-demo .vision-panel { margin-bottom: 16px; padding-bottom: 12px; }
+.doodle-categories { margin-top: 14px; }
+.decision-settings > summary { cursor: pointer; font-size: 12px; color: #52684e; }
+.decision-settings .settings-body { padding-top: 20px; }
+.decision-settings.text > summary { display: none; }
+.decision-settings.text .settings-body { padding-top: 0; }
 .image-gallery img { object-fit: contain; }
 @media (max-width: 600px) {
+  .image-demo .intro { flex-direction: column; gap: 14px; }
+  .image-demo .model-card { max-width: none; width: 100%; }
+  .image-demo h1 { font-size: 34px; }
   .mode-tabs button { padding: 10px; font-size: 12px; }
   .gallery-heading { align-items: flex-start; }
   .gallery-heading small { max-width: 165px; line-height: 1.5; }
