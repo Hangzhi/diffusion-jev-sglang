@@ -1,0 +1,9 @@
+{
+  "model": "inclusionAI/LLaDA2.1-mini",
+  "passes": 1,
+  "temperature": 2.691534803926915,
+  "source_sha256": "8a2a98c0435ec83a51e91e8e6268c6c04f549f02b43ef64de0d8dfea87e91529",
+  "dev_count": 10,
+  "nll_before": 0.7762612142996692,
+  "nll_after": 0.3755267712023113
+}

@@ -1,0 +1,11 @@
+{
+  "method": "Offline recomputation from untouched test logits; temperature fitted only on dev",
+  "temperature": 2.691534803926915,
+  "dataset_sha256": "06a20978709befe377efb271ff5a43c92082fab78a92fa9b2623c0138150e836",
+  "metrics": {
+    "accuracy": 1.0,
+    "nll": 0.08683262613947872,
+    "brier": 0.009754294150820103,
+    "ece_10_bins": 0.08278614867195229
+  }
+}

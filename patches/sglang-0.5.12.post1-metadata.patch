@@ -1,0 +1,30 @@
+diff --git a/python/sglang/srt/dllm/mixin/scheduler.py b/python/sglang/srt/dllm/mixin/scheduler.py
+index 157ab21927..03225992bc 100644
+--- a/python/sglang/srt/dllm/mixin/scheduler.py
++++ b/python/sglang/srt/dllm/mixin/scheduler.py
+@@ -78,6 +78,13 @@ class SchedulerDllmMixin:
+                 new_tokens = len(next_token_ids)
+                 if new_tokens == 0:
+                     continue
++                # diffusion-jev: transport real candidate logits
++                info = result.logits_output.customized_info
++                if info is not None:
++                    if req.customized_info is None:
++                        req.customized_info = {}
++                    for key, values in info.items():
++                        req.customized_info.setdefault(key, []).append(values[idx])
+ 
+                 req.fill_ids[-new_tokens:] = next_token_ids[:]
+                 self.num_generated_tokens += new_tokens
+diff --git a/python/sglang/srt/layers/moe/topk.py b/python/sglang/srt/layers/moe/topk.py
+index 96031a9dc1..0fb88dd973 100644
+--- a/python/sglang/srt/layers/moe/topk.py
++++ b/python/sglang/srt/layers/moe/topk.py
+@@ -1022,6 +1022,7 @@ def biased_grouped_topk_gpu(
+     if (
+         _is_cuda
+         and fused_topk_deepseek is not None
++        and torch.cuda.get_device_capability(gating_output.device)[0] >= 9  # diffusion-jev: SM90+ only
+         and is_power_of_two(num_experts)
+         # flashinfer constraints (applied to routed experts only)
+         and topk_routed <= 8

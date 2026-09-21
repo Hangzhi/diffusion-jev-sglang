@@ -1,0 +1,187 @@
+{
+  "emoji": {
+    "model": "inclusionAI/LLaDA2.1-mini",
+    "answers": {
+      "emoji": {
+        "type": "choice",
+        "choice": "\u2764\ufe0f",
+        "probabilities": {
+          "\u2764\ufe0f": 0.9976744664833583,
+          "\u26bd": 0.00023002369289276293,
+          "\ud83d\ude0a": 0.0019259648004315722,
+          "\ud83d\ude22": 0.00015809281799310313,
+          "\ud83c\udf74": 1.1452205324280528e-05
+        },
+        "confidence": 0.988936789014726
+      },
+      "positive": {
+        "type": "noul",
+        "noul": 0.9999417087343389
+      },
+      "intensity": {
+        "type": "score",
+        "score": 2.994657102368846,
+        "legend": {
+          "0": "Neutral",
+          "1": "Mild",
+          "2": "Strong",
+          "3": "Very strong"
+        },
+        "probabilities": {
+          "0": 0.00013919335563867188,
+          "1": 0.00042874571929567675,
+          "2": 0.004067826125646905,
+          "3": 0.9953642347994187
+        },
+        "confidence": 0.9772214988270063
+      }
+    },
+    "usage": {
+      "input_tokens": 361,
+      "output_tokens": 3
+    },
+    "meta": {
+      "latency_ms": 385.71,
+      "probability_source": "masked_position_logits",
+      "temperature": 1.0,
+      "passes": 1,
+      "candidate_logits": {
+        "emoji": [
+          40.0,
+          31.625,
+          33.75,
+          31.25,
+          28.625
+        ],
+        "positive": [
+          31.75,
+          41.5
+        ],
+        "intensity": [
+          30.875,
+          32.0,
+          34.25,
+          39.75
+        ]
+      }
+    }
+  },
+  "support": {
+    "model": "inclusionAI/LLaDA2.1-mini",
+    "answers": {
+      "team": {
+        "type": "choice",
+        "choice": "billing",
+        "probabilities": {
+          "billing": 0.9999808488567659,
+          "technical": 1.3007048549447158e-05,
+          "sales": 6.14409468463737e-06
+        },
+        "confidence": 0.9997822618939511
+      },
+      "urgent": {
+        "type": "noul",
+        "noul": 0.2689414213699951
+      },
+      "frustration": {
+        "type": "score",
+        "score": 1.0460619471453076,
+        "legend": {
+          "0": "Calm",
+          "1": "Frustrated",
+          "2": "Very angry"
+        },
+        "probabilities": {
+          "0": 0.013229770440367104,
+          "1": 0.9274785119739579,
+          "2": 0.05929171758567485
+        },
+        "confidence": 0.7318759281845792
+      }
+    },
+    "usage": {
+      "input_tokens": 371,
+      "output_tokens": 3
+    },
+    "meta": {
+      "latency_ms": 354.09,
+      "probability_source": "masked_position_logits",
+      "temperature": 1.0,
+      "passes": 1,
+      "candidate_logits": {
+        "team": [
+          45.5,
+          34.25,
+          33.5
+        ],
+        "urgent": [
+          36.25,
+          35.25
+        ],
+        "frustration": [
+          33.5,
+          37.75,
+          35.0
+        ]
+      }
+    }
+  },
+  "review": {
+    "model": "inclusionAI/LLaDA2.1-mini",
+    "answers": {
+      "sentiment": {
+        "type": "choice",
+        "choice": "mixed",
+        "probabilities": {
+          "positive": 0.00020332775493391364,
+          "mixed": 0.9993089143171774,
+          "negative": 0.00048775792788876215
+        },
+        "confidence": 0.9944122555581977
+      },
+      "rating": {
+        "type": "score",
+        "score": 2.3436972424373335,
+        "legend": {
+          "0": "Terrible",
+          "1": "Poor",
+          "2": "Average",
+          "3": "Good",
+          "4": "Excellent"
+        },
+        "probabilities": {
+          "0": 0.002803639273863829,
+          "1": 0.002803639273863829,
+          "2": 0.7773714664430043,
+          "3": 0.08193434975961199,
+          "4": 0.13508690524965625
+        },
+        "confidence": 0.5624980171001986
+      }
+    },
+    "usage": {
+      "input_tokens": 248,
+      "output_tokens": 2
+    },
+    "meta": {
+      "latency_ms": 353.62,
+      "probability_source": "masked_position_logits",
+      "temperature": 1.0,
+      "passes": 1,
+      "candidate_logits": {
+        "sentiment": [
+          29.5,
+          38.0,
+          30.375
+        ],
+        "rating": [
+          30.125,
+          30.125,
+          35.75,
+          33.5,
+          34.0
+        ]
+      }
+    }
+  }
+}

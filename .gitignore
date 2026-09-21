@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+.env
+.cache/
+*.log
+node_modules/
+reports/local-*
+dist/
+/data/
+calibration.json

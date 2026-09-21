@@ -1,0 +1,18 @@
+services:
+  playground:
+    build: .
+    ports:
+      - "127.0.0.1:8000:8000"
+    volumes:
+      - model-cache:/root/.cache/huggingface
+    shm_size: 8gb
+    stop_grace_period: 30s
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+volumes:
+  model-cache:

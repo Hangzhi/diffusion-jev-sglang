@@ -1,0 +1,105 @@
+[
+  {
+    "id": "emoji",
+    "name": "Emoji classifier",
+    "description": "One message. Three typed decisions.",
+    "request": {
+      "model": "diffusion-jev",
+      "state": "I love you so much. You make every day better!",
+      "questions": {
+        "emoji": {
+          "type": "choice",
+          "instructions": "Which emoji best matches the emotion or activity in this message?",
+          "criteria": {
+            "❤️": "Love and affection",
+            "⚽": "Football or soccer",
+            "😊": "Happiness and celebration",
+            "😢": "Sadness or loss",
+            "🍴": "Food and hunger"
+          }
+        },
+        "positive": {
+          "type": "noul",
+          "instructions": "Does the message express positive emotion?"
+        },
+        "intensity": {
+          "type": "score",
+          "instructions": "How emotionally intense is the message?",
+          "criteria": [
+            "Neutral",
+            "Mild",
+            "Strong",
+            "Very strong"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "id": "support",
+    "name": "Support triage",
+    "description": "Route a ticket and measure its urgency.",
+    "request": {
+      "model": "diffusion-jev",
+      "state": {
+        "subject": "Charged twice",
+        "message": "My subscription renewed twice this morning. Please refund the duplicate payment."
+      },
+      "questions": {
+        "team": {
+          "type": "choice",
+          "instructions": "Which team should handle this ticket?",
+          "criteria": {
+            "billing": "Charges, invoices, refunds",
+            "technical": "Bugs and outages",
+            "sales": "Purchasing and upgrades"
+          }
+        },
+        "urgent": {
+          "type": "noul",
+          "instructions": "Does this need immediate action to prevent serious harm?"
+        },
+        "frustration": {
+          "type": "score",
+          "instructions": "Rate customer frustration.",
+          "criteria": [
+            "Calm",
+            "Frustrated",
+            "Very angry"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "id": "review",
+    "name": "Review sentiment",
+    "description": "Turn a review into a sentiment and rating.",
+    "request": {
+      "model": "diffusion-jev",
+      "state": "The food was excellent and the staff were kind, but we waited almost an hour for our table.",
+      "questions": {
+        "sentiment": {
+          "type": "choice",
+          "instructions": "Classify the overall sentiment.",
+          "criteria": {
+            "positive": null,
+            "mixed": null,
+            "negative": null
+          }
+        },
+        "rating": {
+          "type": "score",
+          "instructions": "Rate the experience from worst to best.",
+          "criteria": [
+            "Terrible",
+            "Poor",
+            "Average",
+            "Good",
+            "Excellent"
+          ]
+        }
+      }
+    }
+  }
+]

@@ -1,0 +1,7 @@
+.git
+.venv
+web/node_modules
+reports
+.cache
+.env
+dist

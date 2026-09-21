@@ -1,0 +1,22 @@
+{
+  "gpu": "NVIDIA A100-SXM4-80GB, 81920 MiB, 580.159.04",
+  "packages": {
+    "sglang": "0.5.12.post1",
+    "torch": "2.11.0",
+    "transformers": "5.6.0",
+    "tokenizers": "0.22.2",
+    "flashinfer-python": "0.6.11.post1",
+    "triton": "3.6.0",
+    "sglang-kernel": "0.4.2.post2"
+  },
+  "model": "inclusionAI/LLaDA2.1-mini",
+  "revision": "20e64e2ad21644d0e5248586ed9c942cdd45de0f",
+  "dtype": "bfloat16",
+  "attention_backend": "flashinfer",
+  "radix_cache": false,
+  "cuda_graph": false,
+  "max_running_requests": 8,
+  "context_length": 8192,
+  "notes": "GPU validation uses an existing SGLang 0.5.12.post1 environment with the project patch; not a fresh install from the project uv.lock.",
+  "a100_moe_routing": "sgl_kernel.moe_fused_gate (SM90 FlashInfer kernel guarded)"
+}

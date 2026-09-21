@@ -1,0 +1,71 @@
+{
+  "passed": true,
+  "console_errors": [],
+  "response": {
+    "model": "inclusionAI/LLaDA2.1-mini",
+    "answers": {
+      "emoji": {
+        "type": "choice",
+        "choice": "\u2764\ufe0f",
+        "probabilities": {
+          "\u2764\ufe0f": 0.9971334526672566,
+          "\u26bd": 0.00020288511730015907,
+          "\ud83d\ude0a": 0.0024716467162258036,
+          "\ud83d\ude22": 0.0001790454875979027,
+          "\ud83c\udf74": 1.2970011619671154e-05
+        },
+        "confidence": 0.9868803590740849
+      },
+      "positive": {
+        "type": "noul",
+        "noul": 0.9999485577862579
+      },
+      "intensity": {
+        "type": "score",
+        "score": 2.994295869781484,
+        "legend": {
+          "0": "Neutral",
+          "1": "Mild",
+          "2": "Strong",
+          "3": "Very strong"
+        },
+        "probabilities": {
+          "0": 0.00017869898069657167,
+          "1": 0.0005504316112260581,
+          "2": 0.004067170053974129,
+          "3": 0.9952036993541031
+        },
+        "confidence": 0.9763060488318583
+      }
+    },
+    "usage": {
+      "input_tokens": 361,
+      "output_tokens": 3
+    },
+    "meta": {
+      "latency_ms": 146.67,
+      "probability_source": "masked_position_logits",
+      "temperature": 1.0,
+      "passes": 1,
+      "candidate_logits": {
+        "emoji": [
+          40.0,
+          31.5,
+          34.0,
+          31.375,
+          28.75
+        ],
+        "positive": [
+          31.625,
+          41.5
+        ],
+        "intensity": [
+          30.875,
+          32.0,
+          34.0,
+          39.5
+        ]
+      }
+    }
+  }
+}

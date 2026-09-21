@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "device": "NVIDIA A100-SXM4-80GB",
+  "case": "32 tokens, 256 experts, 8 groups, top-4 groups, top-8 experts",
+  "max_weight_error": 2.9802322387695312e-08,
+  "expert_ids_match": true
+}

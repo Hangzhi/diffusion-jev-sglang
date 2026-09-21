@@ -1,0 +1,16 @@
+{
+  "cpu_tests_passed": 17,
+  "tensor_tests_passed": 7,
+  "frontend_build": "passed",
+  "browser_layout_and_editor": "passed",
+  "gpu_inference": "passed: actual BF16 LLaDA2.1-mini, all three presets, mixed-length concurrent questions",
+  "a100_routing_reference_check": "passed",
+  "docker": "not tested",
+  "fresh_engine_lock_install": "resolution/dry-run only; GPU run uses existing pinned SGLang environment",
+  "browser_live": "passed: actual inference, JSON raw logits, mobile layout, no browser errors",
+  "gpu_passes_tested": [
+    1
+  ],
+  "multi_pass_note": "2/4 passes covered by tensor tests, not GPU quality benchmarks",
+  "benchmark_matrix": "passed: 1/8/32 questions at concurrency 1/4, ten requests each"
+}
