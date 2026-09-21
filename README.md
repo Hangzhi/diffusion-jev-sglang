@@ -112,3 +112,7 @@ No claim of Jev-level accuracy or a speed advantage over direct Qwen scoring is 
 Optional container packaging is supplied as `Dockerfile` and `compose.yaml` (`docker compose up --build`). It requires NVIDIA Container Toolkit. The uv workflow is primary; container builds are not part of the CPU CI checks.
 
 For a remote A100 with a Mac browser, see [SSH forwarding instructions](docs/remote.md). The browser and API share one forwarded port; inference remains on the remote GPU.
+
+## AI Gateway and JevBench comparison
+
+Server-side AI SDK examples and reproducible comparison scripts are described in [Gateway setup](docs/gateway.md). See the [231-item public comparison](reports/jevbench/README.md) for newly measured local results and an explicitly historical TypeSafe Jev reference.

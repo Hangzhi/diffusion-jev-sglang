@@ -1,0 +1,516 @@
+{
+  "scope": "231 public JevBench items, not the official 534-item ranking",
+  "upstream_commit": "c6004e008ffba24aec091261ca1a5c02f7324702",
+  "dataset_sha256": {
+    "easy": "231df3c2c8e88a1a8c137ebe85de96ba70fabd330849098ac7b3c52c70b7172b",
+    "original": "5c2414edb3006b8bfcb70fda433f0f9ca015759433849f8d3104328a1f7c4180",
+    "hard": "89e9e6becb33ed88c1de7d42dcc87531b2fb64cfaef4e1986faf7c37b3f80ebb"
+  },
+  "models": {
+    "local": {
+      "completed": true,
+      "overall": {
+        "count": 231,
+        "scorable": 231,
+        "valid_distributions": 231,
+        "correct": 152,
+        "accuracy": 0.658008658008658,
+        "schema_failures": 0,
+        "transport_failures": 0,
+        "nll": 1.0204703654745326,
+        "brier": 0.4905080305819897,
+        "ece": 0.20387848143811452,
+        "ordinal_mae": 0.3170280018873611,
+        "gold_distribution_count": 10,
+        "gold_tvd": 0.346154007028606,
+        "latency": {
+          "n": 231,
+          "p50_s": 0.18289089482277632,
+          "p95_s": 2.5939878411591053
+        }
+      },
+      "groups": {
+        "dataset:easy": {
+          "count": 48,
+          "scorable": 48,
+          "valid_distributions": 48,
+          "correct": 48,
+          "accuracy": 1.0,
+          "schema_failures": 0,
+          "transport_failures": 0,
+          "nll": 0.006968926629781501,
+          "brier": 0.0015160833825750364,
+          "ece": 0.006551474757685111,
+          "ordinal_mae": null,
+          "gold_distribution_count": 0,
+          "gold_tvd": null,
+          "latency": {
+            "n": 48,
+            "p50_s": 0.1393746950197965,
+            "p95_s": 0.16967549819964917
+          }
+        },
+        "family:intent": {
+          "count": 24,
+          "scorable": 24,
+          "valid_distributions": 24,
+          "correct": 17,
+          "accuracy": 0.7083333333333334,
+          "schema_failures": 0,
+          "transport_failures": 0,
+          "nll": 0.47974891949546605,
+          "brier": 0.3041203010778567,
+          "ece": 0.16044329422792636,
+          "ordinal_mae": null,
+          "gold_distribution_count": 0,
+          "gold_tvd": null,
+          "latency": {
+            "n": 24,
+            "p50_s": 0.142215006519109,
+            "p95_s": 0.17020543648395686
+          }
+        },
+        "type:choice": {
+          "count": 139,
+          "scorable": 139,
+          "valid_distributions": 139,
+          "correct": 88,
+          "accuracy": 0.6330935251798561,
+          "schema_failures": 0,
+          "transport_failures": 0,
+          "nll": 1.17157418569325,
+          "brier": 0.5108693498140153,
+          "ece": 0.20885082862847681,
+          "ordinal_mae": null,
+          "gold_distribution_count": 7,
+          "gold_tvd": 0.3815041064503174,
+          "latency": {
+            "n": 139,
+            "p50_s": 0.18289089482277632,
+            "p95_s": 2.604021694231778
+          }
+        },
+        "family:fact": {
+          "count": 12,
+          "scorable": 12,
+          "valid_distributions": 12,
+          "correct": 12,
+          "accuracy": 1.0,
+          "schema_failures": 0,
+          "transport_failures": 0,
+          "nll": 0.025876499020643835,
+          "brier": 0.006054350369326504,
+          "ece": 0.02420965753494488,
+          "ordinal_mae": null,
+          "gold_distribution_count": 0,
+          "gold_tvd": null,
+          "latency": {
+            "n": 12,
+            "p50_s": 0.1386162145063281,
+            "p95_s": 0.15054670721292496
+          }
+        },
+        "type:noul": {
+          "count": 74,
+          "scorable": 74,
+          "valid_distributions": 74,
+          "correct": 51,
+          "accuracy": 0.6891891891891891,
+          "schema_failures": 0,
+          "transport_failures": 0,
+          "nll": 0.8094969266092935,
+          "brier": 0.47941817332518133,
+          "ece": 0.20769125554191958,
+          "ordinal_mae": null,
+          "gold_distribution_count": 3,
+          "gold_tvd": 0.26367044171127935,
+          "latency": {
+            "n": 74,
+            "p50_s": 0.2340249540284276,
+            "p95_s": 2.076893213810399
+          }
+        },
+        "family:extraction": {
+          "count": 24,
+          "scorable": 24,
+          "valid_distributions": 24,
+          "correct": 24,
+          "accuracy": 1.0,
+          "schema_failures": 0,
+          "transport_failures": 0,
+          "nll": 0.05735811676422776,
+          "brier": 0.026173572132053152,
+          "ece": 0.04769925196721378,
+          "ordinal_mae": null,
+          "gold_distribution_count": 0,
+          "gold_tvd": null,
+          "latency": {
+            "n": 24,
+            "p50_s": 0.12920356541872025,
+            "p95_s": 0.15047765604685992
+          }
+        },
+        "family:tool_selection": {
+          "count": 12,
+          "scorable": 12,
+          "valid_distributions": 12,
+          "correct": 12,
+          "accuracy": 1.0,
+          "schema_failures": 0,
+          "transport_failures": 0,
+          "nll": 0.00015594283343901854,
+          "brier": 5.7242899638875755e-08,
+          "ece": 0.00015592268940822773,
+          "ordinal_mae": null,
+          "gold_distribution_count": 0,
+          "gold_tvd": null,
+          "latency": {
+            "n": 12,
+            "p50_s": 0.16319673601537943,
+            "p95_s": 0.18472394419368354
+          }
+        },
+        "dataset:original": {
+          "count": 72,
+          "scorable": 72,
+          "valid_distributions": 72,
+          "correct": 55,
+          "accuracy": 0.7638888888888888,
+          "schema_failures": 0,
+          "transport_failures": 0,
+          "nll": 0.5057757486024407,
+          "brier": 0.29616594247182093,
+          "ece": 0.11183051298519056,
+          "ordinal_mae": 0.0214673243406036,
+          "gold_distribution_count": 0,
+          "gold_tvd": null,
+          "latency": {
+            "n": 72,
+            "p50_s": 0.1422772016376257,
+            "p95_s": 0.17817974037025125
+          }
+        },
+        "family:policy": {
+          "count": 12,
+          "scorable": 12,
+          "valid_distributions": 12,
+          "correct": 9,
+          "accuracy": 0.75,
+          "schema_failures": 0,
+          "transport_failures": 0,
+          "nll": 0.6566522761064922,
+          "brier": 0.3876644237404916,
+          "ece": 0.24466163146420825,
+          "ordinal_mae": null,
+          "gold_distribution_count": 0,
+          "gold_tvd": null,
+          "latency": {
+            "n": 12,
+            "p50_s": 0.14191751112230122,
+            "p95_s": 0.19995521192904558
+          }
+        },
+        "family:ordinal": {
+          "count": 12,
+          "scorable": 12,
+          "valid_distributions": 12,
+          "correct": 12,
+          "accuracy": 1.0,
+          "schema_failures": 0,
+          "transport_failures": 0,
+          "nll": 0.022376624433507283,
+          "brier": 0.0017739396585709063,
+          "ece": 0.021750089011635443,
+          "ordinal_mae": 0.0214673243406036,
+          "gold_distribution_count": 0,
+          "gold_tvd": null,
+          "latency": {
+            "n": 12,
+            "p50_s": 0.15925226965919137,
+            "p95_s": 0.1693644199287519
+          }
+        },
+        "type:score": {
+          "count": 18,
+          "scorable": 18,
+          "valid_distributions": 18,
+          "correct": 13,
+          "accuracy": 0.7222222222222222,
+          "schema_failures": 0,
+          "transport_failures": 0,
+          "nll": 0.720948335787087,
+          "brier": 0.3788650341237816,
+          "ece": 0.22156206629810318,
+          "ordinal_mae": 0.3170280018873611,
+          "gold_distribution_count": 0,
+          "gold_tvd": null,
+          "latency": {
+            "n": 18,
+            "p50_s": 0.16708668321371078,
+            "p95_s": 3.0919528489466757
+          }
+        },
+        "family:adequacy": {
+          "count": 12,
+          "scorable": 12,
+          "valid_distributions": 12,
+          "correct": 9,
+          "accuracy": 0.75,
+          "schema_failures": 0,
+          "transport_failures": 0,
+          "nll": 0.41297837426209777,
+          "brier": 0.2925601925122766,
+          "ece": 0.16160324258329337,
+          "ordinal_mae": null,
+          "gold_distribution_count": 0,
+          "gold_tvd": null,
+          "latency": {
+            "n": 12,
+            "p50_s": 0.14004485053010285,
+            "p95_s": 0.14598787827417253
+          }
+        },
+        "family:routing": {
+          "count": 12,
+          "scorable": 12,
+          "valid_distributions": 12,
+          "correct": 8,
+          "accuracy": 0.6666666666666666,
+          "schema_failures": 0,
+          "transport_failures": 0,
+          "nll": 0.8702764089582024,
+          "brier": 0.43441927841784067,
+          "ece": 0.1863613481120617,
+          "ordinal_mae": null,
+          "gold_distribution_count": 0,
+          "gold_tvd": null,
+          "latency": {
+            "n": 12,
+            "p50_s": 0.17018428957089782,
+            "p95_s": 0.19113619197160003
+          }
+        },
+        "dataset:hard": {
+          "count": 111,
+          "scorable": 111,
+          "valid_distributions": 111,
+          "correct": 49,
+          "accuracy": 0.44144144144144143,
+          "schema_failures": 0,
+          "transport_failures": 0,
+          "nll": 1.7925972256487548,
+          "brier": 0.8280237405775217,
+          "ece": 0.35872375222590697,
+          "ordinal_mae": 0.908149356980876,
+          "gold_distribution_count": 10,
+          "gold_tvd": 0.346154007028606,
+          "latency": {
+            "n": 111,
+            "p50_s": 0.5871654241345823,
+            "p95_s": 3.131483232136816
+          }
+        },
+        "family:long_policy": {
+          "count": 19,
+          "scorable": 19,
+          "valid_distributions": 19,
+          "correct": 6,
+          "accuracy": 0.3157894736842105,
+          "schema_failures": 0,
+          "transport_failures": 0,
+          "nll": 2.189464024395972,
+          "brier": 1.035497329449316,
+          "ece": 0.4365299876587996,
+          "ordinal_mae": 0.8409833987729112,
+          "gold_distribution_count": 0,
+          "gold_tvd": null,
+          "latency": {
+            "n": 19,
+            "p50_s": 2.6428073728457093,
+            "p95_s": 3.403901232546195
+          }
+        },
+        "family:probability": {
+          "count": 10,
+          "scorable": 10,
+          "valid_distributions": 10,
+          "correct": 5,
+          "accuracy": 0.5,
+          "schema_failures": 0,
+          "transport_failures": 0,
+          "nll": 1.6776846212095549,
+          "brier": 0.8149822303608639,
+          "ece": 0.5194372539919618,
+          "ordinal_mae": null,
+          "gold_distribution_count": 10,
+          "gold_tvd": 0.346154007028606,
+          "latency": {
+            "n": 10,
+            "p50_s": 0.7689951988868415,
+            "p95_s": 1.53645017677918
+          }
+        },
+        "family:temporal_numeric": {
+          "count": 15,
+          "scorable": 15,
+          "valid_distributions": 15,
+          "correct": 3,
+          "accuracy": 0.2,
+          "schema_failures": 0,
+          "transport_failures": 0,
+          "nll": 2.295125705326746,
+          "brier": 1.1010785067559874,
+          "ece": 0.5609553243344334,
+          "ordinal_mae": 1.4862666163871245,
+          "gold_distribution_count": 0,
+          "gold_tvd": null,
+          "latency": {
+            "n": 15,
+            "p50_s": 0.6071307533420622,
+            "p95_s": 1.0610461669042706
+          }
+        },
+        "family:ambiguous": {
+          "count": 7,
+          "scorable": 7,
+          "valid_distributions": 7,
+          "correct": 3,
+          "accuracy": 0.42857142857142855,
+          "schema_failures": 0,
+          "transport_failures": 0,
+          "nll": 1.1776256154104983,
+          "brier": 0.8099216352964208,
+          "ece": 0.416178349419099,
+          "ordinal_mae": null,
+          "gold_distribution_count": 0,
+          "gold_tvd": null,
+          "latency": {
+            "n": 7,
+            "p50_s": 0.5069402568042278,
+            "p95_s": 0.6090628924313932
+          }
+        },
+        "family:multi_hop": {
+          "count": 18,
+          "scorable": 18,
+          "valid_distributions": 18,
+          "correct": 5,
+          "accuracy": 0.2777777777777778,
+          "schema_failures": 0,
+          "transport_failures": 0,
+          "nll": 2.343953239144737,
+          "brier": 1.0906642400266655,
+          "ece": 0.5568286461904111,
+          "ordinal_mae": 0.6713100313457525,
+          "gold_distribution_count": 0,
+          "gold_tvd": null,
+          "latency": {
+            "n": 18,
+            "p50_s": 2.3204403431154788,
+            "p95_s": 2.6082074717152866
+          }
+        },
+        "family:tradeoff": {
+          "count": 6,
+          "scorable": 6,
+          "valid_distributions": 6,
+          "correct": 3,
+          "accuracy": 0.5,
+          "schema_failures": 0,
+          "transport_failures": 0,
+          "nll": 3.728274916976854,
+          "brier": 0.9577246959446669,
+          "ece": 0.5708536858440817,
+          "ordinal_mae": null,
+          "gold_distribution_count": 0,
+          "gold_tvd": null,
+          "latency": {
+            "n": 6,
+            "p50_s": 0.7207500017248094,
+            "p95_s": 0.8212930534500629
+          }
+        },
+        "family:adversarial": {
+          "count": 6,
+          "scorable": 6,
+          "valid_distributions": 6,
+          "correct": 3,
+          "accuracy": 0.5,
+          "schema_failures": 0,
+          "transport_failures": 0,
+          "nll": 1.37376218236127,
+          "brier": 0.4724979213074327,
+          "ece": 0.32854902884130605,
+          "ordinal_mae": 0.04031364425312178,
+          "gold_distribution_count": 0,
+          "gold_tvd": null,
+          "latency": {
+            "n": 6,
+            "p50_s": 0.3160961077082902,
+            "p95_s": 0.37508142250590026
+          }
+        },
+        "family:trap": {
+          "count": 8,
+          "scorable": 8,
+          "valid_distributions": 8,
+          "correct": 7,
+          "accuracy": 0.875,
+          "schema_failures": 0,
+          "transport_failures": 0,
+          "nll": 0.29279246176097656,
+          "brier": 0.15963756147830024,
+          "ece": 0.15617940261429047,
+          "ordinal_mae": 1.5690390523534348,
+          "gold_distribution_count": 0,
+          "gold_tvd": null,
+          "latency": {
+            "n": 8,
+            "p50_s": 0.3332019103690982,
+            "p95_s": 0.4347412983421236
+          }
+        },
+        "family:judge_hard": {
+          "count": 17,
+          "scorable": 17,
+          "valid_distributions": 17,
+          "correct": 9,
+          "accuracy": 0.5294117647058824,
+          "schema_failures": 0,
+          "transport_failures": 0,
+          "nll": 1.3357817134689824,
+          "brier": 0.7297678560560862,
+          "ece": 0.3511456528893221,
+          "ordinal_mae": null,
+          "gold_distribution_count": 0,
+          "gold_tvd": null,
+          "latency": {
+            "n": 17,
+            "p50_s": 0.3560513760894537,
+            "p95_s": 0.47373066963627924
+          }
+        },
+        "family:routing_hard": {
+          "count": 5,
+          "scorable": 5,
+          "valid_distributions": 5,
+          "correct": 5,
+          "accuracy": 1.0,
+          "schema_failures": 0,
+          "transport_failures": 0,
+          "nll": 0.015470951984713793,
+          "brier": 0.0008577047544135172,
+          "ece": 0.015197982806829602,
+          "ordinal_mae": null,
+          "gold_distribution_count": 0,
+          "gold_tvd": null,
+          "latency": {
+            "n": 5,
+            "p50_s": 0.3439803007058799,
+            "p95_s": 0.4075084061361849
+          }
+        }
+      }
+    }
+  }
+}

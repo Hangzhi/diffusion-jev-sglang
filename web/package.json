@@ -5,16 +5,22 @@
   "type": "module",
   "scripts": {
     "build": "tsc --noEmit && vite build",
-    "dev": "vite --host 127.0.0.1"
+    "dev": "vite --host 127.0.0.1",
+    "gateway:example": "tsx index.ts",
+    "gateway:jev": "tsx jev.ts",
+    "gateway:check": "tsc -p tsconfig.gateway.json"
   },
   "dependencies": {
+    "ai": "^7.0.107",
     "lucide-react": "0.468.0",
     "react": "19.1.0",
     "react-dom": "19.1.0"
   },
   "devDependencies": {
+    "@types/node": "^26.6.2",
     "@types/react": "19.1.0",
     "@types/react-dom": "19.1.0",
+    "tsx": "^4.23.15",
     "typescript": "5.8.3",
     "vite": "^6.4.3"
   }

@@ -1,0 +1,2884 @@
+{
+  "comparison_type": "new local measurements versus historical Jev 1.13.0 measurements",
+  "gateway_rerun": false,
+  "source_url": "https://github.com/fstandhartinger/jevbench/blob/c6004e008ffba24aec091261ca1a5c02f7324702/results/v1.2/jevbench-v1.2-per-task.json",
+  "source_sha256": "b7833dac329b95de8d33d565a45546874a6ea810589570ae5f69173c57cb1667",
+  "scope": "Exact same 231 public task IDs, no private or imported judge items",
+  "limitations": [
+    "Local latency uses loopback on the A100 server; published Jev latency was measured through TypeSafe's production API from Germany.",
+    "Different measurement time, model version and network path; these are not same-environment Vercel Gateway measurements.",
+    "Published public-item artifact has outcomes and rounded timings, not distributions; no matched calibration comparison can be computed.",
+    "One attempt per item; original items include paraphrase pairs, so observations are not independent.",
+    "No estimated production latency multiplier, no official composite rank, and no invented local hosting cost."
+  ],
+  "overall": {
+    "count": 231,
+    "local": {
+      "correct": 152,
+      "accuracy": 0.658008658008658,
+      "latency": {
+        "n": 231,
+        "p50_s": 0.18289089482277632,
+        "p95_s": 2.5939878411591053
+      }
+    },
+    "published_jev": {
+      "correct": 200,
+      "accuracy": 0.8658008658008658,
+      "latency": {
+        "n": 231,
+        "p50_s": 0.665,
+        "p95_s": 0.8025
+      }
+    }
+  },
+  "datasets": {
+    "easy": {
+      "count": 48,
+      "local": {
+        "correct": 48,
+        "accuracy": 1.0,
+        "latency": {
+          "n": 48,
+          "p50_s": 0.1393746950197965,
+          "p95_s": 0.16967549819964917
+        }
+      },
+      "published_jev": {
+        "correct": 48,
+        "accuracy": 1.0,
+        "latency": {
+          "n": 48,
+          "p50_s": 0.6645000000000001,
+          "p95_s": 0.7419
+        }
+      }
+    },
+    "original": {
+      "count": 72,
+      "local": {
+        "correct": 55,
+        "accuracy": 0.7638888888888888,
+        "latency": {
+          "n": 72,
+          "p50_s": 0.1422772016376257,
+          "p95_s": 0.17817974037025125
+        }
+      },
+      "published_jev": {
+        "correct": 71,
+        "accuracy": 0.9861111111111112,
+        "latency": {
+          "n": 72,
+          "p50_s": 0.6525000000000001,
+          "p95_s": 0.714
+        }
+      }
+    },
+    "hard": {
+      "count": 111,
+      "local": {
+        "correct": 49,
+        "accuracy": 0.44144144144144143,
+        "latency": {
+          "n": 111,
+          "p50_s": 0.5871654241345823,
+          "p95_s": 3.131483232136816
+        }
+      },
+      "published_jev": {
+        "correct": 81,
+        "accuracy": 0.7297297297297297,
+        "latency": {
+          "n": 111,
+          "p50_s": 0.672,
+          "p95_s": 0.846
+        }
+      }
+    }
+  },
+  "families": {
+    "adequacy": {
+      "count": 12,
+      "local": {
+        "correct": 9,
+        "accuracy": 0.75,
+        "latency": {
+          "n": 12,
+          "p50_s": 0.14004485053010285,
+          "p95_s": 0.14598787827417253
+        }
+      },
+      "published_jev": {
+        "correct": 12,
+        "accuracy": 1.0,
+        "latency": {
+          "n": 12,
+          "p50_s": 0.6675,
+          "p95_s": 0.6924999999999999
+        }
+      }
+    },
+    "adversarial": {
+      "count": 6,
+      "local": {
+        "correct": 3,
+        "accuracy": 0.5,
+        "latency": {
+          "n": 6,
+          "p50_s": 0.3160961077082902,
+          "p95_s": 0.37508142250590026
+        }
+      },
+      "published_jev": {
+        "correct": 6,
+        "accuracy": 1.0,
+        "latency": {
+          "n": 6,
+          "p50_s": 0.641,
+          "p95_s": 0.718
+        }
+      }
+    },
+    "ambiguous": {
+      "count": 7,
+      "local": {
+        "correct": 3,
+        "accuracy": 0.42857142857142855,
+        "latency": {
+          "n": 7,
+          "p50_s": 0.5069402568042278,
+          "p95_s": 0.6090628924313932
+        }
+      },
+      "published_jev": {
+        "correct": 6,
+        "accuracy": 0.8571428571428571,
+        "latency": {
+          "n": 7,
+          "p50_s": 0.658,
+          "p95_s": 0.6851999999999999
+        }
+      }
+    },
+    "extraction": {
+      "count": 24,
+      "local": {
+        "correct": 24,
+        "accuracy": 1.0,
+        "latency": {
+          "n": 24,
+          "p50_s": 0.12920356541872025,
+          "p95_s": 0.15047765604685992
+        }
+      },
+      "published_jev": {
+        "correct": 24,
+        "accuracy": 1.0,
+        "latency": {
+          "n": 24,
+          "p50_s": 0.6645000000000001,
+          "p95_s": 0.69135
+        }
+      }
+    },
+    "fact": {
+      "count": 12,
+      "local": {
+        "correct": 12,
+        "accuracy": 1.0,
+        "latency": {
+          "n": 12,
+          "p50_s": 0.1386162145063281,
+          "p95_s": 0.15054670721292496
+        }
+      },
+      "published_jev": {
+        "correct": 12,
+        "accuracy": 1.0,
+        "latency": {
+          "n": 12,
+          "p50_s": 0.6715,
+          "p95_s": 0.7198499999999999
+        }
+      }
+    },
+    "intent": {
+      "count": 24,
+      "local": {
+        "correct": 17,
+        "accuracy": 0.7083333333333334,
+        "latency": {
+          "n": 24,
+          "p50_s": 0.142215006519109,
+          "p95_s": 0.17020543648395686
+        }
+      },
+      "published_jev": {
+        "correct": 24,
+        "accuracy": 1.0,
+        "latency": {
+          "n": 24,
+          "p50_s": 0.6655,
+          "p95_s": 0.7722499999999999
+        }
+      }
+    },
+    "judge_hard": {
+      "count": 17,
+      "local": {
+        "correct": 9,
+        "accuracy": 0.5294117647058824,
+        "latency": {
+          "n": 17,
+          "p50_s": 0.3560513760894537,
+          "p95_s": 0.47373066963627924
+        }
+      },
+      "published_jev": {
+        "correct": 13,
+        "accuracy": 0.7647058823529411,
+        "latency": {
+          "n": 17,
+          "p50_s": 0.681,
+          "p95_s": 0.7322
+        }
+      }
+    },
+    "long_policy": {
+      "count": 19,
+      "local": {
+        "correct": 6,
+        "accuracy": 0.3157894736842105,
+        "latency": {
+          "n": 19,
+          "p50_s": 2.6428073728457093,
+          "p95_s": 3.403901232546195
+        }
+      },
+      "published_jev": {
+        "correct": 12,
+        "accuracy": 0.631578947368421,
+        "latency": {
+          "n": 19,
+          "p50_s": 0.818,
+          "p95_s": 0.9092999999999999
+        }
+      }
+    },
+    "multi_hop": {
+      "count": 18,
+      "local": {
+        "correct": 5,
+        "accuracy": 0.2777777777777778,
+        "latency": {
+          "n": 18,
+          "p50_s": 2.3204403431154788,
+          "p95_s": 2.6082074717152866
+        }
+      },
+      "published_jev": {
+        "correct": 15,
+        "accuracy": 0.8333333333333334,
+        "latency": {
+          "n": 18,
+          "p50_s": 0.666,
+          "p95_s": 0.7189999999999999
+        }
+      }
+    },
+    "ordinal": {
+      "count": 12,
+      "local": {
+        "correct": 12,
+        "accuracy": 1.0,
+        "latency": {
+          "n": 12,
+          "p50_s": 0.15925226965919137,
+          "p95_s": 0.1693644199287519
+        }
+      },
+      "published_jev": {
+        "correct": 12,
+        "accuracy": 1.0,
+        "latency": {
+          "n": 12,
+          "p50_s": 0.659,
+          "p95_s": 0.72615
+        }
+      }
+    },
+    "policy": {
+      "count": 12,
+      "local": {
+        "correct": 9,
+        "accuracy": 0.75,
+        "latency": {
+          "n": 12,
+          "p50_s": 0.14191751112230122,
+          "p95_s": 0.19995521192904558
+        }
+      },
+      "published_jev": {
+        "correct": 11,
+        "accuracy": 0.9166666666666666,
+        "latency": {
+          "n": 12,
+          "p50_s": 0.6335,
+          "p95_s": 0.7545
+        }
+      }
+    },
+    "probability": {
+      "count": 10,
+      "local": {
+        "correct": 5,
+        "accuracy": 0.5,
+        "latency": {
+          "n": 10,
+          "p50_s": 0.7689951988868415,
+          "p95_s": 1.53645017677918
+        }
+      },
+      "published_jev": {
+        "correct": 7,
+        "accuracy": 0.7,
+        "latency": {
+          "n": 10,
+          "p50_s": 0.65,
+          "p95_s": 0.7104999999999999
+        }
+      }
+    },
+    "routing": {
+      "count": 12,
+      "local": {
+        "correct": 8,
+        "accuracy": 0.6666666666666666,
+        "latency": {
+          "n": 12,
+          "p50_s": 0.17018428957089782,
+          "p95_s": 0.19113619197160003
+        }
+      },
+      "published_jev": {
+        "correct": 12,
+        "accuracy": 1.0,
+        "latency": {
+          "n": 12,
+          "p50_s": 0.634,
+          "p95_s": 0.68845
+        }
+      }
+    },
+    "routing_hard": {
+      "count": 5,
+      "local": {
+        "correct": 5,
+        "accuracy": 1.0,
+        "latency": {
+          "n": 5,
+          "p50_s": 0.3439803007058799,
+          "p95_s": 0.4075084061361849
+        }
+      },
+      "published_jev": {
+        "correct": 5,
+        "accuracy": 1.0,
+        "latency": {
+          "n": 5,
+          "p50_s": 0.631,
+          "p95_s": 0.6918
+        }
+      }
+    },
+    "temporal_numeric": {
+      "count": 15,
+      "local": {
+        "correct": 3,
+        "accuracy": 0.2,
+        "latency": {
+          "n": 15,
+          "p50_s": 0.6071307533420622,
+          "p95_s": 1.0610461669042706
+        }
+      },
+      "published_jev": {
+        "correct": 4,
+        "accuracy": 0.26666666666666666,
+        "latency": {
+          "n": 15,
+          "p50_s": 0.668,
+          "p95_s": 0.7052999999999999
+        }
+      }
+    },
+    "tool_selection": {
+      "count": 12,
+      "local": {
+        "correct": 12,
+        "accuracy": 1.0,
+        "latency": {
+          "n": 12,
+          "p50_s": 0.16319673601537943,
+          "p95_s": 0.18472394419368354
+        }
+      },
+      "published_jev": {
+        "correct": 12,
+        "accuracy": 1.0,
+        "latency": {
+          "n": 12,
+          "p50_s": 0.661,
+          "p95_s": 0.7319
+        }
+      }
+    },
+    "tradeoff": {
+      "count": 6,
+      "local": {
+        "correct": 3,
+        "accuracy": 0.5,
+        "latency": {
+          "n": 6,
+          "p50_s": 0.7207500017248094,
+          "p95_s": 0.8212930534500629
+        }
+      },
+      "published_jev": {
+        "correct": 5,
+        "accuracy": 0.8333333333333334,
+        "latency": {
+          "n": 6,
+          "p50_s": 0.644,
+          "p95_s": 0.7035
+        }
+      }
+    },
+    "trap": {
+      "count": 8,
+      "local": {
+        "correct": 7,
+        "accuracy": 0.875,
+        "latency": {
+          "n": 8,
+          "p50_s": 0.3332019103690982,
+          "p95_s": 0.4347412983421236
+        }
+      },
+      "published_jev": {
+        "correct": 8,
+        "accuracy": 1.0,
+        "latency": {
+          "n": 8,
+          "p50_s": 0.6745000000000001,
+          "p95_s": 0.6878
+        }
+      }
+    }
+  },
+  "paired": {
+    "local_only_correct": [
+      "original-policy-06-1",
+      "hard-opus-a-long_policy-19",
+      "hard-opus-a-temporal_numeric-09",
+      "hard-opus-b-tradeoff-01",
+      "hard-sol-b-temporal_numeric-02"
+    ],
+    "published_jev_only_correct": [
+      "original-policy-02-1",
+      "original-policy-03-1",
+      "original-policy-04-0",
+      "original-intent-01-0",
+      "original-intent-02-0",
+      "original-intent-03-0",
+      "original-intent-04-0",
+      "original-intent-04-1",
+      "original-intent-06-0",
+      "original-intent-06-1",
+      "original-adequacy-04-1",
+      "original-adequacy-05-0",
+      "original-adequacy-05-1",
+      "original-routing-02-0",
+      "original-routing-04-0",
+      "original-routing-04-1",
+      "original-routing-05-1",
+      "hard-opus-a-long_policy-08",
+      "hard-opus-a-long_policy-09",
+      "hard-opus-a-long_policy-11",
+      "hard-opus-a-temporal_numeric-06",
+      "hard-opus-b-ambiguous-02",
+      "hard-opus-b-ambiguous-07",
+      "hard-opus-b-ambiguous-13",
+      "hard-opus-b-multi_hop-07",
+      "hard-opus-b-multi_hop-08",
+      "hard-opus-b-probability-03",
+      "hard-opus-b-tradeoff-03",
+      "hard-opus-b-tradeoff-07",
+      "hard-opus-b-tradeoff-08",
+      "hard-opus-c-long_policy-02",
+      "hard-opus-c-long_policy-10",
+      "hard-opus-c-probability-03",
+      "hard-opus-c-temporal_numeric-08",
+      "hard-sol-a-adversarial-01",
+      "hard-sol-a-adversarial-07",
+      "hard-sol-a-adversarial-11",
+      "hard-sol-a-multi_hop-02",
+      "hard-sol-a-multi_hop-05",
+      "hard-sol-a-multi_hop-07",
+      "hard-sol-a-multi_hop-08",
+      "hard-sol-a-multi_hop-09",
+      "hard-sol-a-multi_hop-10",
+      "hard-sol-a-trap-05",
+      "hard-sol-b-long_policy-01",
+      "hard-sol-b-long_policy-02",
+      "hard-sol-b-temporal_numeric-03",
+      "hard-sol-c-judge_hard-03",
+      "hard-sol-c-judge_hard-07",
+      "hard-sol-c-judge_hard-08",
+      "hard-sol-c-judge_hard-13",
+      "hard-sol-c-multi_hop-11",
+      "hard-sol-c-multi_hop-12"
+    ],
+    "both_wrong": [
+      "hard-opus-a-long_policy-04",
+      "hard-opus-a-long_policy-13",
+      "hard-opus-a-probability-04",
+      "hard-opus-a-probability-07",
+      "hard-opus-a-temporal_numeric-03",
+      "hard-opus-a-temporal_numeric-07",
+      "hard-opus-a-temporal_numeric-12",
+      "hard-opus-b-ambiguous-03",
+      "hard-opus-b-multi_hop-03",
+      "hard-opus-b-multi_hop-04",
+      "hard-opus-b-multi_hop-05",
+      "hard-opus-b-probability-02",
+      "hard-opus-c-long_policy-03",
+      "hard-opus-c-long_policy-05",
+      "hard-opus-c-long_policy-08",
+      "hard-opus-c-long_policy-11",
+      "hard-opus-c-temporal_numeric-02",
+      "hard-opus-c-temporal_numeric-03",
+      "hard-opus-c-temporal_numeric-04",
+      "hard-opus-c-temporal_numeric-06",
+      "hard-sol-b-judge_hard-02",
+      "hard-sol-b-judge_hard-08",
+      "hard-sol-b-judge_hard-10",
+      "hard-sol-b-judge_hard-18",
+      "hard-sol-b-temporal_numeric-01",
+      "hard-sol-b-temporal_numeric-04"
+    ]
+  },
+  "matched_items": [
+    {
+      "id": "easy-intent-00",
+      "dataset": "easy",
+      "family": "intent",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.16795319877564907,
+      "published_jev_latency_s": 0.649
+    },
+    {
+      "id": "easy-intent-01",
+      "dataset": "easy",
+      "family": "intent",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.16432860679924488,
+      "published_jev_latency_s": 0.656
+    },
+    {
+      "id": "easy-intent-02",
+      "dataset": "easy",
+      "family": "intent",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.1660005571320653,
+      "published_jev_latency_s": 0.694
+    },
+    {
+      "id": "easy-intent-03",
+      "dataset": "easy",
+      "family": "intent",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.1499990103766322,
+      "published_jev_latency_s": 0.779
+    },
+    {
+      "id": "easy-intent-04",
+      "dataset": "easy",
+      "family": "intent",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.18289089482277632,
+      "published_jev_latency_s": 0.638
+    },
+    {
+      "id": "easy-intent-05",
+      "dataset": "easy",
+      "family": "intent",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.17060289019718766,
+      "published_jev_latency_s": 0.666
+    },
+    {
+      "id": "easy-intent-06",
+      "dataset": "easy",
+      "family": "intent",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.14723878912627697,
+      "published_jev_latency_s": 0.734
+    },
+    {
+      "id": "easy-intent-07",
+      "dataset": "easy",
+      "family": "intent",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.1457553580403328,
+      "published_jev_latency_s": 0.638
+    },
+    {
+      "id": "easy-intent-08",
+      "dataset": "easy",
+      "family": "intent",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.1492994399741292,
+      "published_jev_latency_s": 0.685
+    },
+    {
+      "id": "easy-intent-09",
+      "dataset": "easy",
+      "family": "intent",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.13939952524378896,
+      "published_jev_latency_s": 0.688
+    },
+    {
+      "id": "easy-intent-10",
+      "dataset": "easy",
+      "family": "intent",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.1485213292762637,
+      "published_jev_latency_s": 0.642
+    },
+    {
+      "id": "easy-intent-11",
+      "dataset": "easy",
+      "family": "intent",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.14127693604677916,
+      "published_jev_latency_s": 0.779
+    },
+    {
+      "id": "easy-fact-00",
+      "dataset": "easy",
+      "family": "fact",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.13933632476255298,
+      "published_jev_latency_s": 0.705
+    },
+    {
+      "id": "easy-fact-01",
+      "dataset": "easy",
+      "family": "fact",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.13738459441810846,
+      "published_jev_latency_s": 0.611
+    },
+    {
+      "id": "easy-fact-02",
+      "dataset": "easy",
+      "family": "fact",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.14013759465888143,
+      "published_jev_latency_s": 0.652
+    },
+    {
+      "id": "easy-fact-03",
+      "dataset": "easy",
+      "family": "fact",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.13920345483347774,
+      "published_jev_latency_s": 0.619
+    },
+    {
+      "id": "easy-fact-04",
+      "dataset": "easy",
+      "family": "fact",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.13793605519458652,
+      "published_jev_latency_s": 0.684
+    },
+    {
+      "id": "easy-fact-05",
+      "dataset": "easy",
+      "family": "fact",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.13814607402309775,
+      "published_jev_latency_s": 0.703
+    },
+    {
+      "id": "easy-fact-06",
+      "dataset": "easy",
+      "family": "fact",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.16326895589008927,
+      "published_jev_latency_s": 0.644
+    },
+    {
+      "id": "easy-fact-07",
+      "dataset": "easy",
+      "family": "fact",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.12078987620770931,
+      "published_jev_latency_s": 0.659
+    },
+    {
+      "id": "easy-fact-08",
+      "dataset": "easy",
+      "family": "fact",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.11291818181052804,
+      "published_jev_latency_s": 0.691
+    },
+    {
+      "id": "easy-fact-09",
+      "dataset": "easy",
+      "family": "fact",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.11223600199446082,
+      "published_jev_latency_s": 0.738
+    },
+    {
+      "id": "easy-fact-10",
+      "dataset": "easy",
+      "family": "fact",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.13934986479580402,
+      "published_jev_latency_s": 0.685
+    },
+    {
+      "id": "easy-fact-11",
+      "dataset": "easy",
+      "family": "fact",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.13908635498955846,
+      "published_jev_latency_s": 0.624
+    },
+    {
+      "id": "easy-extraction-00",
+      "dataset": "easy",
+      "family": "extraction",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.11288533313199878,
+      "published_jev_latency_s": 0.65
+    },
+    {
+      "id": "easy-extraction-01",
+      "dataset": "easy",
+      "family": "extraction",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.11272652307525277,
+      "published_jev_latency_s": 0.625
+    },
+    {
+      "id": "easy-extraction-02",
+      "dataset": "easy",
+      "family": "extraction",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.11315006297081709,
+      "published_jev_latency_s": 0.671
+    },
+    {
+      "id": "easy-extraction-03",
+      "dataset": "easy",
+      "family": "extraction",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.11722125532105565,
+      "published_jev_latency_s": 0.603
+    },
+    {
+      "id": "easy-extraction-04",
+      "dataset": "easy",
+      "family": "extraction",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.1122845415957272,
+      "published_jev_latency_s": 0.623
+    },
+    {
+      "id": "easy-extraction-05",
+      "dataset": "easy",
+      "family": "extraction",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.11208337312564254,
+      "published_jev_latency_s": 0.682
+    },
+    {
+      "id": "easy-extraction-06",
+      "dataset": "easy",
+      "family": "extraction",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.12021773587912321,
+      "published_jev_latency_s": 0.671
+    },
+    {
+      "id": "easy-extraction-07",
+      "dataset": "easy",
+      "family": "extraction",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.11411081301048398,
+      "published_jev_latency_s": 0.628
+    },
+    {
+      "id": "easy-extraction-08",
+      "dataset": "easy",
+      "family": "extraction",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.11343457270413637,
+      "published_jev_latency_s": 0.679
+    },
+    {
+      "id": "easy-extraction-09",
+      "dataset": "easy",
+      "family": "extraction",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.11275023221969604,
+      "published_jev_latency_s": 0.67
+    },
+    {
+      "id": "easy-extraction-10",
+      "dataset": "easy",
+      "family": "extraction",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.1120785428211093,
+      "published_jev_latency_s": 0.67
+    },
+    {
+      "id": "easy-extraction-11",
+      "dataset": "easy",
+      "family": "extraction",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.11470897402614355,
+      "published_jev_latency_s": 0.627
+    },
+    {
+      "id": "easy-tool_selection-00",
+      "dataset": "easy",
+      "family": "tool_selection",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.14376257732510567,
+      "published_jev_latency_s": 0.722
+    },
+    {
+      "id": "easy-tool_selection-01",
+      "dataset": "easy",
+      "family": "tool_selection",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.1378618641756475,
+      "published_jev_latency_s": 0.672
+    },
+    {
+      "id": "easy-tool_selection-02",
+      "dataset": "easy",
+      "family": "tool_selection",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.16324593592435122,
+      "published_jev_latency_s": 0.663
+    },
+    {
+      "id": "easy-tool_selection-03",
+      "dataset": "easy",
+      "family": "tool_selection",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.16376874595880508,
+      "published_jev_latency_s": 0.643
+    },
+    {
+      "id": "easy-tool_selection-04",
+      "dataset": "easy",
+      "family": "tool_selection",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.13817409425973892,
+      "published_jev_latency_s": 0.673
+    },
+    {
+      "id": "easy-tool_selection-05",
+      "dataset": "easy",
+      "family": "tool_selection",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.16442597704008222,
+      "published_jev_latency_s": 0.649
+    },
+    {
+      "id": "easy-tool_selection-06",
+      "dataset": "easy",
+      "family": "tool_selection",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.16241999622434378,
+      "published_jev_latency_s": 0.659
+    },
+    {
+      "id": "easy-tool_selection-07",
+      "dataset": "easy",
+      "family": "tool_selection",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.20833822712302208,
+      "published_jev_latency_s": 0.638
+    },
+    {
+      "id": "easy-tool_selection-08",
+      "dataset": "easy",
+      "family": "tool_selection",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.16278839576989412,
+      "published_jev_latency_s": 0.623
+    },
+    {
+      "id": "easy-tool_selection-09",
+      "dataset": "easy",
+      "family": "tool_selection",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.16314753610640764,
+      "published_jev_latency_s": 0.744
+    },
+    {
+      "id": "easy-tool_selection-10",
+      "dataset": "easy",
+      "family": "tool_selection",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.1654031672514975,
+      "published_jev_latency_s": 0.604
+    },
+    {
+      "id": "easy-tool_selection-11",
+      "dataset": "easy",
+      "family": "tool_selection",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.1642811857163906,
+      "published_jev_latency_s": 0.686
+    },
+    {
+      "id": "original-policy-01-0",
+      "dataset": "original",
+      "family": "policy",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.13890094496309757,
+      "published_jev_latency_s": 0.637
+    },
+    {
+      "id": "original-policy-01-1",
+      "dataset": "original",
+      "family": "policy",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.14422699715942144,
+      "published_jev_latency_s": 0.623
+    },
+    {
+      "id": "original-policy-02-0",
+      "dataset": "original",
+      "family": "policy",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.21452726004645228,
+      "published_jev_latency_s": 0.714
+    },
+    {
+      "id": "original-policy-02-1",
+      "dataset": "original",
+      "family": "policy",
+      "local_correct": false,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.141513095702976,
+      "published_jev_latency_s": 0.605
+    },
+    {
+      "id": "original-policy-03-0",
+      "dataset": "original",
+      "family": "policy",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.13817742513492703,
+      "published_jev_latency_s": 0.605
+    },
+    {
+      "id": "original-policy-03-1",
+      "dataset": "original",
+      "family": "policy",
+      "local_correct": false,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.14471865817904472,
+      "published_jev_latency_s": 0.618
+    },
+    {
+      "id": "original-policy-04-0",
+      "dataset": "original",
+      "family": "policy",
+      "local_correct": false,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.14166085608303547,
+      "published_jev_latency_s": 0.637
+    },
+    {
+      "id": "original-policy-04-1",
+      "dataset": "original",
+      "family": "policy",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.14430813724175096,
+      "published_jev_latency_s": 0.661
+    },
+    {
+      "id": "original-policy-05-0",
+      "dataset": "original",
+      "family": "policy",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.14096431527286768,
+      "published_jev_latency_s": 0.637
+    },
+    {
+      "id": "original-policy-05-1",
+      "dataset": "original",
+      "family": "policy",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.1880326271057129,
+      "published_jev_latency_s": 0.63
+    },
+    {
+      "id": "original-policy-06-0",
+      "dataset": "original",
+      "family": "policy",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.13757306383922696,
+      "published_jev_latency_s": 0.804
+    },
+    {
+      "id": "original-policy-06-1",
+      "dataset": "original",
+      "family": "policy",
+      "local_correct": true,
+      "published_jev_correct": false,
+      "published_jev_outcome": "w",
+      "local_latency_s": 0.14217416616156697,
+      "published_jev_latency_s": 0.604
+    },
+    {
+      "id": "original-intent-01-0",
+      "dataset": "original",
+      "family": "intent",
+      "local_correct": false,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.1368004041723907,
+      "published_jev_latency_s": 0.667
+    },
+    {
+      "id": "original-intent-01-1",
+      "dataset": "original",
+      "family": "intent",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.13903262466192245,
+      "published_jev_latency_s": 0.668
+    },
+    {
+      "id": "original-intent-02-0",
+      "dataset": "original",
+      "family": "intent",
+      "local_correct": false,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.140315854921937,
+      "published_jev_latency_s": 0.665
+    },
+    {
+      "id": "original-intent-02-1",
+      "dataset": "original",
+      "family": "intent",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.14069126499816775,
+      "published_jev_latency_s": 0.66
+    },
+    {
+      "id": "original-intent-03-0",
+      "dataset": "original",
+      "family": "intent",
+      "local_correct": false,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.14893284905701876,
+      "published_jev_latency_s": 0.678
+    },
+    {
+      "id": "original-intent-03-1",
+      "dataset": "original",
+      "family": "intent",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.14202428609132767,
+      "published_jev_latency_s": 0.606
+    },
+    {
+      "id": "original-intent-04-0",
+      "dataset": "original",
+      "family": "intent",
+      "local_correct": false,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.13884852407500148,
+      "published_jev_latency_s": 0.642
+    },
+    {
+      "id": "original-intent-04-1",
+      "dataset": "original",
+      "family": "intent",
+      "local_correct": false,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.13971460470929742,
+      "published_jev_latency_s": 0.612
+    },
+    {
+      "id": "original-intent-05-0",
+      "dataset": "original",
+      "family": "intent",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.1420497759245336,
+      "published_jev_latency_s": 0.71
+    },
+    {
+      "id": "original-intent-05-1",
+      "dataset": "original",
+      "family": "intent",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.14238023711368442,
+      "published_jev_latency_s": 0.654
+    },
+    {
+      "id": "original-intent-06-0",
+      "dataset": "original",
+      "family": "intent",
+      "local_correct": false,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.14134203596040606,
+      "published_jev_latency_s": 0.638
+    },
+    {
+      "id": "original-intent-06-1",
+      "dataset": "original",
+      "family": "intent",
+      "local_correct": false,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.13862982532009482,
+      "published_jev_latency_s": 0.687
+    },
+    {
+      "id": "original-ordinal-01-0",
+      "dataset": "original",
+      "family": "ordinal",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.1535473521798849,
+      "published_jev_latency_s": 0.64
+    },
+    {
+      "id": "original-ordinal-01-1",
+      "dataset": "original",
+      "family": "ordinal",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.14764828886836767,
+      "published_jev_latency_s": 0.642
+    },
+    {
+      "id": "original-ordinal-02-0",
+      "dataset": "original",
+      "family": "ordinal",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.16705647809430957,
+      "published_jev_latency_s": 0.741
+    },
+    {
+      "id": "original-ordinal-02-1",
+      "dataset": "original",
+      "family": "ordinal",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.16642157826572657,
+      "published_jev_latency_s": 0.636
+    },
+    {
+      "id": "original-ordinal-03-0",
+      "dataset": "original",
+      "family": "ordinal",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.14378236699849367,
+      "published_jev_latency_s": 0.589
+    },
+    {
+      "id": "original-ordinal-03-1",
+      "dataset": "original",
+      "family": "ordinal",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.14010973600670695,
+      "published_jev_latency_s": 0.652
+    },
+    {
+      "id": "original-ordinal-04-0",
+      "dataset": "original",
+      "family": "ordinal",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.1401776047423482,
+      "published_jev_latency_s": 0.676
+    },
+    {
+      "id": "original-ordinal-04-1",
+      "dataset": "original",
+      "family": "ordinal",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.14734092820435762,
+      "published_jev_latency_s": 0.632
+    },
+    {
+      "id": "original-ordinal-05-0",
+      "dataset": "original",
+      "family": "ordinal",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.167116888333112,
+      "published_jev_latency_s": 0.714
+    },
+    {
+      "id": "original-ordinal-05-1",
+      "dataset": "original",
+      "family": "ordinal",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.16495718713849783,
+      "published_jev_latency_s": 0.672
+    },
+    {
+      "id": "original-ordinal-06-0",
+      "dataset": "original",
+      "family": "ordinal",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.17089675925672054,
+      "published_jev_latency_s": 0.692
+    },
+    {
+      "id": "original-ordinal-06-1",
+      "dataset": "original",
+      "family": "ordinal",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.16811068775132298,
+      "published_jev_latency_s": 0.666
+    },
+    {
+      "id": "original-extraction-01-0",
+      "dataset": "original",
+      "family": "extraction",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.14102947572246194,
+      "published_jev_latency_s": 0.649
+    },
+    {
+      "id": "original-extraction-01-1",
+      "dataset": "original",
+      "family": "extraction",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.1419668672606349,
+      "published_jev_latency_s": 0.666
+    },
+    {
+      "id": "original-extraction-02-0",
+      "dataset": "original",
+      "family": "extraction",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.14213697612285614,
+      "published_jev_latency_s": 0.693
+    },
+    {
+      "id": "original-extraction-02-1",
+      "dataset": "original",
+      "family": "extraction",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.1398265059106052,
+      "published_jev_latency_s": 0.678
+    },
+    {
+      "id": "original-extraction-03-0",
+      "dataset": "original",
+      "family": "extraction",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.1384456241503358,
+      "published_jev_latency_s": 0.65
+    },
+    {
+      "id": "original-extraction-03-1",
+      "dataset": "original",
+      "family": "extraction",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.13818939495831728,
+      "published_jev_latency_s": 0.654
+    },
+    {
+      "id": "original-extraction-04-0",
+      "dataset": "original",
+      "family": "extraction",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.14080239599570632,
+      "published_jev_latency_s": 0.673
+    },
+    {
+      "id": "original-extraction-04-1",
+      "dataset": "original",
+      "family": "extraction",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.13897154526785016,
+      "published_jev_latency_s": 0.663
+    },
+    {
+      "id": "original-extraction-05-0",
+      "dataset": "original",
+      "family": "extraction",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.14073576591908932,
+      "published_jev_latency_s": 0.651
+    },
+    {
+      "id": "original-extraction-05-1",
+      "dataset": "original",
+      "family": "extraction",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.15371659211814404,
+      "published_jev_latency_s": 0.746
+    },
+    {
+      "id": "original-extraction-06-0",
+      "dataset": "original",
+      "family": "extraction",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.14877048879861832,
+      "published_jev_latency_s": 0.61
+    },
+    {
+      "id": "original-extraction-06-1",
+      "dataset": "original",
+      "family": "extraction",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.15077892085537314,
+      "published_jev_latency_s": 0.676
+    },
+    {
+      "id": "original-adequacy-01-0",
+      "dataset": "original",
+      "family": "adequacy",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.14404614688828588,
+      "published_jev_latency_s": 0.673
+    },
+    {
+      "id": "original-adequacy-01-1",
+      "dataset": "original",
+      "family": "adequacy",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.14435338787734509,
+      "published_jev_latency_s": 0.64
+    },
+    {
+      "id": "original-adequacy-02-0",
+      "dataset": "original",
+      "family": "adequacy",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.13963597500696778,
+      "published_jev_latency_s": 0.67
+    },
+    {
+      "id": "original-adequacy-02-1",
+      "dataset": "original",
+      "family": "adequacy",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.13865347485989332,
+      "published_jev_latency_s": 0.665
+    },
+    {
+      "id": "original-adequacy-03-0",
+      "dataset": "original",
+      "family": "adequacy",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.14305025665089488,
+      "published_jev_latency_s": 0.698
+    },
+    {
+      "id": "original-adequacy-03-1",
+      "dataset": "original",
+      "family": "adequacy",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.1396686751395464,
+      "published_jev_latency_s": 0.65
+    },
+    {
+      "id": "original-adequacy-04-0",
+      "dataset": "original",
+      "family": "adequacy",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.1404210259206593,
+      "published_jev_latency_s": 0.632
+    },
+    {
+      "id": "original-adequacy-04-1",
+      "dataset": "original",
+      "family": "adequacy",
+      "local_correct": false,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.14798558875918388,
+      "published_jev_latency_s": 0.683
+    },
+    {
+      "id": "original-adequacy-05-0",
+      "dataset": "original",
+      "family": "adequacy",
+      "local_correct": false,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.1321618016809225,
+      "published_jev_latency_s": 0.673
+    },
+    {
+      "id": "original-adequacy-05-1",
+      "dataset": "original",
+      "family": "adequacy",
+      "local_correct": false,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.11812774511054158,
+      "published_jev_latency_s": 0.688
+    },
+    {
+      "id": "original-adequacy-06-0",
+      "dataset": "original",
+      "family": "adequacy",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.1419380158185959,
+      "published_jev_latency_s": 0.591
+    },
+    {
+      "id": "original-adequacy-06-1",
+      "dataset": "original",
+      "family": "adequacy",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.13854263490065932,
+      "published_jev_latency_s": 0.605
+    },
+    {
+      "id": "original-routing-01-0",
+      "dataset": "original",
+      "family": "routing",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.17030112026259303,
+      "published_jev_latency_s": 0.611
+    },
+    {
+      "id": "original-routing-01-1",
+      "dataset": "original",
+      "family": "routing",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.1738907010294497,
+      "published_jev_latency_s": 0.632
+    },
+    {
+      "id": "original-routing-02-0",
+      "dataset": "original",
+      "family": "routing",
+      "local_correct": false,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.17037697974592447,
+      "published_jev_latency_s": 0.625
+    },
+    {
+      "id": "original-routing-02-1",
+      "dataset": "original",
+      "family": "routing",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.1693392088636756,
+      "published_jev_latency_s": 0.689
+    },
+    {
+      "id": "original-routing-03-0",
+      "dataset": "original",
+      "family": "routing",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.16442941688001156,
+      "published_jev_latency_s": 0.603
+    },
+    {
+      "id": "original-routing-03-1",
+      "dataset": "original",
+      "family": "routing",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.16872129868716002,
+      "published_jev_latency_s": 0.64
+    },
+    {
+      "id": "original-routing-04-0",
+      "dataset": "original",
+      "family": "routing",
+      "local_correct": false,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.2057814560830593,
+      "published_jev_latency_s": 0.618
+    },
+    {
+      "id": "original-routing-04-1",
+      "dataset": "original",
+      "family": "routing",
+      "local_correct": false,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.1700674588792026,
+      "published_jev_latency_s": 0.688
+    },
+    {
+      "id": "original-routing-05-0",
+      "dataset": "original",
+      "family": "routing",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.1773828617297113,
+      "published_jev_latency_s": 0.679
+    },
+    {
+      "id": "original-routing-05-1",
+      "dataset": "original",
+      "family": "routing",
+      "local_correct": false,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.1684056888334453,
+      "published_jev_latency_s": 0.653
+    },
+    {
+      "id": "original-routing-06-0",
+      "dataset": "original",
+      "family": "routing",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.16976842982694507,
+      "published_jev_latency_s": 0.616
+    },
+    {
+      "id": "original-routing-06-1",
+      "dataset": "original",
+      "family": "routing",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.1791537031531334,
+      "published_jev_latency_s": 0.636
+    },
+    {
+      "id": "hard-opus-a-long_policy-01",
+      "dataset": "hard",
+      "family": "long_policy",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 3.397995895706117,
+      "published_jev_latency_s": 0.866
+    },
+    {
+      "id": "hard-opus-a-long_policy-04",
+      "dataset": "hard",
+      "family": "long_policy",
+      "local_correct": false,
+      "published_jev_correct": false,
+      "published_jev_outcome": "w",
+      "local_latency_s": 2.273812521249056,
+      "published_jev_latency_s": 0.649
+    },
+    {
+      "id": "hard-opus-a-long_policy-08",
+      "dataset": "hard",
+      "family": "long_policy",
+      "local_correct": false,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 2.0725073479115963,
+      "published_jev_latency_s": 0.69
+    },
+    {
+      "id": "hard-opus-a-long_policy-09",
+      "dataset": "hard",
+      "family": "long_policy",
+      "local_correct": false,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 2.1881224010139704,
+      "published_jev_latency_s": 0.666
+    },
+    {
+      "id": "hard-opus-a-long_policy-11",
+      "dataset": "hard",
+      "family": "long_policy",
+      "local_correct": false,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 2.0926400758326054,
+      "published_jev_latency_s": 0.687
+    },
+    {
+      "id": "hard-opus-a-long_policy-13",
+      "dataset": "hard",
+      "family": "long_policy",
+      "local_correct": false,
+      "published_jev_correct": false,
+      "published_jev_outcome": "w",
+      "local_latency_s": 2.084988343063742,
+      "published_jev_latency_s": 0.645
+    },
+    {
+      "id": "hard-opus-a-long_policy-17",
+      "dataset": "hard",
+      "family": "long_policy",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 2.055572169367224,
+      "published_jev_latency_s": 0.717
+    },
+    {
+      "id": "hard-opus-a-long_policy-19",
+      "dataset": "hard",
+      "family": "long_policy",
+      "local_correct": true,
+      "published_jev_correct": false,
+      "published_jev_outcome": "w",
+      "local_latency_s": 2.040179562754929,
+      "published_jev_latency_s": 0.653
+    },
+    {
+      "id": "hard-opus-a-probability-03",
+      "dataset": "hard",
+      "family": "probability",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.4013534872792661,
+      "published_jev_latency_s": 0.694
+    },
+    {
+      "id": "hard-opus-a-probability-04",
+      "dataset": "hard",
+      "family": "probability",
+      "local_correct": false,
+      "published_jev_correct": false,
+      "published_jev_outcome": "w",
+      "local_latency_s": 0.9623509789817035,
+      "published_jev_latency_s": 0.724
+    },
+    {
+      "id": "hard-opus-a-probability-07",
+      "dataset": "hard",
+      "family": "probability",
+      "local_correct": false,
+      "published_jev_correct": false,
+      "published_jev_outcome": "w",
+      "local_latency_s": 1.0801180037669837,
+      "published_jev_latency_s": 0.615
+    },
+    {
+      "id": "hard-opus-a-probability-08",
+      "dataset": "hard",
+      "family": "probability",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.3906346317380667,
+      "published_jev_latency_s": 0.683
+    },
+    {
+      "id": "hard-opus-a-temporal_numeric-03",
+      "dataset": "hard",
+      "family": "temporal_numeric",
+      "local_correct": false,
+      "published_jev_correct": false,
+      "published_jev_outcome": "w",
+      "local_latency_s": 0.4499778398312628,
+      "published_jev_latency_s": 0.668
+    },
+    {
+      "id": "hard-opus-a-temporal_numeric-06",
+      "dataset": "hard",
+      "family": "temporal_numeric",
+      "local_correct": false,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.5951143279671669,
+      "published_jev_latency_s": 0.627
+    },
+    {
+      "id": "hard-opus-a-temporal_numeric-07",
+      "dataset": "hard",
+      "family": "temporal_numeric",
+      "local_correct": false,
+      "published_jev_correct": false,
+      "published_jev_outcome": "w",
+      "local_latency_s": 1.1661886246874928,
+      "published_jev_latency_s": 0.634
+    },
+    {
+      "id": "hard-opus-a-temporal_numeric-09",
+      "dataset": "hard",
+      "family": "temporal_numeric",
+      "local_correct": true,
+      "published_jev_correct": false,
+      "published_jev_outcome": "w",
+      "local_latency_s": 0.4850908759981394,
+      "published_jev_latency_s": 0.706
+    },
+    {
+      "id": "hard-opus-a-temporal_numeric-12",
+      "dataset": "hard",
+      "family": "temporal_numeric",
+      "local_correct": false,
+      "published_jev_correct": false,
+      "published_jev_outcome": "w",
+      "local_latency_s": 0.6071307533420622,
+      "published_jev_latency_s": 0.684
+    },
+    {
+      "id": "hard-opus-b-ambiguous-02",
+      "dataset": "hard",
+      "family": "ambiguous",
+      "local_correct": false,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.5072539369575679,
+      "published_jev_latency_s": 0.631
+    },
+    {
+      "id": "hard-opus-b-ambiguous-03",
+      "dataset": "hard",
+      "family": "ambiguous",
+      "local_correct": false,
+      "published_jev_correct": false,
+      "published_jev_outcome": "w",
+      "local_latency_s": 0.5069402568042278,
+      "published_jev_latency_s": 0.658
+    },
+    {
+      "id": "hard-opus-b-ambiguous-07",
+      "dataset": "hard",
+      "family": "ambiguous",
+      "local_correct": false,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.44992444990202785,
+      "published_jev_latency_s": 0.622
+    },
+    {
+      "id": "hard-opus-b-ambiguous-09",
+      "dataset": "hard",
+      "family": "ambiguous",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.6257640919648111,
+      "published_jev_latency_s": 0.661
+    },
+    {
+      "id": "hard-opus-b-ambiguous-10",
+      "dataset": "hard",
+      "family": "ambiguous",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.43108560191467404,
+      "published_jev_latency_s": 0.644
+    },
+    {
+      "id": "hard-opus-b-ambiguous-11",
+      "dataset": "hard",
+      "family": "ambiguous",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.4297730401158333,
+      "published_jev_latency_s": 0.667
+    },
+    {
+      "id": "hard-opus-b-ambiguous-13",
+      "dataset": "hard",
+      "family": "ambiguous",
+      "local_correct": false,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.5700934268534184,
+      "published_jev_latency_s": 0.693
+    },
+    {
+      "id": "hard-opus-b-multi_hop-03",
+      "dataset": "hard",
+      "family": "multi_hop",
+      "local_correct": false,
+      "published_jev_correct": false,
+      "published_jev_outcome": "w",
+      "local_latency_s": 2.5658499971032143,
+      "published_jev_latency_s": 0.666
+    },
+    {
+      "id": "hard-opus-b-multi_hop-04",
+      "dataset": "hard",
+      "family": "multi_hop",
+      "local_correct": false,
+      "published_jev_correct": false,
+      "published_jev_outcome": "w",
+      "local_latency_s": 2.138679498806596,
+      "published_jev_latency_s": 0.652
+    },
+    {
+      "id": "hard-opus-b-multi_hop-05",
+      "dataset": "hard",
+      "family": "multi_hop",
+      "local_correct": false,
+      "published_jev_correct": false,
+      "published_jev_outcome": "w",
+      "local_latency_s": 2.249110220000148,
+      "published_jev_latency_s": 0.684
+    },
+    {
+      "id": "hard-opus-b-multi_hop-07",
+      "dataset": "hard",
+      "family": "multi_hop",
+      "local_correct": false,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 2.3332932093180716,
+      "published_jev_latency_s": 0.658
+    },
+    {
+      "id": "hard-opus-b-multi_hop-08",
+      "dataset": "hard",
+      "family": "multi_hop",
+      "local_correct": false,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 2.0725342980585992,
+      "published_jev_latency_s": 0.607
+    },
+    {
+      "id": "hard-opus-b-probability-01",
+      "dataset": "hard",
+      "family": "probability",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 1.8740760637447238,
+      "published_jev_latency_s": 0.648
+    },
+    {
+      "id": "hard-opus-b-probability-02",
+      "dataset": "hard",
+      "family": "probability",
+      "local_correct": false,
+      "published_jev_correct": false,
+      "published_jev_outcome": "w",
+      "local_latency_s": 0.5530365076847374,
+      "published_jev_latency_s": 0.652
+    },
+    {
+      "id": "hard-opus-b-probability-03",
+      "dataset": "hard",
+      "family": "probability",
+      "local_correct": false,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 1.123796314932406,
+      "published_jev_latency_s": 0.623
+    },
+    {
+      "id": "hard-opus-b-probability-04",
+      "dataset": "hard",
+      "family": "probability",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.5755551480688155,
+      "published_jev_latency_s": 0.641
+    },
+    {
+      "id": "hard-opus-b-probability-06",
+      "dataset": "hard",
+      "family": "probability",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.9838498989120126,
+      "published_jev_latency_s": 0.633
+    },
+    {
+      "id": "hard-opus-b-tradeoff-01",
+      "dataset": "hard",
+      "family": "tradeoff",
+      "local_correct": true,
+      "published_jev_correct": false,
+      "published_jev_outcome": "w",
+      "local_latency_s": 0.8542380188591778,
+      "published_jev_latency_s": 0.612
+    },
+    {
+      "id": "hard-opus-b-tradeoff-03",
+      "dataset": "hard",
+      "family": "tradeoff",
+      "local_correct": false,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.7217899872921407,
+      "published_jev_latency_s": 0.713
+    },
+    {
+      "id": "hard-opus-b-tradeoff-06",
+      "dataset": "hard",
+      "family": "tradeoff",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.722458157222718,
+      "published_jev_latency_s": 0.675
+    },
+    {
+      "id": "hard-opus-b-tradeoff-07",
+      "dataset": "hard",
+      "family": "tradeoff",
+      "local_correct": false,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.7197100161574781,
+      "published_jev_latency_s": 0.629
+    },
+    {
+      "id": "hard-opus-b-tradeoff-08",
+      "dataset": "hard",
+      "family": "tradeoff",
+      "local_correct": false,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.5664708041585982,
+      "published_jev_latency_s": 0.631
+    },
+    {
+      "id": "hard-opus-b-tradeoff-12",
+      "dataset": "hard",
+      "family": "tradeoff",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.5710398671217263,
+      "published_jev_latency_s": 0.657
+    },
+    {
+      "id": "hard-opus-c-long_policy-02",
+      "dataset": "hard",
+      "family": "long_policy",
+      "local_correct": false,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 3.2526064878329635,
+      "published_jev_latency_s": 0.867
+    },
+    {
+      "id": "hard-opus-c-long_policy-03",
+      "dataset": "hard",
+      "family": "long_policy",
+      "local_correct": false,
+      "published_jev_correct": false,
+      "published_jev_outcome": "w",
+      "local_latency_s": 3.0649003009311855,
+      "published_jev_latency_s": 0.849
+    },
+    {
+      "id": "hard-opus-c-long_policy-04",
+      "dataset": "hard",
+      "family": "long_policy",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 3.231443578377366,
+      "published_jev_latency_s": 0.813
+    },
+    {
+      "id": "hard-opus-c-long_policy-05",
+      "dataset": "hard",
+      "family": "long_policy",
+      "local_correct": false,
+      "published_jev_correct": false,
+      "published_jev_outcome": "w",
+      "local_latency_s": 3.0750112561509013,
+      "published_jev_latency_s": 0.843
+    },
+    {
+      "id": "hard-opus-c-long_policy-08",
+      "dataset": "hard",
+      "family": "long_policy",
+      "local_correct": false,
+      "published_jev_correct": false,
+      "published_jev_outcome": "w",
+      "local_latency_s": 3.1879552081227303,
+      "published_jev_latency_s": 0.906
+    },
+    {
+      "id": "hard-opus-c-long_policy-10",
+      "dataset": "hard",
+      "family": "long_policy",
+      "local_correct": false,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 3.4570492641068995,
+      "published_jev_latency_s": 0.823
+    },
+    {
+      "id": "hard-opus-c-long_policy-11",
+      "dataset": "hard",
+      "family": "long_policy",
+      "local_correct": false,
+      "published_jev_correct": false,
+      "published_jev_outcome": "w",
+      "local_latency_s": 3.3082076641730964,
+      "published_jev_latency_s": 0.801
+    },
+    {
+      "id": "hard-opus-c-probability-03",
+      "dataset": "hard",
+      "family": "probability",
+      "local_correct": false,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.5756394187919796,
+      "published_jev_latency_s": 0.685
+    },
+    {
+      "id": "hard-opus-c-temporal_numeric-02",
+      "dataset": "hard",
+      "family": "temporal_numeric",
+      "local_correct": false,
+      "published_jev_correct": false,
+      "published_jev_outcome": "w",
+      "local_latency_s": 0.9992029760032892,
+      "published_jev_latency_s": 0.683
+    },
+    {
+      "id": "hard-opus-c-temporal_numeric-03",
+      "dataset": "hard",
+      "family": "temporal_numeric",
+      "local_correct": false,
+      "published_jev_correct": false,
+      "published_jev_outcome": "w",
+      "local_latency_s": 0.8554656887426972,
+      "published_jev_latency_s": 0.667
+    },
+    {
+      "id": "hard-opus-c-temporal_numeric-04",
+      "dataset": "hard",
+      "family": "temporal_numeric",
+      "local_correct": false,
+      "published_jev_correct": false,
+      "published_jev_outcome": "w",
+      "local_latency_s": 0.7838298962451518,
+      "published_jev_latency_s": 0.679
+    },
+    {
+      "id": "hard-opus-c-temporal_numeric-06",
+      "dataset": "hard",
+      "family": "temporal_numeric",
+      "local_correct": false,
+      "published_jev_correct": false,
+      "published_jev_outcome": "w",
+      "local_latency_s": 1.015985113568604,
+      "published_jev_latency_s": 0.62
+    },
+    {
+      "id": "hard-opus-c-temporal_numeric-08",
+      "dataset": "hard",
+      "family": "temporal_numeric",
+      "local_correct": false,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.9919950133189559,
+      "published_jev_latency_s": 0.693
+    },
+    {
+      "id": "hard-opus-c-temporal_numeric-12",
+      "dataset": "hard",
+      "family": "temporal_numeric",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.8525969479233027,
+      "published_jev_latency_s": 0.639
+    },
+    {
+      "id": "hard-sol-a-adversarial-01",
+      "dataset": "hard",
+      "family": "adversarial",
+      "local_correct": false,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.3831075490452349,
+      "published_jev_latency_s": 0.639
+    },
+    {
+      "id": "hard-sol-a-adversarial-06",
+      "dataset": "hard",
+      "family": "adversarial",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.24902239674702287,
+      "published_jev_latency_s": 0.642
+    },
+    {
+      "id": "hard-sol-a-adversarial-07",
+      "dataset": "hard",
+      "family": "adversarial",
+      "local_correct": false,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.3056637332774699,
+      "published_jev_latency_s": 0.64
+    },
+    {
+      "id": "hard-sol-a-adversarial-08",
+      "dataset": "hard",
+      "family": "adversarial",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.24748865514993668,
+      "published_jev_latency_s": 0.737
+    },
+    {
+      "id": "hard-sol-a-adversarial-09",
+      "dataset": "hard",
+      "family": "adversarial",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.3510030428878963,
+      "published_jev_latency_s": 0.661
+    },
+    {
+      "id": "hard-sol-a-adversarial-11",
+      "dataset": "hard",
+      "family": "adversarial",
+      "local_correct": false,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.32652848213911057,
+      "published_jev_latency_s": 0.635
+    },
+    {
+      "id": "hard-sol-a-multi_hop-01",
+      "dataset": "hard",
+      "family": "multi_hop",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 2.188176262192428,
+      "published_jev_latency_s": 0.77
+    },
+    {
+      "id": "hard-sol-a-multi_hop-02",
+      "dataset": "hard",
+      "family": "multi_hop",
+      "local_correct": false,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 2.225543127860874,
+      "published_jev_latency_s": 0.675
+    },
+    {
+      "id": "hard-sol-a-multi_hop-05",
+      "dataset": "hard",
+      "family": "multi_hop",
+      "local_correct": false,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 2.2897018590010703,
+      "published_jev_latency_s": 0.666
+    },
+    {
+      "id": "hard-sol-a-multi_hop-07",
+      "dataset": "hard",
+      "family": "multi_hop",
+      "local_correct": false,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 2.3468652651645243,
+      "published_jev_latency_s": 0.641
+    },
+    {
+      "id": "hard-sol-a-multi_hop-08",
+      "dataset": "hard",
+      "family": "multi_hop",
+      "local_correct": false,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 2.301483863964677,
+      "published_jev_latency_s": 0.679
+    },
+    {
+      "id": "hard-sol-a-multi_hop-09",
+      "dataset": "hard",
+      "family": "multi_hop",
+      "local_correct": false,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 2.3079476770944893,
+      "published_jev_latency_s": 0.71
+    },
+    {
+      "id": "hard-sol-a-multi_hop-10",
+      "dataset": "hard",
+      "family": "multi_hop",
+      "local_correct": false,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 2.332933009136468,
+      "published_jev_latency_s": 0.696
+    },
+    {
+      "id": "hard-sol-a-multi_hop-12",
+      "dataset": "hard",
+      "family": "multi_hop",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 2.333308909088373,
+      "published_jev_latency_s": 0.676
+    },
+    {
+      "id": "hard-sol-a-trap-02",
+      "dataset": "hard",
+      "family": "trap",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.34272777987644076,
+      "published_jev_latency_s": 0.663
+    },
+    {
+      "id": "hard-sol-a-trap-04",
+      "dataset": "hard",
+      "family": "trap",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.25050603691488504,
+      "published_jev_latency_s": 0.673
+    },
+    {
+      "id": "hard-sol-a-trap-05",
+      "dataset": "hard",
+      "family": "trap",
+      "local_correct": false,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.4478342798538506,
+      "published_jev_latency_s": 0.676
+    },
+    {
+      "id": "hard-sol-a-trap-06",
+      "dataset": "hard",
+      "family": "trap",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.4104257612489164,
+      "published_jev_latency_s": 0.619
+    },
+    {
+      "id": "hard-sol-a-trap-08",
+      "dataset": "hard",
+      "family": "trap",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.3100881646387279,
+      "published_jev_latency_s": 0.68
+    },
+    {
+      "id": "hard-sol-a-trap-10",
+      "dataset": "hard",
+      "family": "trap",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.32502572191879153,
+      "published_jev_latency_s": 0.62
+    },
+    {
+      "id": "hard-sol-a-trap-13",
+      "dataset": "hard",
+      "family": "trap",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.2523852284066379,
+      "published_jev_latency_s": 0.68
+    },
+    {
+      "id": "hard-sol-a-trap-15",
+      "dataset": "hard",
+      "family": "trap",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.34137809881940484,
+      "published_jev_latency_s": 0.692
+    },
+    {
+      "id": "hard-sol-b-judge_hard-01",
+      "dataset": "hard",
+      "family": "judge_hard",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.3560513760894537,
+      "published_jev_latency_s": 0.713
+    },
+    {
+      "id": "hard-sol-b-judge_hard-02",
+      "dataset": "hard",
+      "family": "judge_hard",
+      "local_correct": false,
+      "published_jev_correct": false,
+      "published_jev_outcome": "w",
+      "local_latency_s": 0.28073352109640837,
+      "published_jev_latency_s": 0.711
+    },
+    {
+      "id": "hard-sol-b-judge_hard-05",
+      "dataset": "hard",
+      "family": "judge_hard",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.2791419397108257,
+      "published_jev_latency_s": 0.709
+    },
+    {
+      "id": "hard-sol-b-judge_hard-08",
+      "dataset": "hard",
+      "family": "judge_hard",
+      "local_correct": false,
+      "published_jev_correct": false,
+      "published_jev_outcome": "w",
+      "local_latency_s": 0.25092112831771374,
+      "published_jev_latency_s": 0.679
+    },
+    {
+      "id": "hard-sol-b-judge_hard-10",
+      "dataset": "hard",
+      "family": "judge_hard",
+      "local_correct": false,
+      "published_jev_correct": false,
+      "published_jev_outcome": "w",
+      "local_latency_s": 0.34104653913527727,
+      "published_jev_latency_s": 0.728
+    },
+    {
+      "id": "hard-sol-b-judge_hard-14",
+      "dataset": "hard",
+      "family": "judge_hard",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.33501645596697927,
+      "published_jev_latency_s": 0.749
+    },
+    {
+      "id": "hard-sol-b-judge_hard-15",
+      "dataset": "hard",
+      "family": "judge_hard",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.2538230582140386,
+      "published_jev_latency_s": 0.659
+    },
+    {
+      "id": "hard-sol-b-judge_hard-18",
+      "dataset": "hard",
+      "family": "judge_hard",
+      "local_correct": false,
+      "published_jev_correct": false,
+      "published_jev_outcome": "w",
+      "local_latency_s": 0.22056125290691853,
+      "published_jev_latency_s": 0.684
+    },
+    {
+      "id": "hard-sol-b-long_policy-01",
+      "dataset": "hard",
+      "family": "long_policy",
+      "local_correct": false,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 2.7884803116321564,
+      "published_jev_latency_s": 0.866
+    },
+    {
+      "id": "hard-sol-b-long_policy-02",
+      "dataset": "hard",
+      "family": "long_policy",
+      "local_correct": false,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 2.576267212163657,
+      "published_jev_latency_s": 0.818
+    },
+    {
+      "id": "hard-sol-b-long_policy-05",
+      "dataset": "hard",
+      "family": "long_policy",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 2.6428073728457093,
+      "published_jev_latency_s": 0.823
+    },
+    {
+      "id": "hard-sol-b-long_policy-06",
+      "dataset": "hard",
+      "family": "long_policy",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 2.5843345667235553,
+      "published_jev_latency_s": 0.939
+    },
+    {
+      "id": "hard-sol-b-routing_hard-01",
+      "dataset": "hard",
+      "family": "routing_hard",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.37354189390316606,
+      "published_jev_latency_s": 0.663
+    },
+    {
+      "id": "hard-sol-b-routing_hard-02",
+      "dataset": "hard",
+      "family": "routing_hard",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.3439803007058799,
+      "published_jev_latency_s": 0.628
+    },
+    {
+      "id": "hard-sol-b-routing_hard-03",
+      "dataset": "hard",
+      "family": "routing_hard",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.41600003419443965,
+      "published_jev_latency_s": 0.631
+    },
+    {
+      "id": "hard-sol-b-routing_hard-07",
+      "dataset": "hard",
+      "family": "routing_hard",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.31137199606746435,
+      "published_jev_latency_s": 0.699
+    },
+    {
+      "id": "hard-sol-b-routing_hard-09",
+      "dataset": "hard",
+      "family": "routing_hard",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.34158402867615223,
+      "published_jev_latency_s": 0.624
+    },
+    {
+      "id": "hard-sol-b-temporal_numeric-01",
+      "dataset": "hard",
+      "family": "temporal_numeric",
+      "local_correct": false,
+      "published_jev_correct": false,
+      "published_jev_outcome": "w",
+      "local_latency_s": 0.4093211297877133,
+      "published_jev_latency_s": 0.635
+    },
+    {
+      "id": "hard-sol-b-temporal_numeric-02",
+      "dataset": "hard",
+      "family": "temporal_numeric",
+      "local_correct": true,
+      "published_jev_correct": false,
+      "published_jev_outcome": "w",
+      "local_latency_s": 0.33930980786681175,
+      "published_jev_latency_s": 0.621
+    },
+    {
+      "id": "hard-sol-b-temporal_numeric-03",
+      "dataset": "hard",
+      "family": "temporal_numeric",
+      "local_correct": false,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.28109381068497896,
+      "published_jev_latency_s": 0.705
+    },
+    {
+      "id": "hard-sol-b-temporal_numeric-04",
+      "dataset": "hard",
+      "family": "temporal_numeric",
+      "local_correct": false,
+      "published_jev_correct": false,
+      "published_jev_outcome": "w",
+      "local_latency_s": 0.28417665185406804,
+      "published_jev_latency_s": 0.68
+    },
+    {
+      "id": "hard-sol-c-judge_hard-03",
+      "dataset": "hard",
+      "family": "judge_hard",
+      "local_correct": false,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.5418328926898539,
+      "published_jev_latency_s": 0.672
+    },
+    {
+      "id": "hard-sol-c-judge_hard-05",
+      "dataset": "hard",
+      "family": "judge_hard",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.4051376902498305,
+      "published_jev_latency_s": 0.643
+    },
+    {
+      "id": "hard-sol-c-judge_hard-07",
+      "dataset": "hard",
+      "family": "judge_hard",
+      "local_correct": false,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.35254580387845635,
+      "published_jev_latency_s": 0.644
+    },
+    {
+      "id": "hard-sol-c-judge_hard-08",
+      "dataset": "hard",
+      "family": "judge_hard",
+      "local_correct": false,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.4567051138728857,
+      "published_jev_latency_s": 0.681
+    },
+    {
+      "id": "hard-sol-c-judge_hard-09",
+      "dataset": "hard",
+      "family": "judge_hard",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.40776102989912033,
+      "published_jev_latency_s": 0.672
+    },
+    {
+      "id": "hard-sol-c-judge_hard-10",
+      "dataset": "hard",
+      "family": "judge_hard",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.40639388002455235,
+      "published_jev_latency_s": 0.704
+    },
+    {
+      "id": "hard-sol-c-judge_hard-11",
+      "dataset": "hard",
+      "family": "judge_hard",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.45406100200489163,
+      "published_jev_latency_s": 0.659
+    },
+    {
+      "id": "hard-sol-c-judge_hard-13",
+      "dataset": "hard",
+      "family": "judge_hard",
+      "local_correct": false,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.37563864467665553,
+      "published_jev_latency_s": 0.631
+    },
+    {
+      "id": "hard-sol-c-judge_hard-15",
+      "dataset": "hard",
+      "family": "judge_hard",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.35764413699507713,
+      "published_jev_latency_s": 0.694
+    },
+    {
+      "id": "hard-sol-c-multi_hop-07",
+      "dataset": "hard",
+      "family": "multi_hop",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 2.5882635079324245,
+      "published_jev_latency_s": 0.641
+    },
+    {
+      "id": "hard-sol-c-multi_hop-09",
+      "dataset": "hard",
+      "family": "multi_hop",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 2.4580346466973424,
+      "published_jev_latency_s": 0.68
+    },
+    {
+      "id": "hard-sol-c-multi_hop-11",
+      "dataset": "hard",
+      "family": "multi_hop",
+      "local_correct": false,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 2.599712174385786,
+      "published_jev_latency_s": 0.655
+    },
+    {
+      "id": "hard-sol-c-multi_hop-12",
+      "dataset": "hard",
+      "family": "multi_hop",
+      "local_correct": false,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 0.5871654241345823,
+      "published_jev_latency_s": 0.659
+    },
+    {
+      "id": "hard-sol-c-multi_hop-13",
+      "dataset": "hard",
+      "family": "multi_hop",
+      "local_correct": true,
+      "published_jev_correct": true,
+      "published_jev_outcome": "c",
+      "local_latency_s": 2.656347489915788,
+      "published_jev_latency_s": 0.604
+    }
+  ]
+}
