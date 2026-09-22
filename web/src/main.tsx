@@ -351,6 +351,9 @@ function App() {
           <a href={apiDocs} target="_blank" rel="noreferrer">
             API reference <ArrowUpRight size={14} />
           </a>
+          <a href="https://github.com/Hangzhi/diffusion-jev-sglang" target="_blank" rel="noreferrer">
+            GitHub <ArrowUpRight size={14} />
+          </a>
           <span className="local-tag">
             <span /> Self-hosted
           </span>
