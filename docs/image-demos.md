@@ -6,7 +6,7 @@ Both demos use **DiffusionGemma's native image input** through the same typed de
 
 Open **Doodle Detective** at the top of the app, or go directly to `/#doodle`. It also opens by default when the backend supports images. The drawing pad is ready right away. Draw with a mouse or finger, or use **Try a sketch** to open the gallery. Click **Guess doodle** at the top to see the model's prediction and distribution. Clear the drawing to start over. Uploading a PNG/JPEG/WebP works too.
 
-The eight categories are **airplane, apple, bicycle, cat, clock, fish, pizza, and umbrella**. The model must pick among those eight options; an unrelated drawing will still get a guess. The scores are relative to this candidate set, not a guarantee that the drawing depicts one of them. Edit questions to try your own categories.
+The 16 categories are **airplane, apple, bicycle, cat, clock, fish, pizza, umbrella, dog, car, house, tree, sun, star, cup, and sailboat**. The model must pick among those 16 options; an unrelated drawing will still get a guess. The scores are relative to this candidate set, not a guarantee that the drawing depicts one of them. Edit questions to try your own categories.
 
 Prepare the gallery on the API host:
 
@@ -16,7 +16,7 @@ uv run python scripts/prepare_quickdraw.py
 
 This downloads a small selection from [Google's Quick, Draw! dataset](https://github.com/googlecreativelab/quickdraw-dataset), made available by Google, Inc. under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). We render the simplified vector strokes into black-on-white JPEGs. Source records, immutable GCS object generations, and selection hashes stay in `data/quickdraw/`, which is excluded from Git. The app links to the original source and credits Google.
 
-The default collection has **192 sketches: 24 per category**. Selection uses the first recognized, pixel-unique sketches in each source stream, without querying DiffusionGemma. “Recognized” is the original game's metadata, not our model's outcome. This deliberately approachable demo collection is **not a random or held-out test set**. Do not report its performance as general sketch-recognition accuracy. Dataset labels describe what players were asked to draw and can be ambiguous.
+The default collection has **384 sketches: 24 per category**. Selection uses the first recognized, pixel-unique sketches in each source stream, without querying DiffusionGemma. “Recognized” is the original game's metadata, not our model's outcome. This deliberately approachable demo collection is **not a random or held-out test set**. Do not report its performance as general sketch-recognition accuracy. Dataset labels describe what players were asked to draw and can be ambiguous.
 
 Preparation refuses to overwrite an existing manifest. Use a new `--output` directory to build another selection; set `DIFFUSION_JEV_DATA_DIR` to its parent when starting the API if you move the dataset root. Drawing and uploads work without the gallery.
 

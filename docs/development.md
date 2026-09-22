@@ -22,7 +22,7 @@ This is the environment used for the sketch demo and the local GPU checks. It is
 | Laptop browser | Mac, SSH forwarding to `localhost:18000` |
 | Demo capture | Playwright Chromium and FFmpeg 6.1.1 |
 
-The engine reuses a working GPU environment. A complete clean-machine install has not been validated. The pinned upstream dependency list has a PyTorch/torchaudio version conflict. See the [setup guide](diffusiongemma.md#prepare-the-gpu-engine-environment) before installing it.
+The original local engine reuses a working GPU environment. The [Modal deployment](cloud-hosting.md) now has a tested clean container build for text and images. It excludes unused audio dependencies to avoid the pinned upstream PyTorch/torchaudio conflict. See the [setup guide](diffusiongemma.md#prepare-the-gpu-engine-environment) before installing the original local environment.
 
 The runtime configuration and model source hashes are in [environment.json](../reports/diffusiongemma/environment.json). Frontend dependencies are pinned in `web/package-lock.json`; API and test dependencies are in `uv.lock`.
 

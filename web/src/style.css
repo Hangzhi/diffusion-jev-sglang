@@ -875,3 +875,12 @@ footer {
   .gallery-heading small { max-width: 165px; line-height: 1.5; }
   .image-gallery { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
+.cloud-note {
+  margin: 0 0 20px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: #f3f6ef;
+  color: #52644c;
+  font-size: 13px;
+  line-height: 1.5;
+}

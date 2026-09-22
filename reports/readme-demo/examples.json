@@ -1,0 +1,198 @@
+{
+  "url": "http://127.0.0.1:8000",
+  "examples": [
+    {
+      "task": "flower",
+      "request": {
+        "model": "diffusion-jev",
+        "state": "Classify the flower shown in the attached image.",
+        "questions": {
+          "flower": {
+            "type": "choice",
+            "instructions": "Which type of flower is most prominent in the attached image?",
+            "criteria": {
+              "daisy": "A daisy flower",
+              "dandelion": "A dandelion flower or seed head",
+              "rose": "A rose flower",
+              "sunflower": "A sunflower",
+              "tulip": "A tulip flower"
+            }
+          }
+        },
+        "images": [
+          "flowers:01125d33a63ada06aa1eea30933744b9fd11ae46c93c10f6d01ccb4e41dc5905"
+        ]
+      },
+      "response": {
+        "model": "google/diffusiongemma-26B-A4B-it",
+        "answers": {
+          "flower": {
+            "type": "choice",
+            "choice": "daisy",
+            "probabilities": {
+              "daisy": 0.9999999966190156,
+              "dandelion": 1.4063308143794103e-09,
+              "rose": 1.1039911980865563e-09,
+              "sunflower": 6.999195493188505e-10,
+              "tulip": 1.7074291111563042e-10
+            },
+            "confidence": 0.99999995438855
+          }
+        },
+        "usage": {
+          "input_tokens": 387,
+          "output_tokens": 5
+        },
+        "meta": {
+          "latency_ms": 938.78,
+          "probability_source": "self_conditioned_denoiser_logits",
+          "temperature": 1.0,
+          "passes": 48,
+          "candidate_logits": {
+            "flower": [
+              25.851696014404297,
+              5.469414234161377,
+              5.227362155914307,
+              4.771640300750732,
+              3.3608338832855225
+            ]
+          },
+          "denoising_steps": {
+            "flower": 2
+          },
+          "candidate_mass": {
+            "flower": 0.999999998413988
+          },
+          "unrestricted_first_token": {
+            "flower": "A"
+          },
+          "answer_position": {
+            "flower": 4
+          }
+        }
+      }
+    },
+    {
+      "task": "emoji",
+      "request": {
+        "model": "diffusion-jev",
+        "state": "I love you so much. You make every day better!",
+        "questions": {
+          "emoji": {
+            "type": "choice",
+            "instructions": "Which emoji best matches the emotion or activity in this message?",
+            "criteria": {
+              "\u2764\ufe0f": "Love and affection",
+              "\u26bd": "Football or soccer",
+              "\ud83d\ude0a": "Happiness and celebration",
+              "\ud83d\ude22": "Sadness or loss",
+              "\ud83c\udf74": "Food and hunger"
+            }
+          },
+          "positive": {
+            "type": "noul",
+            "instructions": "Does the message express positive emotion?"
+          },
+          "intensity": {
+            "type": "score",
+            "instructions": "How emotionally intense is the message?",
+            "criteria": [
+              "Neutral",
+              "Mild",
+              "Strong",
+              "Very strong"
+            ]
+          }
+        }
+      },
+      "response": {
+        "model": "google/diffusiongemma-26B-A4B-it",
+        "answers": {
+          "emoji": {
+            "type": "choice",
+            "choice": "\u2764\ufe0f",
+            "probabilities": {
+              "\u2764\ufe0f": 0.999999994618499,
+              "\u26bd": 1.0338144217627358e-09,
+              "\ud83d\ude0a": 1.2764966725584321e-09,
+              "\ud83d\ude22": 2.3942509440000164e-09,
+              "\ud83c\udf74": 6.769389379368725e-10
+            },
+            "confidence": 0.9999999287132778
+          },
+          "positive": {
+            "type": "noul",
+            "noul": 0.9999999884578531
+          },
+          "intensity": {
+            "type": "score",
+            "score": 2.999999854785217,
+            "legend": {
+              "0": "Neutral",
+              "1": "Mild",
+              "2": "Strong",
+              "3": "Very strong"
+            },
+            "probabilities": {
+              "0": 1.9020086145281526e-10,
+              "1": 5.598874882680839e-10,
+              "2": 1.4352440572006562e-07,
+              "3": 0.999999855725506
+            },
+            "confidence": 0.999998252940378
+          }
+        },
+        "usage": {
+          "input_tokens": 330,
+          "output_tokens": 15
+        },
+        "meta": {
+          "latency_ms": 318.22,
+          "probability_source": "self_conditioned_denoiser_logits",
+          "temperature": 1.0,
+          "passes": 48,
+          "candidate_logits": {
+            "emoji": [
+              26.28017807006836,
+              5.59016752243042,
+              5.801031589508057,
+              6.429982662200928,
+              5.166738033294678
+            ],
+            "positive": [
+              2.323462724685669,
+              20.600723266601562
+            ],
+            "intensity": [
+              2.850748062133789,
+              3.930403232574463,
+              9.476927757263184,
+              25.233688354492188
+            ]
+          },
+          "denoising_steps": {
+            "emoji": 2,
+            "positive": 2,
+            "intensity": 2
+          },
+          "candidate_mass": {
+            "emoji": 0.9999999944148906,
+            "positive": 0.9999976629348437,
+            "intensity": 0.9999999672904198
+          },
+          "unrestricted_first_token": {
+            "emoji": "A",
+            "positive": "B",
+            "intensity": "D"
+          },
+          "answer_position": {
+            "emoji": 4,
+            "positive": 4,
+            "intensity": 4
+          }
+        }
+      }
+    }
+  ],
+  "page_errors": []
+}

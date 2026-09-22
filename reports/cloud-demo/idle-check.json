@@ -1,0 +1,9 @@
+{
+  "checked_at": "2026-09-22T02:10:37.230143+00:00",
+  "gpu": {
+    "backlog": 0,
+    "num_total_runners": 0,
+    "num_running_inputs": 0,
+    "input_headroom": 0
+  }
+}

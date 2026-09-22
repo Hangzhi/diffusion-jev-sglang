@@ -1,0 +1,163 @@
+{
+  "url": "https://diffusion-jev-sglang.vercel.app",
+  "elapsed_seconds": 137.79,
+  "real_prediction": {
+    "model": "google/diffusiongemma-26B-A4B-it",
+    "answers": {
+      "doodle": {
+        "type": "choice",
+        "choice": "cat",
+        "probabilities": {
+          "airplane": 3.9166889077750925e-11,
+          "apple": 3.7838806752614955e-10,
+          "bicycle": 1.5443077470428622e-08,
+          "cat": 0.9999999710319221,
+          "clock": 2.892451421342336e-09,
+          "fish": 6.655658382657553e-11,
+          "pizza": 1.2345786763106262e-09,
+          "umbrella": 3.44909905892078e-10,
+          "dog": 6.920024092925327e-11,
+          "car": 2.7032729480640902e-11,
+          "house": 7.799861044718187e-09,
+          "tree": 1.1655708960167833e-10,
+          "sun": 2.202340437687879e-10,
+          "star": 3.882606281778274e-12,
+          "cup": 8.673118960179365e-11,
+          "sailboat": 2.4545018692516425e-10
+        },
+        "confidence": 0.9999997943641035
+      }
+    },
+    "usage": {
+      "input_tokens": 494,
+      "output_tokens": 5
+    },
+    "meta": {
+      "latency_ms": 650.51,
+      "probability_source": "self_conditioned_denoiser_logits",
+      "temperature": 1.0,
+      "passes": 48,
+      "candidate_logits": {
+        "doodle": [
+          1.0464503765106201,
+          3.3145389556884766,
+          7.023534774780273,
+          25.009639739990234,
+          5.348478317260742,
+          1.5766711235046387,
+          4.497103691101074,
+          3.2219018936157227,
+          1.6156229972839355,
+          0.6756669878959656,
+          6.340479850769043,
+          2.1369998455047607,
+          2.7733094692230225,
+          -1.2648746967315674,
+          1.8414322137832642,
+          2.8817126750946045
+        ]
+      },
+      "denoising_steps": {
+        "doodle": 2
+      },
+      "candidate_mass": {
+        "doodle": 0.9999999951064668
+      },
+      "unrestricted_first_token": {
+        "doodle": "D"
+      },
+      "answer_position": {
+        "doodle": 4
+      }
+    }
+  },
+  "health_requests": 1,
+  "page_errors": [],
+  "gallery_images_loaded": true,
+  "mobile_overflow": false,
+  "responses": [
+    {
+      "status_code": 202,
+      "body": {
+        "job_id": "1137f2fb-ec5e-4c9f-b670-178bf2c7a86d",
+        "status": "pending"
+      }
+    },
+    {
+      "status_code": 200,
+      "body": {
+        "status": "completed",
+        "result": {
+          "model": "google/diffusiongemma-26B-A4B-it",
+          "answers": {
+            "doodle": {
+              "type": "choice",
+              "choice": "cat",
+              "probabilities": {
+                "airplane": 3.9166889077750925e-11,
+                "apple": 3.7838806752614955e-10,
+                "bicycle": 1.5443077470428622e-08,
+                "cat": 0.9999999710319221,
+                "clock": 2.892451421342336e-09,
+                "fish": 6.655658382657553e-11,
+                "pizza": 1.2345786763106262e-09,
+                "umbrella": 3.44909905892078e-10,
+                "dog": 6.920024092925327e-11,
+                "car": 2.7032729480640902e-11,
+                "house": 7.799861044718187e-09,
+                "tree": 1.1655708960167833e-10,
+                "sun": 2.202340437687879e-10,
+                "star": 3.882606281778274e-12,
+                "cup": 8.673118960179365e-11,
+                "sailboat": 2.4545018692516425e-10
+              },
+              "confidence": 0.9999997943641035
+            }
+          },
+          "usage": {
+            "input_tokens": 494,
+            "output_tokens": 5
+          },
+          "meta": {
+            "latency_ms": 650.51,
+            "probability_source": "self_conditioned_denoiser_logits",
+            "temperature": 1.0,
+            "passes": 48,
+            "candidate_logits": {
+              "doodle": [
+                1.0464503765106201,
+                3.3145389556884766,
+                7.023534774780273,
+                25.009639739990234,
+                5.348478317260742,
+                1.5766711235046387,
+                4.497103691101074,
+                3.2219018936157227,
+                1.6156229972839355,
+                0.6756669878959656,
+                6.340479850769043,
+                2.1369998455047607,
+                2.7733094692230225,
+                -1.2648746967315674,
+                1.8414322137832642,
+                2.8817126750946045
+              ]
+            },
+            "denoising_steps": {
+              "doodle": 2
+            },
+            "candidate_mass": {
+              "doodle": 0.9999999951064668
+            },
+            "unrestricted_first_token": {
+              "doodle": "D"
+            },
+            "answer_position": {
+              "doodle": 4
+            }
+          }
+        }
+      }
+    }
+  ]
+}

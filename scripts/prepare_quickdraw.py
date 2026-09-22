@@ -14,7 +14,10 @@ from pathlib import Path
 from PIL import Image, ImageDraw
 
 ROOT = Path(__file__).resolve().parents[1]
-LABELS = ["airplane", "apple", "bicycle", "cat", "clock", "fish", "pizza", "umbrella"]
+LABELS = [
+    "airplane", "apple", "bicycle", "cat", "clock", "fish", "pizza", "umbrella",
+    "dog", "car", "house", "tree", "sun", "star", "cup", "sailboat",
+]
 SOURCE = "https://github.com/googlecreativelab/quickdraw-dataset"
 
 

@@ -4,7 +4,7 @@ Recorded on September 22, 2026 with the running DiffusionGemma service on one A1
 
 ![Draw a scruffy cat and get a real model answer](sketch-demo.gif)
 
-The GIF shows browser mouse input, a click on **Guess doodle**, and the actual GPU response. The app sends the canvas pixels to the model. No answer is inserted into the recording. Playback is at normal speed, with 12 frames per second. The image is 1000 × 750 pixels and about 3.7 MB.
+The GIF shows browser mouse input, a click on **Guess doodle**, and the actual GPU response. The app sends the canvas pixels to the model. No answer is inserted into the recording. Playback is at normal speed, with 12 frames per second. The image is 1000 × 750 pixels and about 3.9 MB.
 
 This is an example of the app working. It is **not an accuracy or latency benchmark**.
 
@@ -21,6 +21,7 @@ The drawing pad opens first on DiffusionGemma. Doodle Detective, Flowers, and Te
 - Clear the drawing, or reopen the demo. Pixels reset and guessing is disabled.
 - Page through the gallery, filter cats, and classify a sketch. Its dataset label appears after the answer.
 - Edit the question and check that the old dataset-label result is hidden.
+- Browse all eight added categories, with 24 images in each. Classify a star and a sailboat and receive scores for all 16 options.
 - Classify a rose and evaluate the text/emoji example through the same service.
 - Reload the Flowers and Text links and keep the selected demo.
 - Upload a drawing while optional gallery endpoints return 404. The real model still classifies it.
@@ -32,12 +33,12 @@ Inference responses are never mocked. Only the missing-gallery, delayed-startup,
 
 Screenshots: [desktop](sketch-desktop.png), [mobile](sketch-mobile.png), and [the drawn cat](drawn-cat.png).
 
-The Python suite passed **52 tests**, with three skipped in the lightweight environment. Ruff and the TypeScript/Vite production build passed. See [development and recording steps](../../docs/development.md) for the environment and repeatable capture command.
+The Python suite passed **56 tests**, with three skipped in the lightweight environment. Ruff and the TypeScript/Vite production build passed. See [development and recording steps](../../docs/development.md) for the environment and repeatable capture command.
 
 ## Gallery source
 
-The optional gallery has 192 sketches across eight categories. [dataset.json](dataset.json) records source URLs, immutable GCS object generations, selection hashes, and opaque image IDs. Preparation takes the first 24 recognized, pixel-unique sketches per category without looking at this model's predictions. Gallery images and raw source vectors stay outside Git.
+The optional gallery has 384 sketches across 16 categories. [dataset.json](dataset.json) records source URLs, immutable GCS object generations, selection hashes, and opaque image IDs. Preparation takes the first 24 recognized, pixel-unique sketches per category without looking at this model's predictions. Gallery images and raw source vectors stay outside Git.
 
 Sketch source: [Google Quick, Draw!](https://github.com/googlecreativelab/quickdraw-dataset), Google, Inc., [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Simplified strokes were rendered as black-on-white JPEGs. The scruffy cat in this recording was drawn with browser pointer events from hand-authored, deliberately uneven points. It is not a traced gallery image.
 
-The earlier gallery checks remain in [browser-smoke.json](browser-smoke.json). The older [gallery preview](preview.png) and `gallery-*` / `drawing-*` screenshots show the previous navigation layout.
+The earlier eight-option gallery checks remain in [browser-smoke.json](browser-smoke.json). The older [gallery preview](preview.png) and `gallery-*` / `drawing-*` screenshots show the previous navigation layout.
