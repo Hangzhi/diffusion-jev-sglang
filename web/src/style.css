@@ -428,6 +428,13 @@ h2 {
 .evaluate:hover:not(:disabled) {
   background: #316647;
 }
+/* Keep the button steady while a new stroke is in progress. Submission waits
+   for pointer-up so it always uses the latest finished drawing. */
+.evaluate.drawing-stroke:disabled,
+.evaluate[aria-busy="true"] {
+  opacity: 1;
+  cursor: default;
+}
 .privacy {
   font-size: 8px;
   color: #9caa91;

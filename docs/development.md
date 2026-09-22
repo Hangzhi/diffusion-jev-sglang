@@ -54,7 +54,7 @@ uvx --with playwright python scripts/browser_sketch_demo.py \
   --record --output .cache/sketch-demo
 ```
 
-The script draws a clock with browser mouse events. It clicks **Guess doodle**, waits for the real GPU response, and records the answer. FFmpeg converts the browser video into a looping GIF at 12 fps. Playback stays at normal speed. The script does not insert an answer or change the API response.
+The script draws a scruffy cat with browser mouse events. Its uneven outline, ears, and whiskers use hand-authored points with a little seeded wobble. It clicks **Guess doodle**, waits for the real GPU response, and records the answer. FFmpeg converts the browser video into a looping GIF at 12 fps. Playback stays at normal speed. The script does not insert an answer or change the API response.
 
 The output includes `sketch-demo.gif`, desktop and mobile screenshots, and `sketch-validation.json` with the actual responses. The browser checks also cover touch drawing, clear/reset, uploads, gallery navigation, text decisions, and flowers. Missing gallery data, slow example loading, and text-only capabilities are simulated in separate interface checks; inference responses are never mocked.
 

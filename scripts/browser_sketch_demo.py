@@ -9,33 +9,67 @@ import asyncio
 import hashlib
 import json
 import math
+import random
 import tempfile
 from datetime import UTC, datetime
+from itertools import pairwise
 from pathlib import Path
 
 from playwright.async_api import async_playwright, expect
 
+# Deliberately uneven, hand-authored strokes. No perfect circles or mirrored features.
+CAT_STROKES = [
+    [(151, 186), (128, 150), (112, 98), (145, 115), (201, 158),
+     (226, 147), (264, 143), (305, 160), (369, 95), (360, 190),
+     (384, 218), (404, 266), (399, 295), (384, 323), (352, 349),
+     (307, 363), (263, 367), (217, 359), (175, 343), (141, 312),
+     (122, 277), (123, 243), (133, 209), (152, 188)],
+    [(140, 158), (132, 121), (175, 168)],
+    [(328, 177), (355, 126), (349, 183)],
+    [(204, 221), (194, 223), (189, 234), (194, 243), (204, 245),
+     (211, 236), (209, 226), (203, 222)],
+    [(281, 232), (290, 222), (303, 230)],
+    [(245, 257), (267, 259), (257, 274), (245, 257)],
+    [(257, 274), (254, 290), (243, 299), (228, 292)],
+    [(254, 289), (270, 302), (287, 287)],
+    [(177, 260), (135, 246), (84, 250)],
+    [(177, 282), (125, 285), (77, 301)],
+    [(183, 301), (147, 321), (114, 346)],
+    [(325, 261), (377, 239), (429, 235)],
+    [(325, 282), (376, 286), (433, 302)],
+    [(321, 302), (359, 322), (390, 347)],
+]
 
-async def draw_clock(page, *, paced=False, touch=False):
+
+async def draw_cat(page, *, paced=False, touch=False):
     canvas = page.get_by_label("Draw a doodle", exact=True)
     await canvas.scroll_into_view_if_needed()
     box = await canvas.bounding_box()
     assert box
-    circle = [
-        (256 + 164 * math.cos(i * math.tau / 64), 256 + 164 * math.sin(i * math.tau / 64))
-        for i in range(65)
-    ]
-    strokes = [circle, [(256, 160), (256, 256), (330, 290)]]
-    strokes += [[(256, 102), (256, 123)], [(389, 256), (410, 256)]]
-    strokes += [[(256, 389), (256, 410)], [(102, 256), (123, 256)]]
+    strokes = []
+    rng = random.Random(23)
+    for anchors in CAT_STROKES:
+        stroke = [anchors[0]]
+        for start, end in pairwise(anchors):
+            steps = max(1, round(math.dist(start, end) / 8))
+            for step in range(1, steps):
+                t = step / steps
+                stroke.append((start[0] + (end[0] - start[0]) * t + rng.uniform(-1.2, 1.2),
+                               start[1] + (end[1] - start[1]) * t + rng.uniform(-1.2, 1.2)))
+            stroke.append(end)
+        strokes.append(stroke)
     session = await page.context.new_cdp_session(page) if touch else None
-    for stroke in strokes:
+    button = page.locator("button.evaluate")
+    for index, stroke in enumerate(strokes):
         points = [(box["x"] + x * box["width"] / 512,
                    box["y"] + y * box["height"] / 512) for x, y in stroke]
         if session:
             await session.send("Input.dispatchTouchEvent", {
                 "type": "touchStart", "touchPoints": [{"x": points[0][0], "y": points[0][1]}]
             })
+            await expect(button).to_be_disabled()
+            if index:
+                await expect(button).to_have_css("opacity", "1")
             for x, y in points[1:]:
                 await session.send("Input.dispatchTouchEvent", {
                     "type": "touchMove", "touchPoints": [{"x": x, "y": y}]
@@ -44,13 +78,18 @@ async def draw_clock(page, *, paced=False, touch=False):
         else:
             await page.mouse.move(*points[0])
             await page.mouse.down()
+            await expect(button).to_be_disabled()
+            if index:
+                await expect(button).to_have_css("opacity", "1")
             for x, y in points[1:]:
-                await page.mouse.move(x, y, steps=1 if len(points) > 3 else 10)
+                await page.mouse.move(x, y)
                 if paced:
-                    await asyncio.sleep(0.035 if len(points) > 3 else 0.18)
+                    await asyncio.sleep(0.015)
             await page.mouse.up()
+        await expect(button).to_be_enabled()
+        await expect(button).to_have_css("opacity", "1")
         if paced:
-            await asyncio.sleep(0.22)
+            await asyncio.sleep(0.14)
     if session:
         await session.detach()
 
@@ -58,6 +97,7 @@ async def draw_clock(page, *, paced=False, touch=False):
 async def evaluate(page, answer_key):
     async with page.expect_response("**/v1/systemone", timeout=180000) as pending:
         await page.locator("button.evaluate").click()
+        await expect(page.locator("button.evaluate")).to_have_css("opacity", "1")
     response = await pending.value
     assert response.status == 200, await response.text()
     body = await response.json()
@@ -92,15 +132,16 @@ async def run(args, videos):
         await page.evaluate("scrollTo(0, document.querySelector('.mode-tabs').offsetTop - 16)")
         if args.record:
             await asyncio.sleep(1)
-        await draw_clock(page, paced=args.record)
+        await draw_cat(page, paced=args.record)
         await expect(page.locator("button.evaluate")).to_be_enabled()
         # The request is built by the app from actual browser canvas pixels.
-        responses["drawn_clock"] = await evaluate(page, "doodle")
-        assert responses["drawn_clock"]["answers"]["doodle"]["choice"] == "clock"
+        responses["drawn_cat"] = await evaluate(page, "doodle")
+        assert responses["drawn_cat"]["answers"]["doodle"]["choice"] == "cat"
         await page.screenshot(path=str(output / "sketch-desktop.png"))
         canvas_png = await page.locator("canvas").screenshot()
-        (output / "drawn-clock.png").write_bytes(canvas_png)
-        checks.append("Root opens drawing pad; mouse strokes produce a real clock prediction")
+        (output / "drawn-cat.png").write_bytes(canvas_png)
+        checks.append("Root opens drawing pad; mouse strokes produce a real cat prediction")
+        checks.append("Button stays opaque between strokes; submitting is blocked until pointer-up")
         if args.record:
             await asyncio.sleep(4)
         video = page.video
@@ -122,11 +163,11 @@ async def run(args, videos):
         page.on("pageerror", lambda error: errors.append(str(error)))
         await page.goto(args.url + "#doodle", wait_until="networkidle")
         blank = await page.locator("canvas").evaluate("el => el.toDataURL()")
-        await draw_clock(page)
+        await draw_cat(page)
         await page.get_by_role("button", name="Doodle Detective", exact=True).click()
         await expect(page.locator("button.evaluate")).to_be_disabled()
         assert await page.locator("canvas").evaluate("el => el.toDataURL()") == blank
-        await draw_clock(page)
+        await draw_cat(page)
         await page.get_by_role("button", name="Clear drawing", exact=True).click()
         await expect(page.locator("button.evaluate")).to_be_disabled()
         assert await page.locator("canvas").evaluate("el => el.toDataURL()") == blank
@@ -208,12 +249,12 @@ async def run(args, videos):
         page = await mobile.new_page()
         page.on("pageerror", lambda error: errors.append(str(error)))
         await page.goto(args.url + "#doodle", wait_until="networkidle")
-        await draw_clock(page, touch=True)
+        await draw_cat(page, touch=True)
         assert await page.evaluate("document.documentElement.scrollWidth <= innerWidth")
-        responses["touch_clock"] = await evaluate(page, "doodle")
-        assert responses["touch_clock"]["answers"]["doodle"]["choice"] == "clock"
+        responses["touch_cat"] = await evaluate(page, "doodle")
+        assert responses["touch_cat"]["answers"]["doodle"]["choice"] == "cat"
         await page.screenshot(path=str(output / "sketch-mobile.png"), full_page=True)
-        checks.append("390px touch drawing produces a real clock prediction, with no horizontal overflow")
+        checks.append("390px touch drawing produces a real cat prediction, with no horizontal overflow")
         await mobile.close()
         assert not errors, errors
         browser_version = browser.version

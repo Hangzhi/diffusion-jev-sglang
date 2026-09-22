@@ -1,9 +1,10 @@
 import React, { useEffect, useRef } from "react";
 import { RotateCcw } from "lucide-react";
 
-export function DrawPad({ disabled, onChange }: {
+export function DrawPad({ disabled, onChange, onStrokeStart }: {
   disabled: boolean;
   onChange: (image: string | null) => void;
+  onStrokeStart: () => void;
 }) {
   const canvas = useRef<HTMLCanvasElement>(null);
   const pointer = useRef<number | null>(null);
@@ -38,7 +39,7 @@ export function DrawPad({ disabled, onChange }: {
         if (!ctx) return;
         event.currentTarget.setPointerCapture(event.pointerId);
         pointer.current = event.pointerId;
-        onChange(null);
+        onStrokeStart();
         const [x, y] = point(event);
         ctx.fillStyle = "#17291f";
         ctx.beginPath(); ctx.arc(x, y, 4, 0, Math.PI * 2); ctx.fill();
