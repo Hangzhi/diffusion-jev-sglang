@@ -2,6 +2,8 @@
 
 Draw a wonky cat. Click **Guess doodle**. See what the model thinks.
 
+**[Open the live demo](https://diffusion-jev-sglang.vercel.app/#doodle).** No setup needed. The model sleeps between visits, so the first prediction may take a few minutes.
+
 ![Live sketch demo: drawing a scruffy cat and getting a prediction from local DiffusionGemma](reports/doodle-demo/sketch-demo.gif)
 
 This GIF records the running app and a real model response. It is one example, not an accuracy test. [Recording and checks](reports/doodle-demo/README.md).
@@ -12,7 +14,7 @@ This is an independent project with a Jev-like API. It does not use TypeSafe's J
 
 ## Try the sketch demo
 
-With DiffusionGemma running, open **http://localhost:8000/#doodle**. The drawing pad opens first.
+Open the [public demo](https://diffusion-jev-sglang.vercel.app/#doodle), or **http://localhost:8000/#doodle** with DiffusionGemma running locally. The drawing pad opens first.
 
 1. Draw an airplane, apple, bicycle, cat, clock, fish, pizza, or umbrella.
 2. Click **Guess doodle** at the top.
@@ -22,13 +24,15 @@ You can draw with a mouse or a finger. You can also upload an image. **Try a ske
 
 The model must choose from the listed objects. It can be wrong. The scores compare these choices; they are not the chance that the answer is correct.
 
-**Flowers** and **Text decisions** are separate tabs. The text demo includes emoji prediction. Images go to your own inference server.
+**Flowers** and **Text decisions** are separate tabs. The text demo includes emoji prediction. The public demo runs predictions on Modal. A local deployment uses your own inference server.
+
+The public demo allows 100 predictions per day and 1,000 per month, shared by visitors. Its monthly compute budget can pause predictions earlier. [How the low-cost hosting works](docs/cloud-hosting.md).
 
 ## Run it
 
 The tested setup uses **one NVIDIA A100 80GB**, Linux, and Python 3.12. It needs about 50 GB for model weights on disk. The running engine reserves about 72 GiB of GPU memory.
 
-First follow the [DiffusionGemma setup guide](docs/diffusiongemma.md). It covers the model download, the pinned SGLang source, and the GPU environment. This is still an experimental setup. We tested it in an existing GPU environment; a full install on a clean machine has not been validated.
+First follow the [DiffusionGemma setup guide](docs/diffusiongemma.md). It covers the model download, the pinned SGLang source, and the GPU environment. This is still an experimental setup. The [Modal container](docs/cloud-hosting.md) also provides a tested clean installation.
 
 Then, from this repository:
 

@@ -1,0 +1,131 @@
+{
+  "url": "https://diffusion-jev-sglang.vercel.app",
+  "elapsed_seconds": 156.61,
+  "real_prediction": {
+    "model": "google/diffusiongemma-26B-A4B-it",
+    "answers": {
+      "doodle": {
+        "type": "choice",
+        "choice": "cat",
+        "probabilities": {
+          "airplane": 9.886613199132708e-10,
+          "apple": 1.1538398294991768e-09,
+          "bicycle": 7.132421303622469e-08,
+          "cat": 0.999999918568643,
+          "clock": 2.2721142067567037e-09,
+          "fish": 9.935049822675836e-11,
+          "pizza": 5.269565096845638e-09,
+          "umbrella": 3.236132125870751e-10
+        },
+        "confidence": 0.9999993005737673
+      }
+    },
+    "usage": {
+      "input_tokens": 421,
+      "output_tokens": 5
+    },
+    "meta": {
+      "latency_ms": 1026.11,
+      "probability_source": "self_conditioned_denoiser_logits",
+      "temperature": 1.0,
+      "passes": 48,
+      "candidate_logits": {
+        "doodle": [
+          3.0982890129089355,
+          3.2527878284454346,
+          7.376928329467773,
+          23.832958221435547,
+          3.930403232574463,
+          0.8005911707878113,
+          4.771640300750732,
+          1.981486201286316
+        ]
+      },
+      "denoising_steps": {
+        "doodle": 2
+      },
+      "candidate_mass": {
+        "doodle": 0.9999999449401584
+      },
+      "unrestricted_first_token": {
+        "doodle": "D"
+      },
+      "answer_position": {
+        "doodle": 4
+      }
+    }
+  },
+  "health_requests": 1,
+  "page_errors": [],
+  "gallery_images_loaded": true,
+  "mobile_overflow": false,
+  "responses": [
+    {
+      "status_code": 202,
+      "body": {
+        "job_id": "71ca7643-a7ea-4a9a-9052-23e04c50be4e",
+        "status": "pending"
+      }
+    },
+    {
+      "status_code": 200,
+      "body": {
+        "status": "completed",
+        "result": {
+          "model": "google/diffusiongemma-26B-A4B-it",
+          "answers": {
+            "doodle": {
+              "type": "choice",
+              "choice": "cat",
+              "probabilities": {
+                "airplane": 9.886613199132708e-10,
+                "apple": 1.1538398294991768e-09,
+                "bicycle": 7.132421303622469e-08,
+                "cat": 0.999999918568643,
+                "clock": 2.2721142067567037e-09,
+                "fish": 9.935049822675836e-11,
+                "pizza": 5.269565096845638e-09,
+                "umbrella": 3.236132125870751e-10
+              },
+              "confidence": 0.9999993005737673
+            }
+          },
+          "usage": {
+            "input_tokens": 421,
+            "output_tokens": 5
+          },
+          "meta": {
+            "latency_ms": 1026.11,
+            "probability_source": "self_conditioned_denoiser_logits",
+            "temperature": 1.0,
+            "passes": 48,
+            "candidate_logits": {
+              "doodle": [
+                3.0982890129089355,
+                3.2527878284454346,
+                7.376928329467773,
+                23.832958221435547,
+                3.930403232574463,
+                0.8005911707878113,
+                4.771640300750732,
+                1.981486201286316
+              ]
+            },
+            "denoising_steps": {
+              "doodle": 2
+            },
+            "candidate_mass": {
+              "doodle": 0.9999999449401584
+            },
+            "unrestricted_first_token": {
+              "doodle": "D"
+            },
+            "answer_position": {
+              "doodle": 4
+            }
+          }
+        }
+      }
+    }
+  ]
+}

@@ -45,7 +45,7 @@ The weights require approximately 50 GB of disk space, plus space for the engine
 
 Use a dedicated Python 3.12 environment on a compatible Linux/CUDA host. The validated core versions are in the pinned-runtime list above and [environment.json](../reports/diffusiongemma/environment.json). The launcher imports SGLang directly from the chosen checkout via `PYTHONPATH`; it does not upgrade your engine environment.
 
-The source's `python/pyproject.toml` lists engine dependencies. Treat this as an experimental developer setup: our measurements reused an already compatible environment, and a complete clean-machine dependency install has **not** been validated. In particular, this upstream revision lists `torch==2.13.0` alongside `torchaudio==2.11.0`; blindly resolving its entire dependency list can conflict. This text/image service does not use audio. Start from a compatible SGLang/CUDA environment, verify the versions below, and use its interpreter as `--engine-python`.
+The source's `python/pyproject.toml` lists engine dependencies. The original measurements reused an already compatible environment. For a tested clean container build, see [Modal hosting](cloud-hosting.md). This upstream revision lists `torch==2.13.0` alongside `torchaudio==2.11.0`; resolving its entire dependency list can conflict. This text/image service does not use audio. The Modal build excludes those unused audio dependencies. For the original local setup, start from a compatible SGLang/CUDA environment, verify the versions below, and use its interpreter as `--engine-python`.
 
 ```bash
 /path/to/gemma-engine/bin/python - <<'PYTHON'

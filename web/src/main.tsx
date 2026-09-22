@@ -70,10 +70,20 @@ type Result = {
   meta: { latency_ms: number; passes: number; temperature: number; probability_source: string };
 };
 const pretty = (v: unknown) => JSON.stringify(v, null, 2);
+async function responseBody(response: Response) {
+  try {
+    return await response.json();
+  } catch {
+    throw new Error("Predictions are temporarily unavailable. You can still draw and browse the gallery. Please try again later.");
+  }
+}
 function App() {
   const chosenView = useRef(false);
   const [mode, setMode] = useState<"text" | "vision">("text");
   const [modelName, setModelName] = useState("Connecting to model");
+  const [apiDocs, setApiDocs] = useState("/docs");
+  const [queued, setQueued] = useState(false);
+  const [progress, setProgress] = useState("");
   const [supportsImages, setSupportsImages] = useState(false);
   const [visionDemo, setVisionDemo] = useState<VisionDemo>("quickdraw");
   const [drawing, setDrawing] = useState(false);
@@ -118,13 +128,19 @@ function App() {
     setStale(false);
   };
   useEffect(() => {
+    let pollId: ReturnType<typeof setInterval> | undefined;
     const poll = () =>
       fetch("/health")
         .then((r) => r.json())
         .then((h) => {
           setReady(h.ready);
           setModelName(h.display_name || h.model);
+          setApiDocs(h.api_docs || "/docs");
           setSupportsImages(Boolean(h.supports_images));
+          setQueued(h.execution === "queued");
+          // A cloud health check describes CPU admission, not GPU readiness.
+          // Once discovered, it needs no background polling.
+          if (h.execution === "queued") clearInterval(pollId);
           return h;
         })
         .catch(() => setReady(false));
@@ -139,13 +155,25 @@ function App() {
         }
       })
       .catch(() => setError("Could not load examples. Check that the API is running."));
-    const id = setInterval(poll, 5000);
-    return () => clearInterval(id);
+    pollId = setInterval(poll, 5000);
+    return () => clearInterval(pollId);
   }, []);
   useEffect(() => {
     if (mode !== "vision") return;
     const controller = new AbortController();
     setGallery([]); setGalleryTotal(0); setDataset(null); setGalleryError("");
+    if (queued) {
+      fetch(`/gallery/${visionDemo}/manifest.json`, { signal: controller.signal })
+        .then(async r => { if (!r.ok) throw new Error("Could not load the gallery. You can still draw or upload an image."); return r.json(); })
+        .then(data => {
+          setDataset(data);
+          const selected = data.images.filter((item: GalleryImage) => !galleryLabel || item.label === galleryLabel);
+          setGalleryTotal(selected.length);
+          setGallery(selected.slice(galleryOffset, galleryOffset + 12));
+        })
+        .catch(e => { if (e.name !== "AbortError") setGalleryError(e.message); });
+      return () => controller.abort();
+    }
     fetch(`/api/datasets/${visionDemo}`, { signal: controller.signal })
       .then(async r => { if (!r.ok) throw new Error("This gallery is not prepared yet. You can still upload an image or draw a doodle."); return r.json(); })
       .then(setDataset)
@@ -155,7 +183,7 @@ function App() {
       .then(body => { setGallery(body.items); setGalleryTotal(body.total); })
       .catch(e => { if (e.name !== "AbortError") setGalleryError(e.message); });
     return () => controller.abort();
-  }, [mode, visionDemo, galleryOffset, galleryLabel]);
+  }, [mode, visionDemo, galleryOffset, galleryLabel, queued]);
   const openVision = (demo: VisionDemo = visionDemo) => {
     chosenView.current = true;
     history.replaceState(null, "", demo === "quickdraw" ? "#doodle" : "#flowers");
@@ -167,7 +195,7 @@ function App() {
     setQuestions(visionDemos[demo].questions);
   };
   const selectGalleryImage = (item: GalleryImage) => {
-    setSelectedImage({ input: `${visionDemo}:${item.id}`, url: `/api/datasets/${visionDemo}/image/${item.id}`, label: item.label });
+    setSelectedImage({ input: `${visionDemo}:${item.id}`, url: queued ? `/gallery/${visionDemo}/images/${item.id}.jpg` : `/api/datasets/${visionDemo}/image/${item.id}`, label: item.label });
     setResult(null); setError(""); setStale(false);
   };
   const updateDrawing = (url: string | null) => {
@@ -185,8 +213,27 @@ function App() {
       setError("Choose a JPEG, PNG or WebP image up to 6 MB."); return;
     }
     const reader = new FileReader();
-    reader.onload = () => {
-      const url = String(reader.result);
+    reader.onload = async () => {
+      let url = String(reader.result);
+      if (queued) {
+        try {
+          const bitmap = await createImageBitmap(file);
+          const scale = Math.min(1, 768 / Math.max(bitmap.width, bitmap.height));
+          const canvas = document.createElement("canvas");
+          canvas.width = Math.max(1, Math.round(bitmap.width * scale));
+          canvas.height = Math.max(1, Math.round(bitmap.height * scale));
+          const ctx = canvas.getContext("2d");
+          if (!ctx) throw new Error("Could not prepare the image.");
+          ctx.fillStyle = "white";
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+          ctx.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
+          bitmap.close();
+          url = canvas.toDataURL("image/jpeg", 0.9);
+        } catch {
+          setError("Could not prepare the image. Please try a smaller JPEG or PNG.");
+          return;
+        }
+      }
       setDrawing(false);
       setSelectedImage({ input: url, url }); setResult(null); setError(""); setStale(false);
     };
@@ -202,17 +249,31 @@ function App() {
   const evaluate = async () => {
     setBusy(true);
     setError("");
+    setProgress(queued ? "Starting your prediction…" : "");
     try {
-      const response = await fetch("/v1/systemone", {
+      const response = await fetch(queued ? "/api/jobs" : "/v1/systemone", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", "X-Request-ID": crypto.randomUUID() },
         body: JSON.stringify(request()),
       });
-      const body = await response.json();
+      let body = await responseBody(response);
       if (!response.ok)
         throw new Error(
           typeof body.detail === "string" ? body.detail : pretty(body.detail),
         );
+      if (queued) {
+        const jobId = body.job_id;
+        const deadline = Date.now() + 20 * 60 * 1000;
+        setProgress("Waiting for your prediction. The first request may take a few minutes while the model starts.");
+        while (true) {
+          if (Date.now() > deadline) throw new Error("The prediction took too long. Please try again later.");
+          await new Promise(resolve => setTimeout(resolve, 2000));
+          const check = await fetch(`/api/jobs/${encodeURIComponent(jobId)}`, { cache: "no-store" });
+          const job = await responseBody(check);
+          if (!check.ok || job.status === "failed") throw new Error(job.detail || "Prediction failed. Please try again later.");
+          if (job.status === "completed") { body = job.result; break; }
+        }
+      }
       setResult(body);
       setTab("results");
       setStale(false);
@@ -220,6 +281,7 @@ function App() {
       setError(e instanceof Error ? e.message : "Evaluation failed");
     } finally {
       setBusy(false);
+      setProgress("");
     }
   };
   const [editorError, setEditorError] = useState("");
@@ -278,7 +340,7 @@ function App() {
         </a>
         <nav>
           <span className="nav-active">Playground</span>
-          <a href="/docs" target="_blank" rel="noreferrer">
+          <a href={apiDocs} target="_blank" rel="noreferrer">
             API reference <ArrowUpRight size={14} />
           </a>
           <span className="local-tag">
@@ -299,7 +361,7 @@ function App() {
             </h1>}
             <p>
               {mode === "vision" && visionDemo === "quickdraw"
-                ? "A quick sketch. Eight possible answers. One local model."
+                ? `A quick sketch. Eight possible answers. One ${queued ? "diffusion" : "local"} model.`
                 : "Give the model text or an image. Get a choice, a yes/no answer, or a score."}
             </p>
           </div>
@@ -314,7 +376,7 @@ function App() {
             </div>
             <span className={"status " + (ready ? "online" : "")}>
               <i />
-              {ready ? "Ready" : "Connecting"}
+              {ready ? queued ? "On demand" : "Ready" : "Connecting"}
             </span>
           </div>
         </div>
@@ -370,6 +432,9 @@ function App() {
                 <ArrowRight size={16} />
               </button>
             </div>
+            {queued && <p className="cloud-note" role="status" aria-live="polite">
+              {progress || "The model sleeps between visits to keep this demo affordable. The first prediction may take a few minutes."}
+            </p>}
             {mode === "vision" && (
               <div className="vision-panel">
                 <div className="panel-heading"><h2><ImageIcon size={18} /> {visionDemo === "quickdraw" ? "Make a doodle" : "Choose an image"}</h2>
@@ -407,7 +472,7 @@ function App() {
                   <div className="image-gallery">{gallery.map((item, i) => (
                     <button key={item.id} disabled={busy} aria-label={`Select ${visionDemo === "flowers" ? "flower image" : "doodle"} ${galleryOffset + i + 1}`}
                       className={selectedImage?.input === `${visionDemo}:${item.id}` ? "selected" : ""} onClick={() => selectGalleryImage(item)}>
-                      <img loading="lazy" src={`/api/datasets/${visionDemo}/image/${item.id}`} alt={`Image example ${galleryOffset + i + 1}`} />
+                      <img loading="lazy" src={queued ? `/gallery/${visionDemo}/images/${item.id}.jpg` : `/api/datasets/${visionDemo}/image/${item.id}`} alt={`Image example ${galleryOffset + i + 1}`} />
                     </button>
                   ))}</div>
                   <div className="gallery-footer"><button disabled={busy || galleryOffset === 0} onClick={() => setGalleryOffset(Math.max(0, galleryOffset - 12))}>Previous</button>
@@ -511,7 +576,7 @@ function App() {
               </div>
             </details>
             <div className="privacy">
-              <span /> Context stays on your inference server.
+              <span /> {queued ? "Predictions run on Modal. The GPU sleeps between visits." : "Context stays on your inference server."}
             </div>
           </section>
           <section className="output-panel">
@@ -648,8 +713,8 @@ function App() {
           <span>
             <Code2 size={15} /> Three primitives. One endpoint.
           </span>
-          <code>POST /v1/systemone</code>
-          <a href="/docs">
+          <code>{queued ? "POST /api/jobs" : "POST /v1/systemone"}</code>
+          <a href={apiDocs}>
             Build something with it <ArrowUpRight size={14} />
           </a>
         </div>
