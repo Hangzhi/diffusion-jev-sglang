@@ -37,3 +37,20 @@ The GPU idle window is 60 seconds. Shared public allowances are 100 jobs per day
 1,000 per month, and 10 per minute. The owner set the separate workspace budget
 to $50; the dashboard setting was not independently verified in this check.
 See [deployment instructions and environment](../../docs/cloud-hosting.md).
+
+## Expanded doodle choices
+
+The September 22 update adds dog, car, house, tree, sun, star, cup, and sailboat.
+The public app now offers 16 options and 384 Quick, Draw! sketches. The existing
+525 flower images bring the public gallery total to 909.
+
+A fresh public browser run drew a cat and received **cat**, with scores for all
+16 choices. It took **137.79 seconds**, including the cold start. The desktop
+gallery loaded, the mobile layout had no horizontal overflow, and no JavaScript
+errors were observed. Browsing submitted no predictions; the run submitted one
+real GPU job. This is an integration check, not a benchmark.
+
+[Raw validation](expanded-validation.json) · [Public screenshot](expanded-doodle.png)
+
+The updated [local recording and checks](../doodle-demo/README.md) also cover all
+eight added gallery filters and real star and sailboat predictions.
