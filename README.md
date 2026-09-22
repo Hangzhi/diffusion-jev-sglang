@@ -2,6 +2,8 @@
 
 Draw a wonky cat. Click **Guess doodle**. See what the model thinks.
 
+**[Open the live demo](https://diffusion-jev-sglang.vercel.app/#doodle).** No setup needed. The model sleeps between visits, so the first prediction may take a few minutes.
+
 ![Live sketch demo: drawing a scruffy cat and getting a prediction from local DiffusionGemma](reports/doodle-demo/sketch-demo.gif)
 
 This GIF records the running app and a real model response. It is one example, not an accuracy test. [Recording and checks](reports/doodle-demo/README.md).
