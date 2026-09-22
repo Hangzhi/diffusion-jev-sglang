@@ -1,8 +1,8 @@
 # Diffusion Jev / SGLang
 
-Draw a clock. Click **Guess doodle**. See what the model thinks.
+Draw a wonky cat. Click **Guess doodle**. See what the model thinks.
 
-![Live sketch demo: drawing a clock and getting a prediction from local DiffusionGemma](reports/doodle-demo/sketch-demo.gif)
+![Live sketch demo: drawing a scruffy cat and getting a prediction from local DiffusionGemma](reports/doodle-demo/sketch-demo.gif)
 
 This GIF records the running app and a real model response. It is one example, not an accuracy test. [Recording and checks](reports/doodle-demo/README.md).
 
@@ -59,6 +59,19 @@ uv run python scripts/prepare_flowers.py
 ```
 
 ## How it becomes a decision engine
+
+```text
+  [Your sketch or text] + [Question + choices]
+                       |
+                       v
+           [DiffusionGemma / SGLang]
+                       |
+                       v
+            [Answer-letter scores]
+                       |
+                       v
+      [Choice / yes-no / score + distribution]
+```
 
 We turn your question into letter choices, such as A for cat and B for clock. SGLang runs DiffusionGemma on the text and image. Our adapter reads the model's answer-letter scores and maps them back to your labels.
 

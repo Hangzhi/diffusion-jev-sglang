@@ -78,6 +78,7 @@ function App() {
   const [visionDemo, setVisionDemo] = useState<VisionDemo>("quickdraw");
   const [drawing, setDrawing] = useState(false);
   const [drawingKey, setDrawingKey] = useState(0);
+  const [strokeActive, setStrokeActive] = useState(false);
   const [galleryError, setGalleryError] = useState("");
   const [selectedImage, setSelectedImage] = useState<SelectedImage | null>(null);
   const [gallery, setGallery] = useState<GalleryImage[]>([]);
@@ -102,6 +103,7 @@ function App() {
     chosenView.current = true;
     history.replaceState(null, "", "#text");
     setMode("text");
+    setStrokeActive(false);
     setSelectedImage(null);
     setActive(p.id);
     setStructured(typeof p.request.state !== "string");
@@ -160,6 +162,7 @@ function App() {
     setMode("vision"); setSelectedImage(null); setResult(null); setError(""); setStale(false);
     setVisionDemo(demo); setDrawing(demo === "quickdraw"); setGalleryLabel(""); setGalleryOffset(0);
     setDrawingKey(key => key + 1);
+    setStrokeActive(false);
     setStructured(false); setState(visionDemos[demo].state);
     setQuestions(visionDemos[demo].questions);
   };
@@ -168,7 +171,12 @@ function App() {
     setResult(null); setError(""); setStale(false);
   };
   const updateDrawing = (url: string | null) => {
+    setStrokeActive(false);
     setSelectedImage(url ? { input: url, url } : null);
+    setResult(null); setError(""); setStale(false);
+  };
+  const startStroke = () => {
+    setStrokeActive(true);
     setResult(null); setError(""); setStale(false);
   };
   const uploadImage = async (file?: File) => {
@@ -348,8 +356,9 @@ function App() {
           <section className="input-panel">
             <div className="actions">
               <button
-                className="evaluate"
-                disabled={busy || !ready || !state.trim() || (mode === "vision" && !selectedImage)}
+                className={"evaluate" + (strokeActive && selectedImage ? " drawing-stroke" : "")}
+                aria-busy={busy}
+                disabled={busy || strokeActive || !ready || !state.trim() || (mode === "vision" && !selectedImage)}
                 onClick={evaluate}
               >
                 {busy ? (
@@ -380,7 +389,7 @@ function App() {
                     <button disabled={busy} className={!drawing ? "selected" : ""} onClick={() => { if (drawing) { setDrawing(false); updateDrawing(null); } }}>Try a sketch</button>
                   </div>
                 </>}
-                {drawing ? <DrawPad key={drawingKey} disabled={busy} onChange={updateDrawing} /> : selectedImage ? (
+                {drawing ? <DrawPad key={drawingKey} disabled={busy} onChange={updateDrawing} onStrokeStart={startStroke} /> : selectedImage ? (
                   <div className="selected-image">
                     <img src={selectedImage.url} alt="Selected image to classify" />
                     <span>{selectedImage.label && !stale && result?.answers[visionDemos[visionDemo].answerKey]?.choice

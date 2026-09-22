@@ -1,37 +1,38 @@
 {
   "passed": true,
-  "recorded_at": "2026-09-21T22:50:09.251450+00:00",
+  "recorded_at": "2026-09-22T00:58:09.906277+00:00",
   "browser": "153.0.8010.12",
   "checks": [
-    "Root opens drawing pad; mouse strokes produce a real clock prediction",
+    "Root opens drawing pad; mouse strokes produce a real cat prediction",
+    "Button stays opaque between strokes; submitting is blocked until pointer-up",
     "Clear drawing and reopening the demo reset pixels and disable guessing",
     "Gallery paging/filtering works; labels appear only after inference",
     "Flowers and text still evaluate; links preserve the selected demo on reload",
     "Drawing and image upload work when gallery endpoints return 404",
     "Delayed examples do not replace a demo the user already selected",
     "Simulated text-only health response retains the text-first interface",
-    "390px touch drawing produces a real clock prediction, with no horizontal overflow"
+    "390px touch drawing produces a real cat prediction, with no horizontal overflow"
   ],
   "console_errors": [],
-  "drawing_sha256": "b4418c670cbc951e5a5d8cdc433b3503cc19ff6d72df285e2406989364bd1189",
+  "drawing_sha256": "c4a797fe4811b2345c2d83534be955e1a5759231383de06c6bf1093b43c71713",
   "responses": {
-    "drawn_clock": {
+    "drawn_cat": {
       "model": "google/diffusiongemma-26B-A4B-it",
       "answers": {
         "doodle": {
           "type": "choice",
-          "choice": "clock",
+          "choice": "cat",
           "probabilities": {
-            "airplane": 1.6749371246956566e-09,
-            "apple": 1.9302679918405107e-10,
-            "bicycle": 3.35365719752901e-10,
-            "cat": 1.1397715530717556e-09,
-            "clock": 0.9999999958957093,
-            "fish": 8.47800223634667e-11,
-            "pizza": 5.773056353875695e-10,
-            "umbrella": 9.910384596033177e-11
+            "airplane": 1.6799721881670478e-09,
+            "apple": 8.270423814946292e-10,
+            "bicycle": 6.874591785768153e-08,
+            "cat": 0.9999999175231401,
+            "clock": 2.7018291750846455e-09,
+            "fish": 2.373267981961425e-10,
+            "pizza": 7.832558068749419e-09,
+            "umbrella": 4.522133632633278e-10
           },
-          "confidence": 0.9999999569187379
+          "confidence": 0.9999992872983201
         }
       },
       "usage": {
@@ -39,30 +40,30 @@
         "output_tokens": 5
       },
       "meta": {
-        "latency_ms": 365.68,
+        "latency_ms": 364.34,
         "probability_source": "self_conditioned_denoiser_logits",
         "temperature": 1.0,
         "passes": 48,
         "candidate_logits": {
           "doodle": [
-            3.8074824810028076,
-            1.6467806100845337,
-            2.1991732120513916,
-            3.422534704208374,
-            24.014972686767578,
-            0.824011504650116,
-            2.742323398590088,
-            0.9801198244094849
+            3.8996851444244385,
+            3.1910085678100586,
+            7.611325263977051,
+            24.10417366027832,
+            4.3748369216918945,
+            1.9425907135009766,
+            5.439197063446045,
+            2.5873067378997803
           ]
         },
         "denoising_steps": {
           "doodle": 2
         },
         "candidate_mass": {
-          "doodle": 0.9999999913297078
+          "doodle": 0.9999999596188563
         },
         "unrestricted_first_token": {
-          "doodle": "E"
+          "doodle": "D"
         },
         "answer_position": {
           "doodle": 4
@@ -93,7 +94,7 @@
         "output_tokens": 5
       },
       "meta": {
-        "latency_ms": 316.08,
+        "latency_ms": 289.51,
         "probability_source": "self_conditioned_denoiser_logits",
         "temperature": 1.0,
         "passes": 48,
@@ -144,7 +145,7 @@
         "output_tokens": 5
       },
       "meta": {
-        "latency_ms": 296.84,
+        "latency_ms": 281.59,
         "probability_source": "self_conditioned_denoiser_logits",
         "temperature": 1.0,
         "passes": 48,
@@ -213,7 +214,7 @@
         "output_tokens": 15
       },
       "meta": {
-        "latency_ms": 334.43,
+        "latency_ms": 320.56,
         "probability_source": "self_conditioned_denoiser_logits",
         "temperature": 1.0,
         "passes": 48,
@@ -263,18 +264,18 @@
       "answers": {
         "doodle": {
           "type": "choice",
-          "choice": "clock",
+          "choice": "cat",
           "probabilities": {
-            "airplane": 4.682135379648917e-09,
-            "apple": 8.26501280523065e-11,
-            "bicycle": 7.569713793495579e-11,
-            "cat": 1.1918324451514607e-09,
-            "clock": 0.9999999937115094,
-            "fish": 3.70374886400881e-11,
-            "pizza": 1.9352949721439114e-10,
-            "umbrella": 2.5608442822830248e-11
+            "airplane": 2.6579457151313897e-09,
+            "apple": 4.369671491860001e-10,
+            "bicycle": 7.893357726393611e-09,
+            "cat": 0.9999999802083912,
+            "clock": 5.305377301829116e-09,
+            "fish": 3.5134480110567824e-10,
+            "pizza": 2.8706929298632833e-09,
+            "umbrella": 2.75923084745616e-10
           },
-          "confidence": 0.9999999374329516
+          "confidence": 0.999999807527022
         }
       },
       "usage": {
@@ -282,53 +283,53 @@
         "output_tokens": 5
       },
       "meta": {
-        "latency_ms": 292.16,
+        "latency_ms": 249.48,
         "probability_source": "self_conditioned_denoiser_logits",
         "temperature": 1.0,
         "passes": 48,
         "candidate_logits": {
           "doodle": [
-            4.466551303863525,
-            0.42965811491012573,
-            0.3417820930480957,
-            3.0982890129089355,
-            23.64606285095215,
-            -0.37302765250205994,
-            1.280471682548523,
-            -0.7420361638069153
+            3.5612545013427734,
+            1.7558037042617798,
+            4.649722576141357,
+            23.30696678161621,
+            4.252421855926514,
+            1.5377137660980225,
+            3.638254404067993,
+            1.2960678339004517
           ]
         },
         "denoising_steps": {
           "doodle": 2
         },
         "candidate_mass": {
-          "doodle": 0.9999999893319111
+          "doodle": 0.9999999748574449
         },
         "unrestricted_first_token": {
-          "doodle": "E"
+          "doodle": "D"
         },
         "answer_position": {
           "doodle": 4
         }
       }
     },
-    "touch_clock": {
+    "touch_cat": {
       "model": "google/diffusiongemma-26B-A4B-it",
       "answers": {
         "doodle": {
           "type": "choice",
-          "choice": "clock",
+          "choice": "cat",
           "probabilities": {
-            "airplane": 1.5179655686294774e-08,
-            "apple": 2.566936179097808e-10,
-            "bicycle": 2.0802397798953563e-10,
-            "cat": 4.388171045719779e-09,
-            "clock": 0.999999979416651,
-            "fish": 1.272974781810991e-10,
-            "pizza": 3.6143507691091644e-10,
-            "umbrella": 6.20722007641965e-11
+            "airplane": 7.152858296447832e-10,
+            "apple": 1.511260732547641e-10,
+            "bicycle": 7.3577272117747244e-09,
+            "cat": 0.9999999891619195,
+            "clock": 1.247610905253175e-09,
+            "fish": 4.341930029948516e-11,
+            "pizza": 1.1729590115265558e-09,
+            "umbrella": 1.4995221739229135e-10
           },
-          "confidence": 0.9999998072375367
+          "confidence": 0.9999998936074186
         }
       },
       "usage": {
@@ -336,30 +337,30 @@
         "output_tokens": 5
       },
       "meta": {
-        "latency_ms": 352.24,
+        "latency_ms": 338.87,
         "probability_source": "self_conditioned_denoiser_logits",
         "temperature": 1.0,
         "passes": 48,
         "candidate_logits": {
           "doodle": [
-            5.921260356903076,
-            1.8414322137832642,
-            1.6312023401260376,
-            4.6802167892456055,
+            2.8662312030792236,
+            1.3116633892059326,
+            5.197055339813232,
             23.924570083618164,
-            1.14007568359375,
-            2.183631420135498,
-            0.42184722423553467
+            3.422534704208374,
+            0.06445302814245224,
+            3.3608338832855225,
+            1.303865671157837
           ]
         },
         "denoising_steps": {
           "doodle": 2
         },
         "candidate_mass": {
-          "doodle": 0.9999999863656763
+          "doodle": 0.9999999834015956
         },
         "unrestricted_first_token": {
-          "doodle": "E"
+          "doodle": "D"
         },
         "answer_position": {
           "doodle": 4
