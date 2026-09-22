@@ -8,6 +8,12 @@ from fastapi.testclient import TestClient
 from diffusion_jev.cloud import DemoLimit, Jobs, Quota, create_cloud_app
 
 
+@pytest.fixture(autouse=True)
+def gallery_directory(tmp_path, monkeypatch):
+    # CI has no downloaded datasets. CPU API checks need only an empty gallery root.
+    monkeypatch.setattr("diffusion_jev.cloud.DATA_ROOT", tmp_path)
+
+
 class Store:
     def __init__(self):
         self.data = {}
