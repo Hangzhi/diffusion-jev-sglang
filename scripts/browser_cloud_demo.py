@@ -29,6 +29,7 @@ async def run(url, output):
         page.on("response", observe)
         await page.goto(url.rstrip("/") + "/#doodle")
         await expect(page.get_by_label("Draw a doodle", exact=True)).to_be_visible(timeout=60_000)
+        await expect(page.locator(".doodle-categories .chips span")).to_have_count(16)
         await page.wait_for_timeout(6500)
         assert health == [200], health
         assert not responses, "Browsing the page must not submit a prediction"
@@ -51,10 +52,12 @@ async def run(url, output):
         result = completed[-1]["result"]
         assert result["model"] == "google/diffusiongemma-26B-A4B-it"
         assert result["meta"]["probability_source"] == "self_conditioned_denoiser_logits"
+        assert len(result["answers"]["doodle"]["probabilities"]) == 16
         (output / "prediction.json").write_text(json.dumps(result, indent=2) + "\n")
         await page.screenshot(path=str(output / "doodle-desktop.png"), full_page=True)
         await page.get_by_role("button", name="Try a sketch", exact=True).click()
         await expect(page.locator(".image-gallery img").first).to_be_visible(timeout=10_000)
+        await expect(page.locator(".gallery-heading small")).to_contain_text("384 images · 16 classes")
         await page.wait_for_function(
             "[...document.querySelectorAll('.image-gallery img')].every(img => img.complete && img.naturalWidth > 0)"
         )

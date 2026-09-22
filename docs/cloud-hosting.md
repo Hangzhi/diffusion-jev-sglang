@@ -72,7 +72,7 @@ vercel link --project diffusion-jev-sglang
 vercel deploy --prebuilt --prod
 ```
 
-Vercel serves the complete drawing pad, examples and 717 gallery images as static
+Vercel serves the complete drawing pad, examples and 909 gallery images as static
 files. Only `/api/jobs` requests go to Modal. This deployment does not need a Vercel
 GPU, an AI Gateway subscription, a paid database, or a custom domain.
 

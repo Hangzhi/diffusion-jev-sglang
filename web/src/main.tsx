@@ -41,7 +41,15 @@ const flowerQuestions: Record<string, Question> = {
 };
 const doodleQuestions: Record<string, Question> = {
   doodle: { type: "choice", instructions: "What object does the attached hand-drawn sketch depict? Choose the closest category.",
-    criteria: { airplane: "An airplane with wings", apple: "An apple fruit", bicycle: "A bicycle with two wheels", cat: "A cat", clock: "A clock face with hands", fish: "A fish with fins and a tail", pizza: "A pizza or a slice of pizza", umbrella: "An umbrella" } },
+    criteria: {
+      airplane: "An airplane with wings", apple: "An apple fruit",
+      bicycle: "A bicycle with two wheels", cat: "A cat",
+      clock: "A clock face with hands", fish: "A fish with fins and a tail",
+      pizza: "A pizza or a slice of pizza", umbrella: "An umbrella",
+      dog: "A dog", car: "A car with wheels", house: "A house with a roof",
+      tree: "A tree with a trunk and branches", sun: "The sun with rays",
+      star: "A star shape", cup: "A drinking cup", sailboat: "A boat with a sail",
+    } },
 };
 const visionDemos = {
   flowers: { name: "Flowers", state: "Classify the flower shown in the attached image.", questions: flowerQuestions, split: "test", answerKey: "flower" },
@@ -361,7 +369,7 @@ function App() {
             </h1>}
             <p>
               {mode === "vision" && visionDemo === "quickdraw"
-                ? `A quick sketch. Eight possible answers. One ${queued ? "diffusion" : "local"} model.`
+                ? `A quick sketch. ${Object.keys(questions.doodle?.criteria ?? {}).length} possible answers. One ${queued ? "diffusion" : "local"} model.`
                 : "Give the model text or an image. Get a choice, a yes/no answer, or a score."}
             </p>
           </div>
@@ -635,7 +643,7 @@ function App() {
                 </h3>
                 <p>
                   {mode === "vision" && visionDemo === "quickdraw"
-                    ? "Draw one of the eight objects, then click Guess doodle."
+                    ? "Draw one of the listed objects, then click Guess doodle."
                     : "Choose an example or bring your own."}
                 </p>
                 <span className="empty-tip">

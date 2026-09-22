@@ -14,9 +14,9 @@
 
 [![Draw a scruffy cat and get a real DiffusionGemma prediction. Click to try the playground.](reports/doodle-demo/sketch-demo.gif)](https://diffusion-jev-sglang.vercel.app/#doodle)
 
-A wonky sketch goes in. **Cat** comes out, with scores for all eight choices. Draw with a mouse or a finger, upload your own image, or try one of **192 Google Quick, Draw! sketches**. Click the GIF to open the drawing pad.
+A wonky sketch goes in. **Cat** comes out, with scores for all 16 choices. Draw with a mouse or a finger, upload your own image, or try one of **384 Google Quick, Draw! sketches**. Click the GIF to open the drawing pad.
 
-The choices are airplane, apple, bicycle, cat, clock, fish, pizza, and umbrella. The model must pick from this list.
+The 16 choices are **airplane, apple, bicycle, cat, clock, fish, pizza, umbrella, dog, car, house, tree, sun, star, cup, and sailboat**. The model must pick from this list.
 
 ### Choose a flower → get its class
 

@@ -127,6 +127,8 @@ async def run(args, videos):
         await expect(page.get_by_label("Draw a doodle", exact=True)).to_be_visible()
         assert page.url.endswith("#doodle")
         await expect(page.get_by_text("Ready", exact=True)).to_be_visible()
+        await expect(page.locator(".doodle-categories .chips span")).to_have_count(16)
+        await expect(page.locator(".intro p")).to_contain_text("16 possible answers")
         await expect(page.locator("button.evaluate")).to_be_disabled()
         assert not await page.locator("details").evaluate("el => el.open")
         await page.evaluate("scrollTo(0, document.querySelector('.mode-tabs').offsetTop - 16)")
@@ -188,6 +190,24 @@ async def run(args, videos):
         await page.get_by_label("STATE", exact=True).fill("Identify the object in this sketch.")
         assert "Dataset label:" not in await page.locator(".selected-image").inner_text()
         checks.append("Gallery paging/filtering works; labels appear only after inference")
+
+        new_labels = ["dog", "car", "house", "tree", "sun", "star", "cup", "sailboat"]
+        for label in new_labels:
+            async with page.expect_response(
+                lambda r, label=label: "/quickdraw/images?" in r.url and f"label={label}" in r.url
+            ) as gallery_response:
+                await page.get_by_label("Filter image category").select_option(label)
+            data = await (await gallery_response.value).json()
+            assert data["total"] == 24
+            assert all(item["label"] == label for item in data["items"])
+            await expect(page.locator(".image-gallery img").first).to_have_attribute(
+                "src", f"/api/datasets/quickdraw/image/{data['items'][0]['id']}"
+            )
+            if label in {"star", "sailboat"}:
+                await page.get_by_role("button", name="Select doodle 1", exact=True).click()
+                responses[f"gallery_{label}"] = await evaluate(page, "doodle")
+                assert len(responses[f"gallery_{label}"]["answers"]["doodle"]["probabilities"]) == 16
+        checks.append("All eight new categories have 24 gallery sketches; star and sailboat return 16-option distributions")
 
         await page.get_by_role("button", name="Flowers", exact=True).click()
         await page.get_by_label("Filter image category").select_option("rose")

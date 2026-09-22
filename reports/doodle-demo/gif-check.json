@@ -1,15 +1,8 @@
 {
-  "description": "GIF button background: one transition after the first completed stroke; no further dimming through drawing or inference. Ignore initial page load/scroll.",
-  "duration_s": 17.33,
-  "bytes": 3634148,
-  "button_states": [
-    {
-      "time_s": 1.5,
-      "state": "dim"
-    },
-    {
-      "time_s": 5.83,
-      "state": "solid"
-    }
-  ]
+  "width": 1000,
+  "height": 750,
+  "frames": 229,
+  "duration_seconds": 19.08,
+  "bytes": 3850148,
+  "choices": 16
 }
