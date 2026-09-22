@@ -84,6 +84,7 @@ nav a {
   display: flex;
   gap: 5px;
   align-items: center;
+  white-space: nowrap;
 }
 .nav-active {
   color: #244932;
@@ -749,8 +750,11 @@ footer {
 }
 @media (max-width: 800px) {
   header {
-    padding: 0 20px;
-    height: 65px;
+    padding: 16px 20px;
+    min-height: 65px;
+    height: auto;
+    flex-wrap: wrap;
+    gap: 12px;
   }
   nav {
     gap: 13px;
