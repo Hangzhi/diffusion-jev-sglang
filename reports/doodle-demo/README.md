@@ -1,25 +1,42 @@
-# Doodle Detective demo validation
+# Doodle Detective: live demo and checks
 
-Validated September 21, 2026 against the local A100 / native SGLang DiffusionGemma service. This is an interface and inference smoke check, **not an accuracy benchmark**.
+Recorded on September 21, 2026 with the running DiffusionGemma service on one A100 80GB.
 
-The gallery contains 192 sketches across eight categories. [dataset.json](dataset.json) records source URLs, immutable GCS object generations, selection hashes, and opaque image IDs. The preparation method selects the first 24 recognized, pixel-unique sketches per category without looking at this model's predictions. Gallery images and raw source vectors are excluded from Git.
+![Draw a clock and get a real model answer](sketch-demo.gif)
 
-Browser checks passed:
+The GIF shows browser mouse input, a click on **Guess doodle**, and the actual GPU response. The app sends the canvas pixels to the model. No answer is inserted into the recording. Playback is at normal speed, with 12 frames per second. The image is 1000 × 750 pixels and about 3 MB.
 
-- Load the gallery, move between pages, and filter a category.
-- Classify a gallery cat through the real GPU API; predicted **cat**.
-- Draw a clock with browser pointer input and submit its PNG pixels; predicted **clock**.
-- Clear the drawing and verify that guessing is disabled until another image is supplied.
-- Switch back to Flowers and classify a namespaced flower ID through the real API.
-- Switch to text decisions; retain the single top action button and no Copy cURL control.
-- Check a 390-pixel mobile viewport for horizontal overflow; no JavaScript errors.
+This is an example of the app working. It is **not an accuracy or latency benchmark**.
 
-[browser-smoke.json](browser-smoke.json) contains actual model responses and check results. These few examples were integration checks; their timings include cold-start effects and are not comparable to the measured benchmark runs.
+## What changed for the user
 
-The Python suite passed 52 tests with three skipped in the lightweight environment; eight tensor/readout checks passed in the engine environment. Ruff and the TypeScript/Vite production build passed. The additional gallery test verifies that dataset namespaces cannot access another gallery's files and that source IDs/labels do not reach inference.
+The drawing pad opens first on DiffusionGemma. Doodle Detective, Flowers, and Text decisions each have a top-level tab. The image demos keep the question settings in a closed section so the canvas and answer are easier to find. Direct links use `/#doodle`, `/#flowers`, and `/#text`.
 
-![Doodle Detective with a real model response](preview.png)
+## Live browser checks
 
-Screenshots: [desktop gallery](gallery-desktop.png), [mobile gallery](gallery-mobile.png), [drawn clock](drawing-desktop.png), [mobile drawing](drawing-mobile.png). The drawing screenshots were captured during the initial smoke check, before category hints were moved above the canvas; the gallery preview shows the final UI.
+[sketch-validation.json](sketch-validation.json) contains the actual model responses and the check results.
 
-Sketch attribution: [Quick, Draw! dataset](https://github.com/googlecreativelab/quickdraw-dataset), Google, Inc., [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Simplified vectors were rendered into black-on-white JPEGs. The clock in the drawing test was drawn with browser pointer events for this project.
+- Draw a clock with the mouse and get **clock** from the real model.
+- Clear the drawing, or reopen the demo. Pixels reset and guessing is disabled.
+- Page through the gallery, filter cats, and classify a sketch. Its dataset label appears after the answer.
+- Edit the question and check that the old dataset-label result is hidden.
+- Classify a rose and evaluate the text/emoji example through the same service.
+- Reload the Flowers and Text links and keep the selected demo.
+- Upload a drawing while optional gallery endpoints return 404. The real model still classifies it.
+- Delay the examples endpoint and confirm it does not replace a demo the user already selected.
+- Simulate a text-only backend and keep the text interface available.
+- Draw on a 390-pixel touch viewport and get **clock**, with no horizontal overflow.
+
+Inference responses are never mocked. Only the missing-gallery, delayed-startup, and text-only capability checks simulate interface conditions. No JavaScript exceptions were recorded.
+
+Screenshots: [desktop](sketch-desktop.png), [mobile](sketch-mobile.png), and [the drawn clock](drawn-clock.png).
+
+The Python suite passed **52 tests**, with three skipped in the lightweight environment. Ruff and the TypeScript/Vite production build passed. See [development and recording steps](../../docs/development.md) for the environment and repeatable capture command.
+
+## Gallery source
+
+The optional gallery has 192 sketches across eight categories. [dataset.json](dataset.json) records source URLs, immutable GCS object generations, selection hashes, and opaque image IDs. Preparation takes the first 24 recognized, pixel-unique sketches per category without looking at this model's predictions. Gallery images and raw source vectors stay outside Git.
+
+Sketch source: [Google Quick, Draw!](https://github.com/googlecreativelab/quickdraw-dataset), Google, Inc., [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Simplified strokes were rendered as black-on-white JPEGs. The clock in this recording was drawn with browser pointer events for this project.
+
+The earlier gallery checks remain in [browser-smoke.json](browser-smoke.json). The older [gallery preview](preview.png) and `gallery-*` / `drawing-*` screenshots show the previous navigation layout.

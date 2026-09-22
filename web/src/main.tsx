@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
 import {
   ArrowUpRight,
@@ -12,6 +12,7 @@ import {
   Image as ImageIcon,
   LoaderCircle,
   Play,
+  Pencil,
   Plus,
   RotateCcw,
   Sparkles,
@@ -70,11 +71,13 @@ type Result = {
 };
 const pretty = (v: unknown) => JSON.stringify(v, null, 2);
 function App() {
+  const chosenView = useRef(false);
   const [mode, setMode] = useState<"text" | "vision">("text");
   const [modelName, setModelName] = useState("Connecting to model");
   const [supportsImages, setSupportsImages] = useState(false);
-  const [visionDemo, setVisionDemo] = useState<VisionDemo>("flowers");
+  const [visionDemo, setVisionDemo] = useState<VisionDemo>("quickdraw");
   const [drawing, setDrawing] = useState(false);
+  const [drawingKey, setDrawingKey] = useState(0);
   const [galleryError, setGalleryError] = useState("");
   const [selectedImage, setSelectedImage] = useState<SelectedImage | null>(null);
   const [gallery, setGallery] = useState<GalleryImage[]>([]);
@@ -96,6 +99,8 @@ function App() {
     [questionJson, setQuestionJson] = useState(""),
     [stale, setStale] = useState(false);
   const load = (p: Preset) => {
+    chosenView.current = true;
+    history.replaceState(null, "", "#text");
     setMode("text");
     setSelectedImage(null);
     setActive(p.id);
@@ -111,15 +116,6 @@ function App() {
     setStale(false);
   };
   useEffect(() => {
-    fetch("/api/examples")
-      .then((r) => r.json())
-      .then((p) => {
-        setPresets(p);
-        load(p[0]);
-      })
-      .catch(() =>
-        setError("Could not load examples. Check that the API is running."),
-      );
     const poll = () =>
       fetch("/health")
         .then((r) => r.json())
@@ -127,9 +123,20 @@ function App() {
           setReady(h.ready);
           setModelName(h.display_name || h.model);
           setSupportsImages(Boolean(h.supports_images));
+          return h;
         })
         .catch(() => setReady(false));
-    poll();
+    Promise.all([fetch("/api/examples").then(r => r.json()), poll()])
+      .then(([p, h]) => {
+        setPresets(p);
+        if (chosenView.current) return;
+        if (h?.supports_images && location.hash !== "#text") {
+          openVision(location.hash === "#flowers" ? "flowers" : "quickdraw");
+        } else {
+          load(p[0]);
+        }
+      })
+      .catch(() => setError("Could not load examples. Check that the API is running."));
     const id = setInterval(poll, 5000);
     return () => clearInterval(id);
   }, []);
@@ -148,8 +155,11 @@ function App() {
     return () => controller.abort();
   }, [mode, visionDemo, galleryOffset, galleryLabel]);
   const openVision = (demo: VisionDemo = visionDemo) => {
+    chosenView.current = true;
+    history.replaceState(null, "", demo === "quickdraw" ? "#doodle" : "#flowers");
     setMode("vision"); setSelectedImage(null); setResult(null); setError(""); setStale(false);
-    setVisionDemo(demo); setDrawing(false); setGalleryLabel(""); setGalleryOffset(0);
+    setVisionDemo(demo); setDrawing(demo === "quickdraw"); setGalleryLabel(""); setGalleryOffset(0);
+    setDrawingKey(key => key + 1);
     setStructured(false); setState(visionDemos[demo].state);
     setQuestions(visionDemos[demo].questions);
   };
@@ -268,20 +278,21 @@ function App() {
           </span>
         </nav>
       </header>
-      <main>
+      <main className={mode === "vision" ? "image-demo" : ""}>
         <div className="eyebrow">
           <span /> SMALL OUTPUT. BIG DECISIONS.
         </div>
         <div className="intro">
           <div>
-            <h1>
+            {mode === "vision" && visionDemo === "quickdraw" ? <h1>Draw something.<br /><span>See what it thinks.</span></h1> : <h1>
               Less generation.
               <br />
               <span>More decision.</span>
-            </h1>
+            </h1>}
             <p>
-              Turn context into choices, probabilities, and scores.
-              <br />A local playground for diffusion-powered intelligence.
+              {mode === "vision" && visionDemo === "quickdraw"
+                ? "A quick sketch. Eight possible answers. One local model."
+                : "Give the model text or an image. Get a choice, a yes/no answer, or a score."}
             </p>
           </div>
           <div className="model-card">
@@ -300,24 +311,28 @@ function App() {
           </div>
         </div>
         <div className="mode-tabs" role="group" aria-label="Classification mode">
+          <button className={mode === "vision" && visionDemo === "quickdraw" ? "selected" : ""}
+            aria-pressed={mode === "vision" && visionDemo === "quickdraw"}
+            disabled={busy || !supportsImages} onClick={() => openVision("quickdraw")}>
+            <Pencil size={15} /> Doodle Detective
+          </button>
+          <button className={mode === "vision" && visionDemo === "flowers" ? "selected" : ""}
+            aria-pressed={mode === "vision" && visionDemo === "flowers"}
+            disabled={busy || !supportsImages} onClick={() => openVision("flowers")}>
+            <ImageIcon size={15} /> Flowers
+          </button>
           <button className={mode === "text" ? "selected" : ""} disabled={busy}
+            aria-pressed={mode === "text"}
             onClick={() => { const p = presets.find(x => x.id === active) || presets[0]; if (p) load(p); }}>
             <Braces size={15} /> Text decisions
-          </button>
-          <button className={mode === "vision" ? "selected" : ""} disabled={busy || !supportsImages} onClick={() => openVision()}>
-            <ImageIcon size={15} /> Image classification
           </button>
         </div>
         <div className="workspace-top">
           <span className="workspace-label">
-            <Terminal size={16} /> Decision playground
+            <Terminal size={16} /> {mode === "vision" ? visionDemos[visionDemo].name : "Decision playground"}
           </span>
-          <div className="preset-tabs">
-            {mode === "vision" && (Object.keys(visionDemos) as VisionDemo[]).map(id => (
-              <button key={id} disabled={busy} className={visionDemo === id ? "selected" : ""}
-                onClick={() => openVision(id)}>{visionDemos[id].name}</button>
-            ))}
-            {mode === "text" && presets.map((p) => (
+          {mode === "text" && <div className="preset-tabs">
+            {presets.map((p) => (
               <button
                 disabled={busy}
                 className={active === p.id ? "selected" : ""}
@@ -327,7 +342,7 @@ function App() {
                 {p.name}
               </button>
             ))}
-          </div>
+          </div>}
         </div>
         <div className="workspace">
           <section className="input-panel">
@@ -348,7 +363,7 @@ function App() {
             </div>
             {mode === "vision" && (
               <div className="vision-panel">
-                <div className="panel-heading"><h2><ImageIcon size={18} /> Choose an image</h2>
+                <div className="panel-heading"><h2><ImageIcon size={18} /> {visionDemo === "quickdraw" ? "Make a doodle" : "Choose an image"}</h2>
                   <label className={"upload-button" + (busy ? " disabled" : "")}>
                     <Upload size={14} /> Upload
                     <input type="file" aria-label="Upload classification image" accept="image/jpeg,image/png,image/webp"
@@ -356,17 +371,16 @@ function App() {
                   </label>
                 </div>
                 {visionDemo === "quickdraw" && <>
-                  <p className="doodle-intro">Can a diffusion model read your scribbles? Try a real Quick, Draw! sketch or make your own.</p>
                   {questions.doodle?.type === "choice" && questions.doodle.criteria != null &&
                     <div className="doodle-categories"><span>Possible guesses</span><div className="chips">
                       {Object.keys(questions.doodle.criteria).map(label => <span key={label}>{label}</span>)}
                     </div></div>}
                   <div className="doodle-tabs" role="group" aria-label="Doodle source">
-                    <button disabled={busy} className={!drawing ? "selected" : ""} onClick={() => { if (drawing) { setDrawing(false); updateDrawing(null); } }}>Try a sketch</button>
                     <button disabled={busy} className={drawing ? "selected" : ""} onClick={() => { if (!drawing) { setDrawing(true); updateDrawing(null); } }}>Draw your own</button>
+                    <button disabled={busy} className={!drawing ? "selected" : ""} onClick={() => { if (drawing) { setDrawing(false); updateDrawing(null); } }}>Try a sketch</button>
                   </div>
                 </>}
-                {drawing ? <DrawPad disabled={busy} onChange={updateDrawing} /> : selectedImage ? (
+                {drawing ? <DrawPad key={drawingKey} disabled={busy} onChange={updateDrawing} /> : selectedImage ? (
                   <div className="selected-image">
                     <img src={selectedImage.url} alt="Selected image to classify" />
                     <span>{selectedImage.label && !stale && result?.answers[visionDemos[visionDemo].answerKey]?.choice
@@ -395,93 +409,98 @@ function App() {
                 </>}
               </div>
             )}
-            <div className="panel-heading">
-              <h2>
-                <span className="step">01</span> Give it context
-              </h2>
-              <button
-                className="icon-button"
-                title="Reset example"
-                aria-label="Reset example"
-                disabled={busy}
-                onClick={() => {
-                  if (mode === "vision") { openVision(); return; }
-                  const p = presets.find((x) => x.id === active);
-                  if (p) load(p);
-                }}
-              >
-                <RotateCcw size={15} />
-              </button>
-            </div>
-            <div className="field-label">
-              <label htmlFor="context">STATE</label>
-              <button
-                className="text-button"
-                onClick={() => {
-                  setStructured(!structured);
-                  setStale(true);
-                }}
-              >
-                {structured ? "JSON object" : "Plain text"}{" "}
-                <ChevronDown size={12} />
-              </button>
-            </div>
-            <textarea
-              id="context"
-              disabled={busy}
-              className="context"
-              value={state}
-              onChange={(e) => {
-                setState(e.target.value);
-                setStale(true);
-              }}
-              spellCheck="false"
-            />
-            <div className="field-hint">
-              The text or structured data you want to evaluate.
-              <span>{state.length} characters</span>
-            </div>
-            <div className="questions-heading">
-              <h2>
-                <span className="step">02</span> Ask your questions{" "}
-                <span className="count">{Object.keys(questions).length}</span>
-              </h2>
-              <button className="text-button" disabled={busy} onClick={edit}>
-                <Plus size={14} /> Edit questions
-              </button>
-            </div>
-            <div className="question-list">
-              {Object.entries(questions).map(([key, q]) => (
-                <div className="question-card" key={key}>
-                  <div className="question-card-top">
-                    <strong>{key}</strong>
-                    <span className={"type-badge " + q.type}>{q.type}</span>
-                  </div>
-                  <p>
-                    {typeof q.instructions === "string"
-                      ? q.instructions
-                      : pretty(q.instructions)}
-                  </p>
-                  {q.type === "choice" && q.criteria != null && (
-                    <div className="chips">
-                      {Object.keys(q.criteria).map((k) => (
-                        <span key={k}>{k}</span>
-                      ))}
-                    </div>
-                  )}
-                  {q.type === "score" && Array.isArray(q.criteria) && (
-                    <div className="score-levels">
-                      {q.criteria.map((v, i) => (
-                        <span key={i}>
-                          {i}
-                          <small>{typeof v === "string" ? v : pretty(v)}</small>
-                        </span>
-                      ))}
-                    </div>
-                  )}
+            <details className={`decision-settings ${mode}`} key={`${mode}-${visionDemo}`} open={mode === "text" ? true : undefined}>
+              <summary>Adjust the question and choices</summary>
+              <div className="settings-body">
+                <div className="panel-heading">
+                  <h2>
+                    <span className="step">01</span> Give it context
+                  </h2>
+                  <button
+                    className="icon-button"
+                    title="Reset example"
+                    aria-label="Reset example"
+                    disabled={busy}
+                    onClick={() => {
+                      if (mode === "vision") { openVision(); return; }
+                      const p = presets.find((x) => x.id === active);
+                      if (p) load(p);
+                    }}
+                  >
+                    <RotateCcw size={15} />
+                  </button>
                 </div>
-              ))}
-            </div>
+                <div className="field-label">
+                  <label htmlFor="context">STATE</label>
+                  <button
+                    className="text-button"
+                    onClick={() => {
+                      setStructured(!structured);
+                      setStale(true);
+                    }}
+                  >
+                    {structured ? "JSON object" : "Plain text"}{" "}
+                    <ChevronDown size={12} />
+                  </button>
+                </div>
+                <textarea
+                  id="context"
+                  disabled={busy}
+                  className="context"
+                  value={state}
+                  onChange={(e) => {
+                    setState(e.target.value);
+                    setStale(true);
+                  }}
+                  spellCheck="false"
+                />
+                <div className="field-hint">
+                  The text or structured data you want to evaluate.
+                  <span>{state.length} characters</span>
+                </div>
+                <div className="questions-heading">
+                  <h2>
+                    <span className="step">02</span> Ask your questions{" "}
+                    <span className="count">{Object.keys(questions).length}</span>
+                  </h2>
+                  <button className="text-button" disabled={busy} onClick={edit}>
+                    <Plus size={14} /> Edit questions
+                  </button>
+                </div>
+                <div className="question-list">
+                  {Object.entries(questions).map(([key, q]) => (
+                    <div className="question-card" key={key}>
+                      <div className="question-card-top">
+                        <strong>{key}</strong>
+                        <span className={"type-badge " + q.type}>{q.type}</span>
+                      </div>
+                      <p>
+                        {typeof q.instructions === "string"
+                          ? q.instructions
+                          : pretty(q.instructions)}
+                      </p>
+                      {q.type === "choice" && q.criteria != null && (
+                        <div className="chips">
+                          {Object.keys(q.criteria).map((k) => (
+                            <span key={k}>{k}</span>
+                          ))}
+                        </div>
+                      )}
+                      {q.type === "score" && Array.isArray(q.criteria) && (
+                        <div className="score-levels">
+                          {q.criteria.map((v, i) => (
+                            <span key={i}>
+                              {i}
+                              <small>{typeof v === "string" ? v : pretty(v)}</small>
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </details>
             <div className="privacy">
               <span /> Context stays on your inference server.
             </div>
@@ -525,8 +544,8 @@ function App() {
             {busy ? (
               <div className="empty">
                 <LoaderCircle className="spin" size={32} />
-                <h3>Reading between the tokens.</h3>
-                <p>The model is evaluating your questions.</p>
+                <h3>{mode === "vision" ? "Looking at your image…" : "Reading your text…"}</h3>
+                <p>Waiting for the model’s answer.</p>
               </div>
             ) : !result ? (
               <div className="empty">
@@ -538,16 +557,15 @@ function App() {
                   <div />
                 </div>
                 <h3>
-                  A little context.
-                  <br />A clearer answer.
+                  {mode === "vision" && visionDemo === "quickdraw" ? "What will it see?" : "Your answer goes here."}
                 </h3>
                 <p>
-                  Choose an example or bring your own.
-                  <br />
-                  Your model’s decisions will appear here.
+                  {mode === "vision" && visionDemo === "quickdraw"
+                    ? "Draw one of the eight objects, then click Guess doodle."
+                    : "Choose an example or bring your own."}
                 </p>
                 <span className="empty-tip">
-                  <ArrowRight size={13} /> {mode === "text" ? "Start with “Evaluate state”" : visionDemo === "quickdraw" ? "Pick a sketch and try “Guess doodle”" : "Choose an image to classify"}
+                  <ArrowRight size={13} /> {mode === "text" ? "Start with “Evaluate state”" : visionDemo === "quickdraw" ? "A simple sketch is enough" : "Choose an image to classify"}
                 </span>
               </div>
             ) : tab === "json" ? (
