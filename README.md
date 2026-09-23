@@ -4,7 +4,8 @@
 
 **A diffusion model that guesses your doodles, recognizes flowers, and picks an emoji for your message. Built with DiffusionGemma and SGLang.**
 
-[Try the playground](https://diffusion-jev-sglang.vercel.app/#doodle) · [Model](https://huggingface.co/google/diffusiongemma-26B-A4B-it) · [Results](reports/three-model-comparison/README.md) · [Setup guide](docs/diffusiongemma.md)
+[Try the playground](https://diffusion-jev-sglang.vercel.app/#doodle)(Cold start takes minutes)· [Model](https://huggingface.co/google/diffusiongemma-26B-A4B-it) · [Results](reports/three-model-comparison/README.md) · [Setup guide](docs/diffusiongemma.md)
+
 
 **One model · Three demos · No fine-tuning**
 
